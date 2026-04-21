@@ -1,0 +1,1819 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Acquisition | Outbound Engineering for B2B</title>
+  <meta name="description" content="We run 15+ outbound campaigns simultaneously. Test faster. Learn more. Fill your pipeline with data, not guesswork.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F3EC;
+      --bg-white: #FFFFFF;
+      --text: #0F0F0F;
+      --text-muted: #666666;
+      --text-light: #999999;
+      --accent: #C8960C;
+      --accent-light: rgba(200,150,12,0.12);
+      --border: rgba(0,0,0,0.07);
+      --border-md: rgba(0,0,0,0.12);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+      --shadow-md: 0 2px 8px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.08);
+      --r: 18px;
+      --r-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Waving hand icon */
+    .wave-hand { transform-origin: 70% 85%; animation: waveHand 2.4s ease-in-out infinite; }
+    @keyframes waveHand {
+      0%, 60%, 100% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 52px; height: 68px;
+      background: rgba(247,243,236,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700; font-size: 17px;
+      color: var(--text); text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-mark { width: 58px; height: 38px; }
+
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 15px; font-weight: 500;
+      color: #000000; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 0.55; }
+    .nav-cta {
+      background: var(--text); color: white;
+      padding: 10px 20px; border-radius: 12px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 15px; font-weight: 400;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: opacity .2s, transform .2s;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { opacity: .82; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      padding: 44px 52px 56px;
+      overflow: hidden;
+    }
+
+    /* Decorative doodle icons scattered at hero edges */
+    .edge-doodle {
+      position: absolute; z-index: 2;
+      pointer-events: none;
+      opacity: 0.88;
+      animation: doodleBob 7s ease-in-out infinite;
+    }
+    /* Doodles spread through the hero - top, middle, bottom on both sides */
+    .edge-doodle.d1 { top: 8%;   left: 14%;  animation-delay: 0s; }
+    .edge-doodle.d2 { top: 11%;  right: 15%; animation-delay: -1.8s; }
+    .edge-doodle.d3 { top: 46%;  left: 12%;  animation-delay: -3.6s; }
+    .edge-doodle.d4 { top: 40%;  right: 11.5%; animation-delay: -2.2s; }
+    .edge-doodle.d5 { bottom: 8%; left: 17%;  animation-delay: -4s; }
+    .edge-doodle.d6 { bottom: 10%; right: 16%; animation-delay: -5s; }
+    @keyframes doodleBob {
+      0%,100% { transform: translateY(0) rotate(var(--drot,0deg)); }
+      50%     { transform: translateY(-6px) rotate(calc(var(--drot,0deg) + 2deg)); }
+    }
+    @media (max-width: 1180px) { .edge-doodle { display: none; } }
+
+    /* NFT mascot */
+    .hero-mascot {
+      position: absolute; z-index: 2;
+      left: 4%; bottom: -18px;
+      width: 220px; height: auto;
+      animation: mascotFloat 5.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes mascotFloat {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50%     { transform: translateY(-10px) rotate(1deg); }
+    }
+    @media (max-width: 1280px) { .hero-mascot { width: 170px; left: 2%; } }
+    @media (max-width: 1020px) { .hero-mascot { display: none; } }
+
+    .cta-mascot {
+      position: absolute;
+      right: 6%; top: -86px;
+      width: 150px; height: auto;
+      z-index: 3;
+      transform: rotate(8deg);
+      animation: mascotPeek 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes mascotPeek {
+      0%,100% { transform: translateY(0) rotate(8deg); }
+      50%     { transform: translateY(-6px) rotate(5deg); }
+    }
+    @media (max-width: 720px) { .cta-mascot { width: 110px; right: 4%; top: -66px; } }
+
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.055) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; max-width: 860px; width: 100%;
+    }
+
+    /* ── FLOATING STAT CHIPS ── */
+    .stat-chip {
+      position: absolute; z-index: 3;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 20px;
+      padding: 24px 34px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.06);
+      display: flex; flex-direction: column; gap: 6px;
+      pointer-events: none;
+      animation: chipFloat 6s ease-in-out infinite;
+    }
+    .stat-chip:nth-child(2) { animation-delay: -1.5s; }
+    .stat-chip:nth-child(3) { animation-delay: -3s; }
+    .stat-chip:nth-child(4) { animation-delay: -4.5s; }
+    .stat-chip:nth-child(5) { animation-delay: -2s; }
+
+    @keyframes chipFloat {
+      0%,100% { transform: translateY(0) rotate(var(--rot,0deg)); }
+      50%      { transform: translateY(-8px) rotate(var(--rot,0deg)); }
+    }
+
+    .chip-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 43px; font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1;
+      color: var(--text);
+    }
+    .chip-num span { color: var(--accent); }
+    .chip-label {
+      font-size: 16px; font-weight: 500;
+      color: var(--text-muted); white-space: nowrap;
+    }
+    .chip-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      display: inline-block; margin-bottom: 4px;
+    }
+
+    /* Positions - framing the text block, above the VSL */
+    .chip-a { top: 12%; left: 6%;  --rot: -4deg; }
+    .chip-b { top: 12%; right: 6%; --rot: 4deg; }
+    .chip-c { top: 58%; left: 7%;  --rot: 3deg; }
+    .chip-d { top: 58%; right: 7%; --rot: -3deg; }
+
+    @media (max-width: 1180px) { .stat-chip { display: none; } }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; border: 1px solid var(--border-md);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 12.5px; font-weight: 500;
+      color: var(--text-muted); margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+    h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(42px, 5.2vw, 74px);
+      font-weight: 800; line-height: 1.06;
+      letter-spacing: -0.03em; margin-bottom: 18px;
+    }
+    h1 em { font-style: italic; }
+
+    .hero-sub {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 680px; margin: 0 auto 32px; line-height: 1.65;
+    }
+
+    .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--text); color: white;
+      padding: 14px 24px; border-radius: 20px;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      transition: opacity .2s, transform .2s;
+    }
+    .btn-dark:hover { opacity: .85; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: white; color: var(--text);
+      padding: 14px 24px; border-radius: 20px;
+      font-size: 15px; font-weight: 600;
+      border: 1px solid var(--border-md); text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .btn-outline:hover { background: #f0ece5; transform: translateY(-1px); }
+
+    /* ── HERO VSL ── */
+    .hero-vsl {
+      margin-top: 48px;
+      width: 100%;
+      max-width: 1080px;
+      display: grid;
+      grid-template-columns: 2.4fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+      text-align: left;
+    }
+    .vsl-col { min-width: 0; display: flex; }
+
+    .vsl-side {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px 22px 20px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      display: flex; flex-direction: column;
+      min-width: 0;
+    }
+    .vsl-side-label {
+      font-size: 11.5px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .vsl-side h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 18px; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .vsl-side ul { list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .vsl-side li {
+      font-size: 13px; color: var(--text-muted);
+      display: flex; align-items: flex-start; gap: 8px;
+      line-height: 1.45;
+    }
+    .vsl-side li svg { flex-shrink: 0; margin-top: 3px; }
+    .vsl-side-note {
+      margin-top: auto; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 11.5px; color: var(--text-light);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .vsl-side-note::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #22c55e; flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+    }
+
+    @media (max-width: 920px) {
+      .hero-vsl { grid-template-columns: 1fr; }
+    }
+
+    .vsl-player {
+      position: relative; width: 100%;
+      flex: 1; min-height: 320px;
+      background: #ffffff;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border-md);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+      cursor: pointer;
+    }
+
+    .vsl-player:hover .play-ring { transform: scale(1.08); }
+
+    .vsl-inner-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 20px;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .vsl-grid-bg { display: none; }
+    .vsl-thumb-overlay { display: none; }
+    .vsl-glow { display: none; }
+
+    .play-ring {
+      position: relative; z-index: 2;
+      width: 76px; height: 76px;
+      background: var(--text); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .play-ring:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.26); }
+
+    .play-ring svg { margin-left: 5px; }
+
+    .vsl-caption {
+      position: relative; z-index: 2;
+      font-size: 13.5px; font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: .01em;
+      background: white; border: 1px solid var(--border);
+      padding: 6px 16px; border-radius: 100px;
+    }
+
+    .vsl-stats {
+      display: flex; gap: 0;
+      border: 1px solid var(--border-md);
+      border-radius: var(--r-sm);
+      margin-top: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+    }
+
+    .vsl-stat {
+      flex: 1; padding: 18px 20px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .vsl-stat:last-child { border-right: none; }
+
+    .vsl-stat-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 26px; font-weight: 800;
+      letter-spacing: -0.02em; color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .vsl-stat-label { font-size: 12px; color: var(--text-muted); }
+
+    /* ── FLOW BOARD (logos -> LA -> stats) ── */
+    .flow-wrap {
+      padding: 96px 32px 104px;
+      background: white;
+      position: relative; z-index: 1;
+      color: var(--text);
+    }
+    .flow-shell { max-width: 1240px; margin: 0 auto; }
+    .flow-header { text-align: center; max-width: 760px; margin: 0 auto 56px; }
+    .flow-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(200,150,12,0.08);
+      border: 1px solid rgba(200,150,12,0.25);
+      color: var(--accent);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 100px;
+      margin-bottom: 22px;
+    }
+    .flow-pill::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #C8960C; box-shadow: 0 0 10px rgba(200,150,12,0.9);
+    }
+    .flow-header h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(32px, 4.2vw, 56px);
+      font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
+      color: var(--text); margin-bottom: 18px;
+    }
+    .flow-header h2 em {
+      font-style: italic; color: var(--accent);
+    }
+    .flow-header p {
+      font-size: 15.5px; color: var(--text-muted);
+      line-height: 1.65; max-width: 620px; margin: 0 auto;
+    }
+    .flow-board {
+      background: radial-gradient(ellipse at 50% 40%, #2e2b22 0%, #181612 70%);
+      border: 1px solid rgba(200,150,12,0.18);
+      border-radius: 28px; padding: 64px 20px;
+      position: relative; overflow: hidden;
+    }
+    .flow-board::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 22px 22px; pointer-events: none;
+    }
+    .flow-grid {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px; align-items: center;
+      min-height: 460px;
+    }
+    .flow-tiles { justify-self: end; margin-right: 8px; }
+    .flow-stats  { justify-self: start; margin-left: 8px; }
+    .flow-tiles {
+      display: grid;
+      grid-template-columns: repeat(4, 72px);
+      gap: 14px;
+    }
+    .flow-tile {
+      width: 72px; height: 72px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.07) !important;
+      border: 1px solid rgba(255,255,255,0.1) !important;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+      transition: transform .3s;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .flow-tile img { width: 62%; height: 62%; object-fit: contain; display: block; }
+    .flow-tile svg { width: 64%; height: 64%; }
+    .flow-tile:hover { transform: translateY(-2px); }
+
+    .flow-center {
+      width: 148px; height: 148px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #2a2520, #0a0908);
+      border: 1px solid rgba(200,150,12,0.5);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow:
+        0 0 0 6px rgba(200,150,12,0.08),
+        0 0 40px rgba(200,150,12,0.28),
+        0 0 90px rgba(200,150,12,0.18);
+      position: relative; z-index: 3;
+      animation: centerPulse 3.5s ease-in-out infinite;
+    }
+    @keyframes centerPulse {
+      0%,100% { box-shadow: 0 0 0 6px rgba(200,150,12,0.08), 0 0 40px rgba(200,150,12,0.28), 0 0 90px rgba(200,150,12,0.18); }
+      50%     { box-shadow: 0 0 0 10px rgba(200,150,12,0.04), 0 0 60px rgba(200,150,12,0.38), 0 0 120px rgba(200,150,12,0.24); }
+    }
+    .flow-center svg { width: 100px; height: auto; }
+    .flow-center svg path, .flow-center svg line { stroke: #fff; }
+
+    .flow-stats { display: flex; flex-direction: column; gap: 16px; }
+    .flow-stat {
+      background: rgba(20,18,12,0.82);
+      border: 1px solid rgba(200,150,12,0.35);
+      border-radius: 14px;
+      padding: 14px 18px;
+      min-width: 210px;
+      display: flex; flex-direction: column; gap: 2px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4), inset 0 0 20px rgba(200,150,12,0.06);
+      color: white;
+    }
+    .flow-stat-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .flow-stat-label::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #C8960C; box-shadow: 0 0 10px rgba(200,150,12,0.8);
+    }
+    .flow-stat-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .flow-stat-num span { color: rgba(255,255,255,0.5); font-size: 14px; font-weight: 500; }
+    .flow-stat-sub {
+      font-size: 11.5px; color: rgba(255,255,255,0.55);
+    }
+
+    .flow-lines {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 1;
+      width: 100%; height: 100%;
+    }
+    .flow-lines path { stroke: rgba(200,150,12,0.22); fill: none; stroke-width: 1; }
+    .flow-dot { fill: #C8960C; filter: drop-shadow(0 0 6px rgba(200,150,12,0.9)); }
+
+    @media (max-width: 960px) {
+      .flow-grid { grid-template-columns: 1fr; gap: 32px; }
+      .flow-tiles { grid-template-columns: repeat(6, 1fr); }
+      .flow-center { margin: 0 auto; }
+      .flow-lines { display: none; }
+    }
+
+    /* ── TOOLS TRUST BAR ── */
+    .tools-bar {
+      background: white; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 52px; position: relative; z-index: 1;
+    }
+    .tools-inner {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; align-items: center; gap: 40px;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .tools-label {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-light); white-space: nowrap;
+    }
+    .tools-list {
+      display: flex; gap: 36px; align-items: center;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .tool-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-muted); letter-spacing: -0.01em;
+      transition: color .2s; cursor: default;
+    }
+    .tool-name:hover { color: var(--text); }
+    .tool-name span { color: var(--accent); }
+
+    /* ── CASE STUDIES ── */
+    .proof-wrap {
+      background: white;
+      padding: 72px 0;
+      position: relative; z-index: 1;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .proof-heading {
+      max-width: 1140px; margin: 0 auto 44px; padding: 0 52px;
+      text-align: center;
+    }
+    .proof-heading h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(39px, 4.5vw, 60px);
+      font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+    }
+    .proof-heading h2 em { font-style: italic; }
+
+    /* Fade edges */
+    .proof-ticker-wrap {
+      position: relative;
+    }
+    .proof-ticker-wrap::before,
+    .proof-ticker-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px;
+      z-index: 2; pointer-events: none;
+    }
+    .proof-ticker-wrap::before { left: 0; background: linear-gradient(to right, white, transparent); }
+    .proof-ticker-wrap::after  { right: 0; background: linear-gradient(to left, white, transparent); }
+
+    .proof-ticker {
+      display: flex; gap: 20px;
+      width: max-content;
+      animation: tickerScroll 67s linear infinite;
+    }
+    .proof-ticker:hover { animation-play-state: paused; }
+    @keyframes tickerScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .cs-card {
+      width: 360px; flex-shrink: 0;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.07);
+    }
+    .cs-company {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 17px; font-weight: 700;
+      letter-spacing: -0.01em; color: var(--text);
+      line-height: 1.25;
+    }
+    .cs-offer {
+      font-size: 13.5px; color: var(--text-muted);
+      line-height: 1.6; border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .cs-stats { display: flex; flex-direction: column; gap: 12px; }
+    .cs-stat-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 28px; font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1; color: var(--text);
+    }
+    .cs-stat-num.gold { color: var(--accent); }
+    .cs-stat-desc { font-size: 12.5px; color: var(--text-muted); margin-top: 1px; }
+
+    /* ── SHARED ── */
+    section { position: relative; z-index: 1; }
+    .sec { padding: 72px 0; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 52px; }
+    .sec-label { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .sec-label span { color: var(--accent); }
+    h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 3.4vw, 48px); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 14px; }
+    h2 em { font-style: italic; }
+    .sec-sub { font-size: 16px; color: var(--text-muted); max-width: 520px; line-height: 1.65; }
+    .sec-header { margin-bottom: 44px; }
+
+    /* ── PROBLEM ── */
+    .problem { background: white; }
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .pcard { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 28px; transition: transform .25s, box-shadow .25s; }
+    .pcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .pcard-icon { width: 48px; height: 48px; background: white; border: 1px solid var(--border-md); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .pcard h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 9px; }
+    .pcard p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── METHOD ── */
+    .method { background: var(--bg); }
+    .method-box { background: white; border: 1px solid var(--border); border-radius: var(--r); padding: 28px 44px 44px; position: relative; overflow: hidden; }
+    .method-box::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(0,0,0,0.09) 1.5px, transparent 1.5px); background-size: 20px 20px; pointer-events: none; }
+    .method-cols { display: grid; grid-template-columns: 1fr 64px 1fr; align-items: stretch; gap: 24px; position: relative; z-index: 1; }
+    .method-cols > div:first-child, .method-cols > div:last-child { display: flex; flex-direction: column; justify-content: flex-start; }
+    .mcol-label { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 14px; display: flex; align-items: center; height: 48px; }
+    .them-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 24px 28px; text-align: center; }
+    .them-count { font-family: 'Bricolage Grotesque', sans-serif; font-size: 56px; font-weight: 800; line-height: 1; color: #CCCCCC; margin-bottom: 4px; }
+    .them-label { font-size: 13px; color: var(--text-light); }
+    .them-note { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-top: 14px; }
+    .vs-col { display: flex; align-items: center; justify-content: center; padding-top: 0; }
+    .vs-tag { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 800; color: var(--text-muted); }
+    .us-box { background: var(--text); border-radius: var(--r-sm); padding: 18px 20px; }
+    .campaign-row { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 9px 12px; margin-bottom: 7px; }
+    .campaign-row:last-child { margin-bottom: 0; }
+    .c-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .c-name { font-size: 12.5px; color: rgba(255,255,255,0.8); font-weight: 500; flex: 1; }
+    .c-track { width: 60px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .c-fill { height: 100%; border-radius: 2px; background: var(--accent); }
+    .c-rate { font-size: 11.5px; color: var(--accent); font-weight: 700; min-width: 30px; text-align: right; }
+    .us-more { font-size: 11px; color: rgba(255,255,255,0.3); text-align: right; margin-top: 10px; }
+    .method-insight { display: flex; align-items: flex-start; gap: 16px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+    .insight-icon { width: 36px; height: 36px; flex-shrink: 0; background: var(--accent-light); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .insight-text { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+    .insight-text strong { color: var(--text); }
+
+    /* ── SERVICES ── */
+    .services { background: white; }
+    .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .scard { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 32px; transition: transform .25s, box-shadow .25s; }
+    .scard:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .scard-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .scard-icon { width: 52px; height: 52px; background: white; border: 1px solid var(--border-md); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .scard-tag { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .scard h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
+    .scard p { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+    .scard ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .scard li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); }
+    .scard li::before { content: ''; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── WHY US ── */
+    .why { background: var(--bg); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .why-bottom { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 18px; }
+    .wcard { background: white; border: 1px solid var(--border); border-radius: var(--r); padding: 32px; transition: transform .25s, box-shadow .25s; }
+    .wcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .wcard-icon-wrap { width: 72px; height: 72px; background: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .wcard h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 9px; }
+    .wcard p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .wcard p strong { color: var(--text); font-weight: 600; }
+
+    /* ── BLOG ── */
+    .blog-section { background: var(--bg); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .blog-card { background: white; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .blog-card-tag { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+    .blog-card-body { padding: 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .blog-card-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; }
+    .blog-card-excerpt { font-size: 14px; color: var(--text-muted); line-height: 1.65; flex: 1; }
+    .blog-card-meta { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-light); margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .blog-card-meta span { display: flex; align-items: center; gap: 4px; }
+    .blog-all-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 40px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; transition: gap .2s; }
+    .blog-all-link:hover { gap: 12px; }
+    .blog-img { width: 100%; height: 180px; object-fit: cover; background: var(--bg); display: flex; align-items: center; justify-content: center; }
+    .blog-img-placeholder { width: 100%; height: 180px; background: var(--bg); display: flex; align-items: center; justify-content: center; }
+
+    /* ── COMPARISON TABLE ── */
+    .compare-section { background: #0F0F0F; padding: 100px 0; }
+    .compare-section .sec-label { color: rgba(255,255,255,0.4); }
+    .compare-section .sec-label span { color: var(--accent); }
+    .compare-section h2 { color: white; }
+    .compare-section .sec-sub { color: rgba(255,255,255,0.45); }
+    .compare-wrap { margin-top: 52px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+    .compare-head { display: grid; grid-template-columns: 200px 1fr 1fr 1fr; background: #1A1A1A; }
+    .compare-head-cell { padding: 20px 24px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; }
+    .compare-head-cell.col-la { background: #FFFFFF; color: #0F0F0F; border-radius: 0; display: flex; align-items: center; gap: 8px; }
+    .compare-head-cell.col-la svg { flex-shrink: 0; }
+    .compare-row { display: grid; grid-template-columns: 200px 1fr 1fr 1fr; border-top: 1px solid rgba(255,255,255,0.06); }
+    .compare-row:hover .compare-cell:not(.col-la) { background: rgba(255,255,255,0.02); }
+    .compare-cell { padding: 22px 24px; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.5); display: flex; align-items: center; }
+    .compare-cell.row-label { color: rgba(255,255,255,0.3); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; font-family: 'Bricolage Grotesque', sans-serif; }
+    .compare-cell.col-la { background: #FFFFFF; color: #0F0F0F; font-weight: 700; border-left: 1px solid rgba(255,255,255,0.12); border-right: 1px solid rgba(255,255,255,0.12); }
+    .compare-cell .check { color: var(--accent); font-size: 16px; margin-right: 8px; }
+    .compare-cell .cross { color: rgba(255,255,255,0.2); font-size: 16px; margin-right: 8px; }
+    .compare-cell.col-la .cross { color: rgba(0,0,0,0.2); }
+
+    /* ── FAQ ── */
+    .faq-section { background: white; }
+    .faq-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+    .faq-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(26px, 3vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; }
+    .faq-sub { font-size: 15px; color: var(--text-muted); margin-top: 14px; line-height: 1.65; }
+    .faq-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+    .faq-tab { background: var(--text); color: white; padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity .2s; }
+    .faq-tab:hover { opacity: .8; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text); gap: 16px; }
+    .faq-q:hover { color: var(--text-muted); }
+    .faq-icon { width: 28px; height: 28px; flex-shrink: 0; border: 1px solid var(--border-md); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-muted); transition: transform .25s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { font-size: 14px; color: var(--text-muted); line-height: 1.7; padding-bottom: 18px; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CTA BOTTOM ── */
+    .cta-bottom { background: var(--text); padding: 88px 52px 72px; text-align: center; position: relative; overflow: hidden; }
+    .cta-bottom::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1.5px, transparent 1.5px); background-size: 26px 26px; pointer-events: none; }
+    .cta-card { position: relative; z-index: 2; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 64px 52px 72px; max-width: 820px; margin: 0 auto; overflow: visible; }
+    .cta-card h2 { color: white; font-size: clamp(28px, 3.8vw, 50px); margin-bottom: 16px; }
+    .cta-card p { color: rgba(255,255,255,0.55); font-size: 16px; max-width: 440px; margin: 0 auto 34px; line-height: 1.65; }
+    .btn-white { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--text); padding: 14px 32px; border-radius: 100px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform .2s, opacity .2s; }
+    .btn-white:hover { transform: translateY(-2px); opacity: .9; }
+
+    /* ── FOOTER ── */
+    .footer-newsletter { background: var(--bg); border-top: 1px solid var(--border); padding: 32px 52px; }
+    .footer-newsletter-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-newsletter-text h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 800; margin-bottom: 3px; }
+    .footer-newsletter-text p { font-size: 13px; color: var(--text-muted); }
+    .footer-newsletter-form { display: flex; gap: 8px; }
+    .footer-newsletter-form input { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: 'Instrument Sans', sans-serif; font-size: 14px; background: white; outline: none; width: 240px; transition: border-color .2s; }
+    .footer-newsletter-form input:focus { border-color: var(--accent); }
+    .footer-newsletter-form button { background: var(--text); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-family: 'Instrument Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity .2s; }
+    .footer-newsletter-form button:hover { opacity: .8; }
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 32px 52px; position: relative; z-index: 1; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 12px; color: var(--text-light); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1020px) {
+      .hero { padding: 52px 28px 64px; }
+    }
+    @media (max-width: 920px) {
+      nav { padding: 0 24px; }
+      .nav-links li:not(:last-child) { display: none; }
+      .container { padding: 0 24px; }
+      .vsl-inner { padding: 0 24px; }
+      .problem-grid, .why-grid, .why-bottom, .svc-grid { grid-template-columns: 1fr; }
+      .method-cols { grid-template-columns: 1fr; }
+      .vs-col { padding: 0; }
+      .faq-layout { grid-template-columns: 1fr; }
+      .cta-bottom { padding: 64px 24px 52px; }
+      footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <div class="nav-inner">
+  <a href="#" class="nav-logo" aria-label="Lead Acquisition">
+    <svg class="nav-logo-mark" viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 9 L2 2 L9 2" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 2 L42 2 L42 9" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 23 L2 30 L9 30" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 30 L42 30 L42 23" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 8 L12 24 L20 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 24 L27 8 L32 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#case-studies">Case studies</a></li>
+      <li><a href="#why-us">Why us</a></li>
+      <li><a href="blog/index.html">Blog</a></li>
+    </ul>
+    <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+
+  <!-- Reusable NFT mascot - precision android with crosshair eye -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- 3D body gradient: soft cream → deep warm shadow -->
+      <radialGradient id="mascotBody" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="40%" stop-color="#F2E9D8"/>
+        <stop offset="80%" stop-color="#C9B48A"/>
+        <stop offset="100%" stop-color="#8A7548"/>
+      </radialGradient>
+      <radialGradient id="mascotHead" cx="38%" cy="26%" r="85%">
+        <stop offset="0%" stop-color="#FFFDF7"/>
+        <stop offset="45%" stop-color="#EFE3CB"/>
+        <stop offset="85%" stop-color="#B89F6E"/>
+        <stop offset="100%" stop-color="#6E5A30"/>
+      </radialGradient>
+      <radialGradient id="mascotEye" cx="32%" cy="28%" r="90%">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="70%" stop-color="#DDD6C6"/>
+        <stop offset="100%" stop-color="#8A7F64"/>
+      </radialGradient>
+      <radialGradient id="mascotPupil" cx="35%" cy="30%" r="80%">
+        <stop offset="0%" stop-color="#3B3A37"/>
+        <stop offset="100%" stop-color="#0B0A08"/>
+      </radialGradient>
+      <linearGradient id="mascotAntenna" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#E3B12E"/>
+        <stop offset="100%" stop-color="#8C6608"/>
+      </linearGradient>
+      <radialGradient id="mascotAmber" cx="35%" cy="30%" r="80%">
+        <stop offset="0%" stop-color="#FFD76B"/>
+        <stop offset="60%" stop-color="#C8960C"/>
+        <stop offset="100%" stop-color="#6E5208"/>
+      </radialGradient>
+      <linearGradient id="mascotScope" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#2A2925"/>
+        <stop offset="100%" stop-color="#0A0908"/>
+      </linearGradient>
+      <filter id="mascotShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#0F0F0F" flood-opacity="0.22"/>
+      </filter>
+      <filter id="mascotInnerHi" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="1.4"/>
+      </filter>
+
+      <symbol id="laMascot" viewBox="0 0 260 320">
+        <g filter="url(#mascotShadow)">
+          <!-- Body / chest plate -->
+          <path d="M55 210 C55 176, 85 158, 130 158 C175 158, 205 176, 205 210 L205 270 C205 294, 184 306, 130 306 C76 306, 55 294, 55 270 Z"
+                fill="url(#mascotBody)" stroke="#0F0F0F" stroke-width="5"/>
+          <!-- chest plate seam -->
+          <path d="M95 218 Q130 230 165 218" stroke="#0F0F0F" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+          <!-- chest amber core -->
+          <circle cx="130" cy="248" r="13" fill="url(#mascotAmber)" stroke="#0F0F0F" stroke-width="3.5"/>
+          <circle cx="126" cy="244" r="4" fill="#FFF3C8" opacity="0.85"/>
+
+          <!-- Arms (chunky tucked) -->
+          <ellipse cx="46" cy="230" rx="20" ry="26" fill="url(#mascotBody)" stroke="#0F0F0F" stroke-width="5"/>
+          <ellipse cx="214" cy="230" rx="20" ry="26" fill="url(#mascotBody)" stroke="#0F0F0F" stroke-width="5"/>
+
+          <!-- Head (oversized, bubbly) -->
+          <path d="M60 110 C60 62, 90 30, 130 30 C170 30, 200 62, 200 110 C200 150, 170 170, 130 170 C90 170, 60 150, 60 110 Z"
+                fill="url(#mascotHead)" stroke="#0F0F0F" stroke-width="5.5"/>
+          <!-- head highlight -->
+          <ellipse cx="98" cy="66" rx="22" ry="14" fill="#FFFFFF" opacity="0.55" filter="url(#mascotInnerHi)"/>
+
+          <!-- Antenna -->
+          <line x1="130" y1="30" x2="130" y2="6" stroke="url(#mascotAntenna)" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="130" cy="5" r="7" fill="url(#mascotAmber)" stroke="#0F0F0F" stroke-width="3.5"/>
+
+          <!-- Ears / side vents -->
+          <rect x="52" y="100" width="12" height="28" rx="5" fill="url(#mascotBody)" stroke="#0F0F0F" stroke-width="4"/>
+          <rect x="196" y="100" width="12" height="28" rx="5" fill="url(#mascotBody)" stroke="#0F0F0F" stroke-width="4"/>
+
+          <!-- LEFT EYE - big expressive -->
+          <ellipse cx="104" cy="108" rx="20" ry="22" fill="url(#mascotEye)" stroke="#0F0F0F" stroke-width="4.5"/>
+          <ellipse cx="106" cy="114" rx="11" ry="13" fill="url(#mascotPupil)"/>
+          <circle cx="102" cy="107" r="4" fill="#FFFFFF"/>
+          <circle cx="110" cy="119" r="1.8" fill="#FFFFFF" opacity="0.8"/>
+
+          <!-- RIGHT EYE - targeting crosshair scope -->
+          <circle cx="160" cy="108" r="24" fill="url(#mascotScope)" stroke="#0F0F0F" stroke-width="4.5"/>
+          <circle cx="160" cy="108" r="17" fill="none" stroke="#C8960C" stroke-width="2"/>
+          <circle cx="160" cy="108" r="10" fill="none" stroke="#C8960C" stroke-width="1.6" opacity="0.75"/>
+          <line x1="160" y1="88" x2="160" y2="128" stroke="#C8960C" stroke-width="2" stroke-linecap="round"/>
+          <line x1="140" y1="108" x2="180" y2="108" stroke="#C8960C" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="160" cy="108" r="3" fill="#C8960C"/>
+          <circle cx="154" cy="100" r="2.5" fill="#FFFFFF" opacity="0.5"/>
+
+          <!-- Mouth - tiny confident smirk -->
+          <path d="M116 140 Q130 150 146 140" stroke="#0F0F0F" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <!-- cheek blush -->
+          <ellipse cx="92" cy="138" rx="7" ry="4" fill="#E89A62" opacity="0.5"/>
+          <ellipse cx="172" cy="138" rx="7" ry="4" fill="#E89A62" opacity="0.5"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Mascot floating on the left -->
+  <svg class="hero-mascot" viewBox="0 0 260 320"><use href="#laMascot"/></svg>
+
+  <!-- Decorative edge doodles -->
+  <svg class="edge-doodle d1" width="78" height="88" viewBox="0 0 78 88" fill="none" style="--drot:-8deg">
+    <!-- hourglass -->
+    <path d="M12 6 L66 6 L46 34 Q66 46 66 58 L66 82 L12 82 L12 58 Q12 46 32 34 Z" stroke="#0F0F0F" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M22 16 L56 16" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M22 72 L56 72" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M28 44 Q39 52 50 44 L42 58 L36 58 Z" fill="#C8960C"/>
+  </svg>
+  <svg class="edge-doodle d2" width="76" height="56" viewBox="0 0 76 56" fill="none" style="--drot:6deg">
+    <!-- cloud line -->
+    <path d="M6 40 C6 30 14 22 24 24 C26 12 46 10 50 22 C62 20 70 28 68 38 C68 46 58 48 50 46 L20 46 C10 46 6 44 6 40 Z"
+          stroke="#0F0F0F" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+  </svg>
+  <svg class="edge-doodle d3" width="80" height="80" viewBox="0 0 80 80" fill="none" style="--drot:5deg">
+    <!-- squiggle loops -->
+    <path d="M6 46 C14 20 30 18 34 40 C38 62 20 70 14 58 C8 46 30 40 42 54 C54 68 70 58 72 42 C74 26 58 18 52 26"
+          stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  </svg>
+  <svg class="edge-doodle d4" width="74" height="74" viewBox="0 0 74 74" fill="none" style="--drot:-6deg">
+    <!-- 4-pointed spark / precision flower -->
+    <path d="M37 6 L42 32 L68 37 L42 42 L37 68 L32 42 L6 37 L32 32 Z"
+          stroke="#0F0F0F" stroke-width="2.4" stroke-linejoin="round" fill="#F7F3EC"/>
+    <circle cx="37" cy="37" r="4" fill="#C8960C"/>
+  </svg>
+  <svg class="edge-doodle d5" width="50" height="70" viewBox="0 0 50 70" fill="none" style="--drot:4deg">
+    <!-- arrow with tail -->
+    <path d="M25 4 L25 54 M14 44 L25 60 L36 44" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M25 4 Q12 12 18 22" stroke="#0F0F0F" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  </svg>
+  <svg class="edge-doodle d6" width="64" height="64" viewBox="0 0 64 64" fill="none" style="--drot:-5deg">
+    <!-- crosshair circle -->
+    <circle cx="32" cy="32" r="22" stroke="#0F0F0F" stroke-width="2.4" fill="none"/>
+    <line x1="32" y1="6" x2="32" y2="18" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="32" y1="46" x2="32" y2="58" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="6" y1="32" x2="18" y2="32" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="46" y1="32" x2="58" y2="32" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="32" cy="32" r="4" fill="#C8960C"/>
+  </svg>
+
+  <div class="hero-content reveal">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Test More. Learn Faster. Win More.
+    </div>
+    <h1>Systematic GTM,<br><em>For B2B Companies.</em></h1>
+    <p class="hero-sub">
+      We run outbound like a lab. Every angle, audience, and sequence is a structured test. We scale winners fast and cut losers faster.
+    </p>
+    <div class="actions">
+      <a href="https://cal.com/conor-leadacquisition" class="btn-dark">
+        Book a call
+        <svg class="wave-hand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 11V6a2 2 0 1 0-4 0"/>
+          <path d="M14 10V4a2 2 0 1 0-4 0v2"/>
+          <path d="M10 10.5V6a2 2 0 1 0-4 0v8"/>
+          <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.83-2.83L7 15"/>
+          <path d="M21 3c.5 1 .5 2 0 3"/>
+          <path d="M23 2c.8 1.5.8 3 0 4.5"/>
+        </svg>
+      </a>
+      <a href="#how-it-works" class="btn-outline">
+        See how it works
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </a>
+    <div class="hero-vsl reveal">
+      <div class="vsl-col">
+        <div class="vsl-player" onclick="this.querySelector('.vsl-inner-content').style.opacity='0.6'">
+          <div class="vsl-inner-content">
+            <div class="play-ring">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M8 5l10 6-10 6V5z" fill="white"/>
+              </svg>
+            </div>
+            <span class="vsl-caption">How we build outbound systems (4 min)</span>
+          </div>
+        </div>
+      </div>
+      <div class="vsl-side">
+        <div class="vsl-side-label">What's inside</div>
+        <h3>A 4-minute walkthrough of how we build pipeline.</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5 L6 10 L11 4.5" stroke="#C8960C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>How we run 15+ campaigns in parallel</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5 L6 10 L11 4.5" stroke="#C8960C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Our copy and angle testing framework</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5 L6 10 L11 4.5" stroke="#C8960C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>How we measure what actually converts</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5 L6 10 L11 4.5" stroke="#C8960C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Why most cold email agencies fail</li>
+        </ul>
+        <div class="vsl-side-note">No opt in needed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CASE STUDIES ═══════════ -->
+<section class="proof-wrap" id="case-studies">
+  <div class="proof-heading reveal">
+    <h2>Recent <em>case studies.</em></h2>
+  </div>
+  <div class="proof-ticker-wrap">
+    <div class="proof-ticker">
+
+      <div class="cs-card">
+        <div class="cs-company">A B2B Saas Company</div>
+        <p class="cs-offer">Outbound Analytics Platform For B2B Sales Teams.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Cybersecurity Company</div>
+        <p class="cs-offer">Threat Detection Platform For Enterprise It Directors.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Developer Tools Company</div>
+        <p class="cs-offer">Code Review Automation For Engineering Teams.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Revops Platform</div>
+        <p class="cs-offer">Revenue Operations Software For Mid-Market Sales Orgs.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Financial Services Company</div>
+        <p class="cs-offer">Financial Reporting Software For Cfo Offices.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">An Ai Infrastructure Company</div>
+        <p class="cs-offer">Ml Infrastructure Tooling For Ai Engineering Teams.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Professional Services Firm</div>
+        <p class="cs-offer">Gtm Consulting For B2B Professional Services Firms.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <!-- Duplicate set for seamless loop -->
+      <div class="cs-card">
+        <div class="cs-company">A B2B Saas Company</div>
+        <p class="cs-offer">Outbound Analytics Platform For B2B Sales Teams.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Cybersecurity Company</div>
+        <p class="cs-offer">Threat Detection Platform For Enterprise It Directors.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Developer Tools Company</div>
+        <p class="cs-offer">Code Review Automation For Engineering Teams.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Revops Platform</div>
+        <p class="cs-offer">Revenue Operations Software For Mid-Market Sales Orgs.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Financial Services Company</div>
+        <p class="cs-offer">Financial Reporting Software For Cfo Offices.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">An Ai Infrastructure Company</div>
+        <p class="cs-offer">Ml Infrastructure Tooling For Ai Engineering Teams.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-company">A Professional Services Firm</div>
+        <p class="cs-offer">Gtm Consulting For B2B Professional Services Firms.</p>
+        <div class="cs-stats">
+          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails Sent.</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
+          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="services sec" id="services">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label">Solutions<span>.</span></span>
+      <h2>Everything you need<br>to build pipeline.</h2>
+      <p class="sec-sub">We don't just send emails. We build the outbound system that turns cold outreach into a predictable, scalable revenue channel.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="scard reveal">
+        <div class="scard-head">
+          <div class="scard-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#111" stroke-width="1.8"/><circle cx="14" cy="14" r="5" stroke="#C8960C" stroke-width="1.4"/><circle cx="14" cy="14" r="1.8" fill="#111"/><line x1="14" y1="4" x2="14" y2="9" stroke="#111" stroke-width="1.8" stroke-linecap="round"/><line x1="14" y1="19" x2="14" y2="24" stroke="#111" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="14" x2="9" y2="14" stroke="#111" stroke-width="1.8" stroke-linecap="round"/><line x1="19" y1="14" x2="24" y2="14" stroke="#111" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div><div class="scard-tag">Core</div><h3>Cold Email Systems</h3></div>
+        </div>
+        <p>End-to-end cold email infrastructure. From deliverability setup to copy architecture to parallel campaign testing. Built to generate consistent, qualified pipeline.</p>
+        <ul><li>15+ parallel campaigns running per client</li><li>ICP research and precision list building</li><li>Spintax copywriting and A/B sequencing</li><li>Deliverability monitoring and inbox health</li></ul>
+      </div>
+      <div class="scard reveal">
+        <div class="scard-head">
+          <div class="scard-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="6" width="22" height="16" rx="3" stroke="#111" stroke-width="1.8"/><path d="M7 12h14M7 16h10" stroke="#C8960C" stroke-width="1.4" stroke-linecap="round"/><circle cx="21" cy="20" r="5" fill="white" stroke="#111" stroke-width="1.4"/><path d="M19 20l1.5 1.5L23 18" stroke="#111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="scard-tag">Infrastructure</div><h3>CRM Buildouts</h3></div>
+        </div>
+        <p>A CRM nobody uses is expensive chaos. We build systems your team actually lives in. Clean, logic-driven, wired directly to your outbound flow.</p>
+        <ul><li>Pipeline stage architecture and logic</li><li>Lead scoring and routing rules</li><li>Outbound-to-CRM sync automation</li><li>GTM reporting dashboards</li></ul>
+      </div>
+      <div class="scard reveal">
+        <div class="scard-head">
+          <div class="scard-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 10 L14 6 L22 10 L22 18 L14 22 L6 18 Z" stroke="#111" stroke-width="1.8" stroke-linejoin="round"/><circle cx="14" cy="14" r="3.2" fill="#C8960C"/><path d="M14 6v5M14 17v5M6 10l5 3M17 15l5 3" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+          <div><div class="scard-tag">Automation</div><h3>Outbound Automations</h3></div>
+        </div>
+        <p>Manual prospecting is a tax on your team's time. We build automation layers that surface buying signals, trigger outreach, and handle follow-up without human babysitting.</p>
+        <ul><li>Intent signal and hiring trigger monitoring</li><li>Automated list refresh and cleaning</li><li>Multi-step trigger sequences</li><li>Tech stack and funding event triggers</li></ul>
+      </div>
+      <div class="scard reveal">
+        <div class="scard-head">
+          <div class="scard-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="10" cy="10" r="5" stroke="#111" stroke-width="1.8"/><circle cx="20" cy="19" r="4.2" stroke="#C8960C" stroke-width="1.4"/><path d="M14 10h5M14 14h7" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><path d="M10 15v3" stroke="#111" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="20" r="1.8" fill="#111"/></svg></div>
+          <div><div class="scard-tag">Data</div><h3>Lead Enrichment</h3></div>
+        </div>
+        <p>Contact data that's stale the moment you buy it. We enrich, verify, and score leads so your reps spend time on the right conversations, not data janitor work.</p>
+        <ul><li>Multi-source email and phone verification</li><li>Technographic and firmographic appending</li><li>CRM enrichment workflows</li><li>Custom variable mapping for personalisation</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ METHODOLOGY ═══════════ -->
+<section class="method sec" id="how-it-works">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label">Methodology<span>.</span></span>
+      <h2>Outbound run like<br><em>a testing lab.</em></h2>
+      <p class="sec-sub">We run 50 variants to find the 5 that actually convert. More tests. Faster learning. Compounding results.</p>
+    </div>
+    <div class="method-box reveal">
+      <div class="method-cols">
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="mcol-label">Most agencies</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:96px;font-weight:800;letter-spacing:-0.04em;line-height:1;color:#D0CECA;">1–2</div>
+            <div style="font-size:15px;color:var(--text-muted);font-weight:500;">campaigns running per client</div>
+          </div>
+          <p class="them-note" style="margin-top:0;">One angle, one audience, one bet. If it doesn't work, you find out 6 weeks later. By then, the pipeline is already dry.</p>
+        </div>
+        <div class="vs-col"><span class="vs-tag">vs</span></div>
+        <div>
+          <div class="mcol-label" style="background:var(--text);display:inline-flex;align-items:center;padding:6px 12px;border-radius:6px;margin-bottom:14px;">
+            <svg viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:auto;">
+              <path d="M2 9 L2 2 L9 2" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M35 2 L42 2 L42 9" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 23 L2 30 L9 30" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M35 30 L42 30 L42 23" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 8 L12 24 L20 24" stroke="white" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 24 L27 8 L32 24" stroke="white" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="us-box">
+            <div class="campaign-row"><div class="c-dot" style="background:#C8960C"></div><span class="c-name">Angle A: Founder pain</span><div class="c-track"><div class="c-fill" style="width:78%"></div></div><span class="c-rate">4.2%</span></div>
+            <div class="campaign-row"><div class="c-dot" style="background:#4CAF50"></div><span class="c-name">Angle B: Revenue signal</span><div class="c-track"><div class="c-fill" style="width:62%"></div></div><span class="c-rate">3.1%</span></div>
+            <div class="campaign-row"><div class="c-dot" style="background:#2196F3"></div><span class="c-name">Angle C: Competitor</span><div class="c-track"><div class="c-fill" style="width:46%"></div></div><span class="c-rate">2.8%</span></div>
+            <div class="campaign-row"><div class="c-dot" style="background:#9C27B0"></div><span class="c-name">Segment test: Tier 2</span><div class="c-track"><div class="c-fill" style="width:32%"></div></div><span class="c-rate">1.9%</span></div>
+            <div class="campaign-row"><div class="c-dot" style="background:#FF5722"></div><span class="c-name">CTA variant: Soft ask</span><div class="c-track"><div class="c-fill" style="width:90%"></div></div><span class="c-rate">5.1%</span></div>
+            <div class="us-more">+ 10 more running simultaneously</div>
+          </div>
+        </div>
+      </div>
+      <div class="method-insight">
+        <div class="insight-icon">⚡</div>
+        <p class="insight-text"><strong>Result:</strong> Within 1 week you know which angle, audience, and CTA structure performs. We double down on winners and kill what doesn't. <strong>Your pipeline grows on data, not gut feel.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FLOW BOARD ═══════════ -->
+<section class="flow-wrap">
+  <div class="flow-shell">
+    <div class="flow-header reveal">
+      <span class="flow-pill">The full stack</span>
+      <h2>One system. Raw data in,<br><em>booked meetings out.</em></h2>
+      <p>We source the contacts, write the sequences, run the campaigns, and manage every reply. You don't touch a tool or sit in an inbox. You just show up to calls with companies you actually want to close.</p>
+    </div>
+  <div class="flow-board reveal">
+    <div class="flow-grid">
+      <div class="flow-tiles">
+
+        <!-- ZoomInfo -->
+        <div class="flow-tile">
+          <img src="./logos/zoominfo.png" alt="ZoomInfo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <svg viewBox="0 0 40 40" fill="none" style="display:none;width:65%;height:65%">
+            <text x="5" y="30" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" font-style="italic" fill="white">Z</text>
+          </svg>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="flow-tile">
+          <img src="./logos/linkedin.png" alt="LinkedIn" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <svg viewBox="0 0 24 24" fill="white" style="display:none;width:62%;height:62%">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </div>
+
+        <!-- Crunchbase -->
+        <div class="flow-tile">
+          <img src="./logos/crunchbase.svg" alt="Crunchbase">
+        </div>
+
+        <!-- MillionVerifier — MV -->
+        <div class="flow-tile">
+          <svg viewBox="0 0 40 40" fill="none">
+            <polyline points="7,29 14,13 20,23" stroke="#1DB8A1" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="20,23 26,13 33,29" stroke="white" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Clay -->
+        <div class="flow-tile">
+          <img src="./logos/clay.png" alt="Clay" style="width:78%;height:78%">
+        </div>
+
+        <!-- PitchBook -->
+        <div class="flow-tile">
+          <img src="./logos/pitchbook.png" alt="PitchBook" style="width:100%;height:100%;object-fit:contain;transform:scale(1.16)">
+        </div>
+
+        <!-- Seamless.AI -->
+        <div class="flow-tile">
+          <img src="./logos/seamless.png" alt="Seamless.AI">
+        </div>
+
+        <!-- Apollo -->
+        <div class="flow-tile">
+          <img src="./logos/apollo.png" alt="Apollo">
+        </div>
+
+        <!-- HubSpot -->
+        <div class="flow-tile">
+          <img src="./logos/hubspot.svg" alt="HubSpot">
+        </div>
+
+        <!-- Salesforce -->
+        <div class="flow-tile">
+          <img src="./logos/salesforce.png" alt="Salesforce" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <svg viewBox="0 0 559 388" fill="white" style="display:none;width:72%;height:72%">
+            <path d="M233 69c16-17 38-28 62-28 32 0 60 17 76 43a94 94 0 0 1 49-14c53 0 96 44 96 97 0 54-43 97-96 97a94 94 0 0 1-22-3 83 83 0 0 1-74 46 83 83 0 0 1-35-8 89 89 0 0 1-87 61A90 90 0 0 1 112 270a70 70 0 0 1-112-56c0-39 31-70 70-70a70 70 0 0 1 29 6 105 105 0 0 1 134-81z"/>
+          </svg>
+        </div>
+
+        <!-- Instantly -->
+        <div class="flow-tile">
+          <img src="./logos/instantly.png" alt="Instantly">
+        </div>
+
+        <!-- Smartlead -->
+        <div class="flow-tile">
+          <img src="./logos/smartlead.png" alt="Smartlead">
+        </div>
+
+      </div>
+
+      <div class="flow-center" aria-label="Lead Acquisition">
+        <svg viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 9 L2 2 L9 2" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M35 2 L42 2 L42 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 23 L2 30 L9 30" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M35 30 L42 30 L42 23" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 8 L12 24 L20 24" stroke="#fff" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 24 L27 8 L32 24" stroke="#fff" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="flow-stats">
+        <div class="flow-stat">
+          <span class="flow-stat-label">Contacts contacted</span>
+          <span class="flow-stat-num">120,000<span> / mo</span></span>
+          <span class="flow-stat-sub">Across 15+ parallel tests</span>
+        </div>
+        <div class="flow-stat">
+          <span class="flow-stat-label">Replies</span>
+          <span class="flow-stat-num">5,200<span> · 4.3%</span></span>
+          <span class="flow-stat-sub">Sentiment scored &amp; routed</span>
+        </div>
+        <div class="flow-stat">
+          <span class="flow-stat-label">Meetings booked</span>
+          <span class="flow-stat-num">310<span> / mo</span></span>
+          <span class="flow-stat-sub">Sales qualified. On your calendar.</span>
+        </div>
+        <div class="flow-stat">
+          <span class="flow-stat-label">Pipeline generated</span>
+          <span class="flow-stat-num">$1.4M<span> / qtr</span></span>
+          <span class="flow-stat-sub">Tracked back to the winning angle</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated connection lines, drawn in JS so they track element positions -->
+    <svg class="flow-lines" id="flowLines" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY US ═══════════ -->
+<section class="why sec" id="why-us">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label">Why Lead Acquisition<span>.</span></span>
+      <h2>Not another agency<br>sending <em>bulk emails.</em></h2>
+      <p class="sec-sub">We operate differently. Every system is built into your infrastructure, and every decision is driven by real campaign data. Not vibes.</p>
+    </div>
+    <div class="why-grid">
+      <div class="wcard reveal">
+        <div class="wcard-icon-wrap"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 32L17 23M24 15L32 8" stroke="#111" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="20" r="7.5" stroke="#C8960C" stroke-width="2"/><circle cx="20" cy="20" r="2.2" fill="#111"/></svg></div>
+        <h3>100% custom outbound playbook</h3>
+        <p>Every system is tailored to your market, ICP, and motion. <strong>Not generic templates.</strong> Not recycled sequences from another client. Real GTM playbooks engineered for you.</p>
+      </div>
+      <div class="wcard reveal">
+        <div class="wcard-icon-wrap"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="7" y="13" width="26" height="16" rx="4" stroke="#111" stroke-width="2"/><path d="M13 21h14M13 17h8" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round"/><circle cx="31" cy="27" r="6" fill="#F7F3EC" stroke="#111" stroke-width="1.8"/><path d="M29 27l1.5 1.5L33 25" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Built inside your infrastructure</h3>
+        <p>Unlike traditional agencies, we build <strong>directly into your stack.</strong> Your CRM, your tools, your sequences. When we stop working together, you keep everything we built.</p>
+      </div>
+      <div class="wcard reveal">
+        <div class="wcard-icon-wrap"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 29 L17 19 L23 25 L31 11" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="11" r="3.8" fill="#C8960C"/><line x1="9" y1="33" x2="33" y2="33" stroke="rgba(0,0,0,0.12)" stroke-width="1.4"/></svg></div>
+        <h3>Ongoing optimisation and management</h3>
+        <p>We <strong>continuously improve</strong> your outbound infrastructure based on real campaign data. Not a one-time setup. A compounding system that gets better every week.</p>
+      </div>
+    </div>
+    <div class="why-bottom">
+      <div class="wcard reveal">
+        <div class="wcard-icon-wrap"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="17" cy="20" rx="7.5" ry="9.5" stroke="#111" stroke-width="2"/><circle cx="28" cy="20" r="6.5" stroke="#C8960C" stroke-width="1.8"/><path d="M17 12v4M17 23v4" stroke="#111" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="20" r="1.8" fill="#111"/></svg></div>
+        <h3>Engineering-first, not spray-and-pray</h3>
+        <p>We approach outbound like GTM engineers, not salespeople. <strong>Every campaign is a structured test.</strong> Every sequence has a hypothesis. Every metric drives the next decision.</p>
+      </div>
+      <div class="wcard reveal">
+        <div class="wcard-icon-wrap"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="10.5" stroke="#111" stroke-width="2"/><circle cx="20" cy="20" r="4.8" stroke="#C8960C" stroke-width="1.8"/><circle cx="20" cy="20" r="1.5" fill="#111"/><path d="M20 9v4M20 27v4M9 20h4M27 20h4" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Outcome-focused, not hours-focused</h3>
+        <p>We don't charge for time. We're focused on pipeline. <strong>Our success is your pipeline velocity.</strong> We're paid to get results. If it isn't working, we rebuild it until it does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMPARISON ═══════════ -->
+<section class="compare-section sec">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label">The honest breakdown<span>.</span></span>
+      <h2 style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;"><svg viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:auto;flex-shrink:0;"><path d="M2 9 L2 2 L9 2" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 2 L42 2 L42 9" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 23 L2 30 L9 30" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 30 L42 30 L42 23" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8 L12 24 L20 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 24 L27 8 L32 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/></svg> vs <em>the alternatives.</em></h2>
+      <p class="sec-sub">Three ways to run outbound. One that actually compounds.</p>
+    </div>
+
+    <div class="compare-wrap reveal">
+      <div class="compare-head">
+        <div class="compare-head-cell"></div>
+        <div class="compare-head-cell">DIY With Tools</div>
+        <div class="compare-head-cell">Traditional Agency</div>
+        <div class="compare-head-cell col-la">
+          <svg viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:auto;flex-shrink:0;">
+            <path d="M2 9 L2 2 L9 2" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M35 2 L42 2 L42 9" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 23 L2 30 L9 30" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M35 30 L42 30 L42 23" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8 L12 24 L20 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 24 L27 8 L32 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          Lead Acquisition
+        </div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">Deliverability</div>
+        <div class="compare-cell">You figure it out. DNS, warmup, domain rotation.</div>
+        <div class="compare-cell">Usually outsourced. Variable quality.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> Fully managed. Infra built for inbox placement.</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">Who runs it</div>
+        <div class="compare-cell">You + your team. Hours you don't have.</div>
+        <div class="compare-cell">Junior account managers working 10+ clients.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> Senior operators. One focus: your pipeline.</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">Ramp time</div>
+        <div class="compare-cell">Weeks to months to get it working.</div>
+        <div class="compare-cell">4–6 week onboarding. Then you wait.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> First campaigns live within 1 week.</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">Stack included</div>
+        <div class="compare-cell"><span class="cross">✗</span> You buy and manage every tool.</div>
+        <div class="compare-cell"><span class="cross">✗</span> Their stack. Your data locked in their systems.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> Full outbound stack built into your infrastructure.</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">What you keep</div>
+        <div class="compare-cell">Everything you built. But it took months.</div>
+        <div class="compare-cell"><span class="cross">✗</span> Nothing. It all lives in their platform.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> Every asset, sequence, and system stays with you.</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">Reporting</div>
+        <div class="compare-cell">Whatever you set up. Usually incomplete.</div>
+        <div class="compare-cell">Monthly PDFs. Lagging indicators.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> Live dashboard. Real data, updated daily.</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">Optimisation</div>
+        <div class="compare-cell">Manual. Easy to let campaigns go stale.</div>
+        <div class="compare-cell">Quarterly reviews if you're lucky.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> Continuous. Every week based on live results.</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell row-label">Contract terms</div>
+        <div class="compare-cell">No contract. Just your time and tool costs.</div>
+        <div class="compare-cell">12-month retainers. Locked in regardless of performance.</div>
+        <div class="compare-cell col-la"><span class="check">✓</span> Rolling monthly. We earn the relationship.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="faq-section sec" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="reveal">
+        <p class="sec-label">FAQ<span>.</span></p>
+        <h2 class="faq-title">Still have questions?</h2>
+        <p class="faq-sub">Common things people ask before they book a call. If yours isn't here, just reach out.</p>
+        <div class="faq-tabs">
+          <span class="faq-tab">How it works</span>
+          <span class="faq-tab">Results</span>
+          <span class="faq-tab">Getting started</span>
+        </div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item open">
+          <div class="faq-q" onclick="toggleFaq(this)">How is this different from a standard cold email agency?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Most agencies run 1-2 campaigns per client and optimise by instinct. We run 15+ in parallel, treating every campaign as a structured test. Within 3-4 weeks you have real conversion data across angles, audiences, and CTAs. We double down on what's working. The result is faster learning and compounding pipeline growth instead of a slow drip of guesses.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What tools do we need in place?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Not much. You'll need a CRM (or we can help you pick one) and access to a domain for sending infrastructure. We handle everything else: inbox setup, warmup, list building via Apollo, deliverability monitoring, and sequencing through our sending stack. You don't need to own any outbound tools.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How quickly will we see results?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Realistically, first replies come in week 2-3. Meaningful data on what's converting typically shows up at the end of week 3. Because we're running so many tests simultaneously, we compress the learning timeline that would normally take 3-4 months with a traditional agency into 3-4 weeks.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Do we need to commit long-term?<span class="faq-icon">+</span></div>
+          <div class="faq-a">We offer an initial sprint engagement to prove the system works before any long-term commitment. Once we have winning campaigns and a functioning outbound system, most clients choose to continue on an ongoing basis. You're never locked in before the work proves itself.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Can you work with our existing sales team?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Yes, and we prefer it. We build the outbound infrastructure and fill the top of the funnel. Your salespeople handle the conversations and close. We can also build CRM workflows and handoff sequences so nothing falls through the cracks when a reply comes in.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Who is this best suited for?<span class="faq-icon">+</span></div>
+          <div class="faq-a">B2B companies or agencies that have a clear offer but inconsistent pipeline. Typically founders doing all the selling themselves, or sales teams that have tried cold email but can't get it to convert. If you have a product people want but struggle to get in front of them systematically, this is built for you.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BLOG ═══════════ -->
+<section class="blog-section sec" id="blog">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label">From the blog<span>.</span></span>
+      <h2>Outbound thinking,<br><em>written down.</em></h2>
+      <p class="sec-sub">Frameworks, teardowns, and playbooks from inside our campaigns.</p>
+    </div>
+    <div class="blog-grid">
+
+      <a href="blog/why-cold-email-fails.html" class="blog-card reveal">
+        <div class="blog-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#C8960C" stroke-width="2"/><path d="M6 18l18 12 18-12" stroke="#C8960C" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">Cold Email</span>
+          <div class="blog-card-title">Why Most Cold Email Campaigns Fail Before a Single Reply</div>
+          <p class="blog-card-excerpt">The problem isn't your copy. It's the four layers underneath it — deliverability, ICP clarity, offer framing, and sequence logic. Here's how to audit each one.</p>
+          <div class="blog-card-meta">
+            <span>April 2025</span>
+            <span>·</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog/outbound-system-that-scales.html" class="blog-card reveal">
+        <div class="blog-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M10 38V24l14-14 14 14v14" stroke="#C8960C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="28" width="12" height="10" rx="1" stroke="#C8960C" stroke-width="2"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">Systems</span>
+          <div class="blog-card-title">How to Build a B2B Outbound System That Actually Compounds</div>
+          <p class="blog-card-excerpt">Most teams treat outbound as a series of one-off campaigns. Here's the infrastructure approach — domains, warmup, parallel testing, and feedback loops — that compounds over time.</p>
+          <div class="blog-card-meta">
+            <span>March 2025</span>
+            <span>·</span>
+            <span>8 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog/icp-targeting-framework.html" class="blog-card reveal">
+        <div class="blog-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#C8960C" stroke-width="2"/><circle cx="24" cy="24" r="8" stroke="#C8960C" stroke-width="2"/><circle cx="24" cy="24" r="2.5" fill="#C8960C"/><path d="M24 8v6M24 34v6M8 24h6M34 24h6" stroke="#C8960C" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">Strategy</span>
+          <div class="blog-card-title">The ICP Targeting Framework We Use for Every Client</div>
+          <p class="blog-card-excerpt">Firmographics alone don't cut it. We layer in technographics, trigger signals, and intent data to build prospect lists that convert at 2-3x the industry average.</p>
+          <div class="blog-card-meta">
+            <span>February 2025</span>
+            <span>·</span>
+            <span>7 min read</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <a href="blog/index.html" class="blog-all-link reveal">
+      Read all posts
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════ BOTTOM CTA ═══════════ -->
+<section class="cta-bottom">
+  <div class="cta-card reveal">
+    <svg class="cta-mascot" viewBox="0 0 260 320"><use href="#laMascot"/></svg>
+    <h2 style="color:white;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.1;letter-spacing:-0.025em;margin-bottom:16px;">
+      Ready to test your way<br>to <em>more pipeline?</em>
+    </h2>
+    <p>A 30-minute call. We'll tell you exactly what's broken in your outbound and what we'd build to fix it.</p>
+    <a href="https://cal.com/conor-leadacquisition" class="btn-white">
+      Book a call
+      <svg class="wave-hand" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 11V6a2 2 0 1 0-4 0"/>
+        <path d="M14 10V4a2 2 0 1 0-4 0v2"/>
+        <path d="M10 10.5V6a2 2 0 1 0-4 0v8"/>
+        <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.83-2.83L7 15"/>
+        <path d="M21 3c.5 1 .5 2 0 3"/>
+        <path d="M23 2c.8 1.5.8 3 0 4.5"/>
+      </svg>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="footer-newsletter">
+  <div class="footer-newsletter-inner">
+    <div class="footer-newsletter-text">
+      <h3>Get outbound insights in your inbox.</h3>
+      <p>Frameworks and playbooks from inside our campaigns. Free.</p>
+    </div>
+    <form class="footer-newsletter-form" action="https://leadacquisition.beehiiv.com/subscribe" method="get" target="_blank">
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo" aria-label="Lead Acquisition">
+      <svg viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:auto;display:block;">
+        <path d="M2 9 L2 2 L9 2" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M35 2 L42 2 L42 9" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 23 L2 30 L9 30" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M35 30 L42 30 L42 23" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 8 L12 24 L20 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 24 L27 8 L32 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why-us">Why us</a></li>
+      <li><a href="mailto:conor@leadacquisition.io">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Lead Acquisition Ltd.</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    const siblings = el.parentElement ? Array.from(el.parentElement.querySelectorAll(':scope > .reveal')) : [el];
+    el.style.transitionDelay = siblings.indexOf(el) > 0 ? `${siblings.indexOf(el) * 90}ms` : '0ms';
+    obs.observe(el);
+  });
+
+  // Flow board — draw curved connecting lines + animated dots
+  (function(){
+    const svg = document.getElementById('flowLines');
+    if (!svg) return;
+    const board = svg.parentElement;
+    const center = board.querySelector('.flow-center');
+    const tiles = board.querySelectorAll('.flow-tile');
+    const stats = board.querySelectorAll('.flow-stat');
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+
+    function rectCenter(el, originRect) {
+      const r = el.getBoundingClientRect();
+      return { x: r.left - originRect.left + r.width/2, y: r.top - originRect.top + r.height/2, w: r.width, h: r.height, r };
+    }
+
+    function draw() {
+      svg.innerHTML = '';
+      const b = board.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${b.width} ${b.height}`);
+      const c = rectCenter(center, b);
+
+      function addPath(from, to, fromSide /* 'right' | 'left' */, delay) {
+        const ax = fromSide === 'right' ? from.x + from.w/2 : from.x - from.w/2;
+        const ay = from.y;
+        const bx = fromSide === 'right' ? to.x - to.w/2 + 4 : to.x + to.w/2 - 4;
+        const by = to.y;
+        const mx = (ax + bx) / 2;
+        const d = `M ${ax} ${ay} C ${mx} ${ay}, ${mx} ${by}, ${bx} ${by}`;
+
+        const p = document.createElementNS(SVG_NS, 'path');
+        p.setAttribute('d', d);
+        svg.appendChild(p);
+
+        const dot = document.createElementNS(SVG_NS, 'circle');
+        dot.setAttribute('r', '3.2');
+        dot.setAttribute('class', 'flow-dot');
+        const anim = document.createElementNS(SVG_NS, 'animateMotion');
+        anim.setAttribute('dur', '3.2s');
+        anim.setAttribute('repeatCount', 'indefinite');
+        anim.setAttribute('begin', delay + 's');
+        anim.setAttribute('path', d);
+        dot.appendChild(anim);
+        svg.appendChild(dot);
+      }
+
+      tiles.forEach((t, i) => {
+        const from = rectCenter(t, b);
+        addPath(from, c, 'right', (i * 0.22) % 3.2);
+      });
+      stats.forEach((s, i) => {
+        const to = rectCenter(s, b);
+        addPath(c, to, 'right', (i * 0.5 + 0.3) % 3.2);
+      });
+    }
+
+    draw();
+    window.addEventListener('resize', () => {
+      clearTimeout(window.__flowTO);
+      window.__flowTO = setTimeout(draw, 120);
+    });
+  })();
+
+  // Case-study carousel - auto-adapts to however many .proof-card children exist
+  (function(){
+    const track = document.getElementById('proofTrack');
+    if (!track) return;
+    const cards = () => track.querySelectorAll('.proof-card');
+    const dotsWrap = document.getElementById('proofDots');
+    const prev = document.getElementById('proofPrev');
+    const next = document.getElementById('proofNext');
+    let idx = 0;
+
+    function renderDots() {
+      dotsWrap.innerHTML = '';
+      cards().forEach((_, i) => {
+        const d = document.createElement('span');
+        d.className = 'proof-dot' + (i === idx ? ' is-active' : '');
+        d.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(d);
+      });
+    }
+    function go(i) {
+      const total = cards().length;
+      idx = (i + total) % total;
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      dotsWrap.querySelectorAll('.proof-dot').forEach((d, j) => d.classList.toggle('is-active', j === idx));
+    }
+    prev.addEventListener('click', () => go(idx - 1));
+    next.addEventListener('click', () => go(idx + 1));
+    renderDots();
+  })();
+
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? '#0F0F0F' : ''; });
+  }, { passive: true });
+</script>
+</body>
+</html>

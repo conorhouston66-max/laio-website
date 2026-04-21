@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Lead Acquisition</title>
+  <meta name="description" content="Outbound frameworks, cold email teardowns, and GTM playbooks from the Lead Acquisition team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F3EC; --text: #0F0F0F; --text-muted: #666; --text-light: #999;
+      --accent: #C8960C; --border: rgba(0,0,0,0.07);
+      --shadow-md: 0 2px 8px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.08);
+      --r: 18px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 52px; height: 66px;
+      background: rgba(247,243,236,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { width: 100%; max-width: 1080px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px; }
+    .nav-inner > .nav-links { justify-self: center; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+    .nav-logo-mark { width: 58px; height: 38px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta { background: var(--text); color: white; padding: 9px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .82; }
+
+    /* HERO */
+    .blog-hero { padding: 80px 52px 64px; text-align: center; border-bottom: 1px solid var(--border); }
+    .blog-hero-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .blog-hero h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; }
+    .blog-hero h1 em { font-style: italic; color: var(--accent); }
+    .blog-hero p { font-size: 17px; color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+    /* FILTER TABS */
+    .filter-bar { display: flex; gap: 8px; justify-content: center; padding: 32px 52px 0; flex-wrap: wrap; }
+    .filter-btn { background: white; border: 1px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-muted); transition: all .2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--text); color: white; border-color: var(--text); }
+
+    /* GRID */
+    .blog-container { max-width: 1080px; margin: 0 auto; padding: 52px 52px 100px; }
+    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .posts-grid { grid-template-columns: 1fr; } }
+
+    .post-card { background: white; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
+    .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .post-img { width: 100%; height: 180px; background: var(--bg); display: flex; align-items: center; justify-content: center; }
+    .post-body { padding: 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .post-tag { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+    .post-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; }
+    .post-excerpt { font-size: 14px; color: var(--text-muted); line-height: 1.65; flex: 1; }
+    .post-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-light); margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+    /* FOOTER */
+    footer { background: var(--text); color: white; padding: 40px 52px; display: flex; align-items: center; justify-content: center; }
+    .footer-inner { width: 100%; max-width: 1080px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 16px; color: white; text-decoration: none; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.4); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="Lead Acquisition">
+      <svg class="nav-logo-mark" viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 9 L2 2 L9 2" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M35 2 L42 2 L42 9" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 23 L2 30 L9 30" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M35 30 L42 30 L42 23" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 8 L12 24 L20 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 24 L27 8 L32 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#how-it-works">How it works</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../index.html#case-studies">Case studies</a></li>
+      <li><a href="../index.html#why-us">Why us</a></li>
+      <li><a href="../index.html#faq">FAQ</a></li>
+      <li><a href="index.html" class="active">Blog</a></li>
+    </ul>
+    <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <div class="blog-hero-label">From the team</div>
+  <h1>Outbound thinking,<br><em>written down.</em></h1>
+  <p>Frameworks, teardowns, and playbooks from inside our campaigns.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Cold Email</button>
+  <button class="filter-btn">Systems</button>
+  <button class="filter-btn">Strategy</button>
+  <button class="filter-btn">Deliverability</button>
+</div>
+
+<div class="blog-container">
+  <div class="posts-grid">
+
+    <a href="/blog/why-cold-email-fails.html" class="post-card">
+      <div class="post-img">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#C8960C" stroke-width="2"/><path d="M6 18l18 12 18-12" stroke="#C8960C" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Cold Email</span>
+        <div class="post-title">Why Most Cold Email Campaigns Fail Before a Single Reply</div>
+        <p class="post-excerpt">The problem isn't your copy. It's the four layers underneath it — deliverability, ICP clarity, offer framing, and sequence logic.</p>
+        <div class="post-meta"><span>April 2025</span><span>·</span><span>6 min read</span></div>
+      </div>
+    </a>
+
+    <a href="/blog/outbound-system-that-scales.html" class="post-card">
+      <div class="post-img">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M10 38V24l14-14 14 14v14" stroke="#C8960C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="28" width="12" height="10" rx="1" stroke="#C8960C" stroke-width="2"/></svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Systems</span>
+        <div class="post-title">How to Build a B2B Outbound System That Actually Compounds</div>
+        <p class="post-excerpt">Most teams treat outbound as a series of one-off campaigns. Here's the infrastructure approach that compounds over time.</p>
+        <div class="post-meta"><span>March 2025</span><span>·</span><span>8 min read</span></div>
+      </div>
+    </a>
+
+    <a href="/blog/icp-targeting-framework.html" class="post-card">
+      <div class="post-img">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#C8960C" stroke-width="2"/><circle cx="24" cy="24" r="8" stroke="#C8960C" stroke-width="2"/><circle cx="24" cy="24" r="2.5" fill="#C8960C"/><path d="M24 8v6M24 34v6M8 24h6M34 24h6" stroke="#C8960C" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="post-body">
+        <span class="post-tag">Strategy</span>
+        <div class="post-title">The ICP Targeting Framework We Use for Every Client</div>
+        <p class="post-excerpt">Firmographics alone don't cut it. We layer in technographics, trigger signals, and intent data to build lists that convert at 2-3x average.</p>
+        <div class="post-meta"><span>February 2025</span><span>·</span><span>7 min read</span></div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="../index.html" class="footer-logo" aria-label="Lead Acquisition">
+      <svg viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:auto;display:block;">
+        <path d="M2 9 L2 2 L9 2" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M35 2 L42 2 L42 9" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 23 L2 30 L9 30" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M35 30 L42 30 L42 23" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 8 L12 24 L20 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 24 L27 8 L32 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <span class="footer-copy">© 2025 Lead Acquisition. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>
