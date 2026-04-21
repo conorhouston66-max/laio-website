@@ -1,0 +1,97 @@
+{
+  "published": [
+    "signal-based outbound"
+  ],
+  "queue": [
+    {
+      "keyword": "outsource cold email",
+      "secondary": ["cold email outsourcing", "cold email agency", "done for you cold email", "outsource outbound sales"],
+      "tag": "Strategy",
+      "intent": "Commercial - actively considering outsourcing cold email"
+    },
+    {
+      "keyword": "cold email agency vs in-house",
+      "secondary": ["build vs buy outbound", "in-house SDR vs agency", "outsource outbound sales", "cold email agency cost"],
+      "tag": "Strategy",
+      "intent": "Commercial - evaluating build vs hire decision"
+    },
+    {
+      "keyword": "signs you need a cold email agency",
+      "secondary": ["when to outsource cold email", "cold email not working", "outbound not generating pipeline"],
+      "tag": "Strategy",
+      "intent": "Commercial - experiencing pain, considering solutions"
+    },
+    {
+      "keyword": "SDR outsourcing",
+      "secondary": ["outsource sales development", "fractional SDR", "outsourced SDR team", "SDR agency"],
+      "tag": "Strategy",
+      "intent": "Commercial - looking to outsource the SDR function"
+    },
+    {
+      "keyword": "done for you cold email",
+      "secondary": ["cold email as a service", "managed cold email", "cold email management", "full service cold email"],
+      "tag": "Strategy",
+      "intent": "Commercial - wants someone to run cold email for them"
+    },
+    {
+      "keyword": "b2b appointment setting",
+      "secondary": ["b2b appointment setting agency", "outsource appointment setting", "booked meetings b2b", "appointment setting service"],
+      "tag": "Strategy",
+      "intent": "Commercial - wants booked meetings, not DIY education"
+    },
+    {
+      "keyword": "outbound sales outsourcing",
+      "secondary": ["outsource outbound sales team", "b2b sales outsourcing", "outbound sales agency", "sales outsourcing companies"],
+      "tag": "Strategy",
+      "intent": "Commercial - evaluating outsourcing full outbound function"
+    },
+    {
+      "keyword": "how to choose a cold email agency",
+      "secondary": ["best cold email agency", "cold email agency questions", "vetting cold email agencies", "what to look for in a cold email agency"],
+      "tag": "Strategy",
+      "intent": "Commercial - in buying process, needs help deciding"
+    },
+    {
+      "keyword": "cold email ROI",
+      "secondary": ["cold email return on investment", "cold email results", "is cold email worth it", "cold email pipeline value"],
+      "tag": "Strategy",
+      "intent": "Commercial - needs to justify investment or evaluate cold email"
+    },
+    {
+      "keyword": "b2b lead generation outsourcing",
+      "secondary": ["outsource lead generation", "b2b lead gen agency", "lead generation as a service", "b2b pipeline outsourcing"],
+      "tag": "Strategy",
+      "intent": "Commercial - looking to outsource lead gen function"
+    },
+    {
+      "keyword": "cold email agency results",
+      "secondary": ["cold email agency benchmarks", "what results should I expect from cold email agency", "cold email agency performance", "cold email agency case study"],
+      "tag": "Strategy",
+      "intent": "Commercial - wants proof before hiring"
+    },
+    {
+      "keyword": "why cold email stops working",
+      "secondary": ["cold email reply rates dropping", "declining cold email performance", "fix cold email", "cold email not converting"],
+      "tag": "Cold Email",
+      "intent": "Pain-aware - experiencing problem that an agency solves"
+    },
+    {
+      "keyword": "b2b outbound not working",
+      "secondary": ["outbound pipeline dried up", "cold outreach not converting", "outbound sales broken", "fix outbound sales"],
+      "tag": "Strategy",
+      "intent": "Pain-aware - experiencing exact problem LA solves"
+    },
+    {
+      "keyword": "how many meetings should cold email generate",
+      "secondary": ["cold email meeting benchmarks", "cold email to meeting rate", "qualified meetings from cold email", "cold email pipeline expectations"],
+      "tag": "Cold Email",
+      "intent": "Commercial - setting expectations before hiring"
+    },
+    {
+      "keyword": "outbound sales for series a startup",
+      "secondary": ["series a outbound strategy", "post series a sales", "gtm after series a", "building outbound series a"],
+      "tag": "GTM",
+      "intent": "Commercial - specific buyer profile, high intent to hire"
+    }
+  ]
+}
