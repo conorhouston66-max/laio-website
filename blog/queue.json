@@ -1,14 +1,9 @@
 {
   "published": [
-    "signal-based outbound"
+    "signal-based outbound",
+    "outsource cold email"
   ],
   "queue": [
-    {
-      "keyword": "outsource cold email",
-      "secondary": ["cold email outsourcing", "cold email agency", "done for you cold email", "outsource outbound sales"],
-      "tag": "Strategy",
-      "intent": "Commercial - actively considering outsourcing cold email"
-    },
     {
       "keyword": "cold email agency vs in-house",
       "secondary": ["build vs buy outbound", "in-house SDR vs agency", "outsource outbound sales", "cold email agency cost"],
