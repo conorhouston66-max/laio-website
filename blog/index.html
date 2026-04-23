@@ -34,8 +34,17 @@
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { background: var(--text); color: white; padding: 9px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .2s; }
+    .nav-cta { background: var(--text); color: white; padding: 9px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .2s; display: inline-flex; align-items: center; gap: 4px; }
     .nav-cta:hover { opacity: .82; }
+    .wave-hand { transform-origin: 70% 85%; animation: waveHand 2.4s ease-in-out infinite; }
+    @keyframes waveHand {
+      0%,100% { transform: rotate(0deg); }
+      15% { transform: rotate(14deg); }
+      30% { transform: rotate(-8deg); }
+      45% { transform: rotate(12deg); }
+      60% { transform: rotate(-4deg); }
+      75% { transform: rotate(8deg); }
+    }
 
     /* HERO */
     .blog-hero { padding: 80px 52px 64px; text-align: center; border-bottom: 1px solid var(--border); }
@@ -88,13 +97,10 @@
     </a>
     <ul class="nav-links">
       <li><a href="../index.html#how-it-works">How it works</a></li>
-      <li><a href="../index.html#services">Services</a></li>
-      <li><a href="../index.html#case-studies">Case studies</a></li>
       <li><a href="../index.html#why-us">Why us</a></li>
-      <li><a href="../index.html#faq">FAQ</a></li>
       <li><a href="index.html" class="active">Blog</a></li>
     </ul>
-    <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call</a>
+    <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call <svg class="wave-hand" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-left:3px"><path d="M18 11V6a2 2 0 1 0-4 0"/><path d="M14 10V4a2 2 0 1 0-4 0v2"/><path d="M10 10.5V6a2 2 0 1 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.83-2.83L7 15"/><path d="M21 3c.5 1 .5 2 0 3"/><path d="M23 2c.8 1.5.8 3 0 4.5"/></svg></a>
   </div>
 </nav>
 

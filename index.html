@@ -498,12 +498,13 @@
       width: 76px; height: 76px;
       background: var(--text); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.18);
       transition: transform .25s, box-shadow .25s;
     }
     .play-ring:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.26); }
 
-    .play-ring svg { margin-left: 5px; }
+    .play-ring svg { margin-left: 2px; }
 
     .vsl-caption {
       position: relative; z-index: 2;
@@ -1176,7 +1177,7 @@
           <div class="vsl-inner-content">
             <div class="play-ring">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <path d="M8 5l10 6-10 6V5z" fill="white"/>
+                <polygon points="7,4 19,11 7,18" fill="white"/>
               </svg>
             </div>
             <span class="vsl-caption">How we build outbound systems (4 min)</span>
