@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Acquisition System | Lead Acquisition</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0908;
+    --amber: #C8970F;
+    --amber-dim: rgba(200,151,15,0.15);
+    --amber-border: rgba(200,151,15,0.3);
+    --cream: #F7F3EC;
+    --white: #FFFFFF;
+    --muted: rgba(247,243,236,0.4);
+    --dimmer: rgba(247,243,236,0.18);
+    --card-bg: rgba(255,255,255,0.03);
+    --card-border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Amber top line */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--amber) 40%, rgba(200,151,15,0.3) 100%);
+    z-index: 100;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    background: rgba(10,9,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+    z-index: 50;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-brand {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .nav-cta {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--amber);
+    padding: 8px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  section.full-width {
+    max-width: 1080px;
+  }
+
+  section.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 140px;
+    padding-bottom: 100px;
+  }
+
+  /* LABELS */
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 24px;
+  }
+
+  .label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  /* HEADLINES */
+  h1 {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: clamp(44px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  h2 {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  h3 {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 680px;
+    margin-bottom: 36px;
+  }
+
+  .author-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--dimmer);
+    letter-spacing: 0.05em;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bg);
+    background: var(--amber);
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--amber);
+    border: 1px solid var(--amber-border);
+  }
+
+  .btn-ghost:hover {
+    background: var(--amber-dim);
+    opacity: 1;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--card-border);
+    margin: 0;
+  }
+
+  /* CASE STUDY CARDS */
+  .case-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 48px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(200,151,15,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .case-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+
+  .case-title {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+
+  .case-context {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+
+  /* METRICS ROW */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 36px;
+    background: var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .metric {
+    background: rgba(10,9,8,0.7);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .metric-val {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--amber);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+  }
+
+  .metric-label {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--dimmer);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .case-body {
+    font-size: 16px;
+    color: rgba(247,243,236,0.65);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  .case-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(200,151,15,0.1);
+    border: 1px solid var(--amber-border);
+    border-radius: 8px;
+    padding: 14px 20px;
+  }
+
+  .case-result-val {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--amber);
+    letter-spacing: -0.02em;
+  }
+
+  .case-result-label {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* PAIN GRID */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .pain-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+
+  .pain-card:hover {
+    border-color: var(--amber-border);
+  }
+
+  .pain-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--amber-dim);
+    border: 1px solid var(--amber-border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .pain-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .pain-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* PROCESS STEPS */
+  .process-steps {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+    border-top: 1px solid var(--card-border);
+    padding: 48px 0;
+    position: relative;
+  }
+
+  .step:last-child {
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .step-num {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: rgba(200,151,15,0.12);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    padding-top: 4px;
+    transition: color 0.3s;
+  }
+
+  .step:hover .step-num {
+    color: rgba(200,151,15,0.25);
+  }
+
+  .step-content {}
+
+  .step-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+
+  .step-title {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .step-body {
+    font-size: 16px;
+    color: rgba(247,243,236,0.55);
+    line-height: 1.75;
+    max-width: 600px;
+  }
+
+  /* DELIVERABLES TABLE */
+  .deliverables-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+
+  .deliverables-table thead tr {
+    border-bottom: 1px solid var(--amber-border);
+  }
+
+  .deliverables-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    padding: 12px 20px 16px;
+    text-align: left;
+    font-weight: 500;
+  }
+
+  .deliverables-table td {
+    padding: 20px 20px;
+    border-bottom: 1px solid var(--card-border);
+    font-size: 15px;
+  }
+
+  .deliverables-table td:first-child {
+    font-weight: 600;
+    color: var(--white);
+    width: 36%;
+  }
+
+  .deliverables-table td:last-child {
+    color: var(--muted);
+  }
+
+  .deliverables-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .deliverables-table tbody tr {
+    transition: background 0.15s;
+  }
+
+  .deliverables-table tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .pricing-block {
+    text-align: center;
+    padding: 48px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+  }
+
+  .price-was {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    color: var(--dimmer);
+    text-decoration: line-through;
+    margin-bottom: 8px;
+  }
+
+  .price-now {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--amber);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .price-note {
+    font-size: 13px;
+    color: var(--dimmer);
+    margin-bottom: 32px;
+  }
+
+  /* COMPARISON TABLE */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 48px;
+  }
+
+  .comparison-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    padding: 12px 20px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+    font-weight: 500;
+  }
+
+  .comparison-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px;
+    color: var(--muted);
+    vertical-align: top;
+  }
+
+  .comparison-table td:first-child {
+    font-weight: 600;
+    color: rgba(247,243,236,0.55);
+  }
+
+  .comparison-table tr.highlight td {
+    background: rgba(200,151,15,0.07);
+    color: var(--cream);
+    border-bottom-color: var(--amber-border);
+    border-top: 1px solid var(--amber-border);
+  }
+
+  .comparison-table tr.highlight td:first-child {
+    color: var(--amber);
+    font-weight: 700;
+  }
+
+  .highlight-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--amber);
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--card-border);
+    overflow: hidden;
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    text-align: left;
+    gap: 24px;
+  }
+
+  .faq-q-text {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s, transform 0.3s;
+  }
+
+  .faq-icon svg {
+    width: 12px;
+    height: 12px;
+    stroke: var(--amber);
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-icon {
+    background: var(--amber-dim);
+    border-color: var(--amber-border);
+  }
+
+  .faq-item.open .faq-icon svg {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 300px;
+  }
+
+  .faq-a-inner {
+    padding: 0 0 28px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 640px;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    text-align: center;
+    padding: 120px 40px;
+    position: relative;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(200,151,15,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .final-cta h2 {
+    font-size: clamp(36px, 5vw, 60px);
+    margin-bottom: 20px;
+  }
+
+  .final-cta-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .final-cta-domain {
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--dimmer);
+    letter-spacing: 0.08em;
+  }
+
+  /* SECTION SEPARATOR */
+  .sep-line {
+    max-width: 860px;
+    margin: 0 auto;
+    height: 1px;
+    background: var(--card-border);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ANIMATE IN */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--card-border);
+    padding: 32px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .f-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  footer .f-brand {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+  }
+
+  footer .f-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--dimmer);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="20" viewBox="0 0 44 32" fill="none">
+      <path d="M2 9 L2 2 L9 2" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 2 L42 2 L42 9" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 23 L2 30 L9 30" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 30 L42 30 L42 23" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 8 L12 24 L20 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 24 L27 8 L32 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-brand">Lead Acquisition</span>
+  </a>
+  <a href="https://calendly.com/leadacquisition/30min" class="nav-cta" target="_blank">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="label reveal">For B2B Agencies and SaaS Companies</div>
+  <h1 class="reveal" style="transition-delay:0.1s">Your GTM Motion<br>Is Broken.<br><em>Here Is How We Fix It.</em></h1>
+  <p class="hero-sub reveal" style="transition-delay:0.2s">Most B2B companies do not have a lead generation problem. They have a testing problem. They pick one angle, one list, one sequence, and run it until it stops working. Then they blame cold email. At Lead Acquisition, we run your entire outbound motion as a live experiment. Multiple campaigns in parallel. Data deciding what scales. Results in the first month.</p>
+  <p class="author-line reveal" style="transition-delay:0.3s">Conor Houston, Founder and CEO / Lead Acquisition</p>
+  <div class="reveal" style="transition-delay:0.4s">
+    <a href="https://calendly.com/leadacquisition/30min" class="btn" target="_blank">Book a Call &rarr;</a>
+  </div>
+</section>
+
+<div class="sep-line"></div>
+
+<!-- CASE STUDIES -->
+<section>
+  <div class="label reveal">Proof</div>
+  <h2 class="reveal">Real campaigns.<br><em>Real numbers.</em></h2>
+
+  <div style="height:48px"></div>
+
+  <!-- Case Study 1 -->
+  <div class="case-card reveal">
+    <div class="case-num">Case Study 01</div>
+    <div class="case-title">How Dimension6 Went From 5-10 Demos Per Month to 56 Demos in 40 Days</div>
+    <p class="case-context">Dimension6 is a full stack podcast growth service working with brands like Tony Robbins, Salesforce and Mattel. They were booking 5 to 10 demos per month but could not push past that ceiling.</p>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-val">9,354</div>
+        <div class="metric-label">Emails Sent</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">4.7%</div>
+        <div class="metric-label">Reply Rate</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">36%</div>
+        <div class="metric-label">Positive Replies</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">56</div>
+        <div class="metric-label">Demos Booked</div>
+      </div>
+    </div>
+
+    <p class="case-body">We ran the Acquisition System targeting podcast hosts with 10k+ listeners in the US and UK. Rather than chasing volume, we prioritised untapped lead data that competitors were not touching. We tested our private lead data against standard Apollo lists. The difference was a 9.33x increase in reply rate. Prospects who rarely receive cold email respond differently to it.</p>
+
+    <div class="case-result">
+      <div class="case-result-val">$360,000</div>
+      <div class="case-result-label">pipeline generated in 40 days</div>
+    </div>
+  </div>
+
+  <!-- Case Study 2 -->
+  <div class="case-card reveal">
+    <div class="case-num">Case Study 02</div>
+    <div class="case-title">How BossDigital Went From Zero Outbound to 20+ Meetings Per Month</div>
+    <p class="case-context">BossDigital is a B2B UGC agency specialising in ecommerce. They came to us generating 3 to 5 leads per month through referrals, skeptical of cold email based on previous attempts.</p>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-val">20+</div>
+        <div class="metric-label">Meetings / Month</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">1/233</div>
+        <div class="metric-label">Emails to Lead</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">$5k+</div>
+        <div class="metric-label">Avg Deal Size</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">$576k</div>
+        <div class="metric-label">Pipeline Generated</div>
+      </div>
+    </div>
+
+    <p class="case-body">We built their first outbound system from scratch. The offer was built specifically for cold traffic: rather than pitching the service, we led with 2 to 3 free UGC ad creatives for qualified prospects. This reframed the first call. Leads were not getting on a sales call. They were getting on a call to collect something they already wanted. Cold email became their primary lead source within 60 days.</p>
+  </div>
+</section>
+
+<div class="sep-line"></div>
+
+<!-- WHO IT'S FOR -->
+<section>
+  <div class="label reveal">Who This Is For</div>
+  <h2 class="reveal">If your pipeline is unpredictable,<br><em>this is for you.</em></h2>
+
+  <div class="pain-grid">
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8970F" stroke-width="2" stroke-linecap="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="pain-title">Reply rates dropping</div>
+      <p class="pain-desc">You are spending hours on manual outreach and getting less back every month.</p>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8970F" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div class="pain-title">Wrong clients coming in</div>
+      <p class="pain-desc">Your outbound is not qualifying properly and you are landing retainers that drain resources.</p>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8970F" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <div class="pain-title">Offer not reaching the right people</div>
+      <p class="pain-desc">You have a strong offer priced at $10k+ but cannot get it in front of decision makers at scale.</p>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8970F" stroke-width="2" stroke-linecap="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="pain-title">Referral dependency</div>
+      <p class="pain-desc">You have no predictable lead source outside of word of mouth.</p>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8970F" stroke-width="2" stroke-linecap="round">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div class="pain-title">Ads not converting</div>
+      <p class="pain-desc">You have tried paid channels and cannot make the unit economics work.</p>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8970F" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div class="pain-title">Pipeline too thin</div>
+      <p class="pain-desc">You are booking 3 to 5 discovery calls per month when the business could support 20 to 30.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep-line"></div>
+
+<!-- PROCESS -->
+<section>
+  <div class="label reveal">The Acquisition System</div>
+  <h2 class="reveal">Five steps.<br><em>Systematic. Repeatable.</em></h2>
+
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <div class="step-tag">Foundation</div>
+        <div class="step-title">Technical Infrastructure</div>
+        <p class="step-body">Deliverability is the foundation. We build a sending infrastructure designed to keep your emails in the inbox permanently. Every domain and inbox is warmed, monitored and rotated on a schedule. No burned domains, no downtime, no periods of silence. Before a single email goes out, the system is already running.</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <div class="step-tag">Data</div>
+        <div class="step-title">Lead Data Your Competitors Are Not Using</div>
+        <p class="step-body">Most companies pull from Apollo, ZoomInfo or PeopleDataLabs and send to the same lists as everyone else. We built our own data platform, XenoLeads, to access leads that have not been hit by every agency in your space. We waterfall verify using MillionVerifier, Enrichley and Scrubby, recovering 20 to 30% more valid contacts that standard verification misses.</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <div class="step-tag">Offer</div>
+        <div class="step-title">Offer Engineering</div>
+        <p class="step-body">Cold traffic is not warm traffic. We build your offer specifically for cold email: lead with value, deliver something tangible, and only transition to the service once trust is established. The offer is tested across multiple angles before we scale anything. Most agencies send one offer forever. We treat it as a variable.</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <div class="step-tag">Testing</div>
+        <div class="step-title">Campaign Launch and Live Testing</div>
+        <p class="step-body">We launch multiple campaigns simultaneously, testing different angles, ICPs and messaging variants. Every variable is tracked. What performs gets scaled. What does not gets cut within the first two weeks. This is not spray and pray. It is a structured testing process with clear decision criteria at each stage. The system gets sharper every week it runs.</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <div class="step-tag">Revenue</div>
+        <div class="step-title">Sales Process Integration</div>
+        <p class="step-body">A booked call is not a closed deal. We audit your current sales process, identify where prospects are dropping off, and build the infrastructure to fix it: automated reminders, pre-call sequences, follow-up flows and sales assets designed for cold-sourced leads. Show up rates and close rates are metrics we optimise too.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep-line"></div>
+
+<!-- DELIVERABLES -->
+<section>
+  <div class="label reveal">What You Get</div>
+  <h2 class="reveal">Everything included.<br><em>Nothing outsourced.</em></h2>
+
+  <table class="deliverables-table reveal">
+    <thead>
+      <tr>
+        <th>Deliverable</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Done-For-You Cold Email</td>
+        <td>Full outbound system targeting 20,000 to 150,000 leads per month</td>
+      </tr>
+      <tr>
+        <td>Campaign Copywriting</td>
+        <td>Messaging engineered for cold traffic, not warm leads</td>
+      </tr>
+      <tr>
+        <td>Lead Magnet Creation</td>
+        <td>Resources that qualify and nurture prospects before the first call</td>
+      </tr>
+      <tr>
+        <td>Technical Infrastructure</td>
+        <td>Inbox uptime guaranteed, domains monitored and rotated</td>
+      </tr>
+      <tr>
+        <td>Sales Process Build</td>
+        <td>Pre-call sequences, reminders and close rate optimisation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pricing-block reveal">
+    <div class="price-was">Total value: $19,000/month</div>
+    <div class="price-now">$3,000<span style="font-size:24px;font-weight:600;color:rgba(200,151,15,0.6)">/mo</span></div>
+    <div class="price-note">Minimum 3-month engagement. Discounts available for upfront payment.</div>
+    <a href="https://calendly.com/leadacquisition/30min" class="btn" target="_blank">Book a Call with Conor &rarr;</a>
+  </div>
+</section>
+
+<div class="sep-line"></div>
+
+<!-- COMPARISON -->
+<section class="full-width">
+  <div class="label reveal">Why Not Do It Another Way?</div>
+  <h2 class="reveal">Every alternative costs more<br><em>and takes longer.</em></h2>
+
+  <table class="comparison-table reveal">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Result</th>
+        <th>Cost</th>
+        <th>Time to Results</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hire a marketing department</td>
+        <td>High overhead, inconsistent results</td>
+        <td>$60k-$150k/year</td>
+        <td>6-12 months</td>
+      </tr>
+      <tr>
+        <td>Do it yourself</td>
+        <td>No clear system, limited time</td>
+        <td>Cost of lost productivity</td>
+        <td>6-12 months</td>
+      </tr>
+      <tr>
+        <td>Hire SDRs</td>
+        <td>Training overhead, high fixed costs</td>
+        <td>$20k-$50k/month</td>
+        <td>5-8 months total</td>
+      </tr>
+      <tr class="highlight">
+        <td>Lead Acquisition <span class="highlight-badge">Recommended</span></td>
+        <td>Systematic, data-driven, live in 2 weeks</td>
+        <td>Starting at $3k/month</td>
+        <td>Results in month 1</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="sep-line"></div>
+
+<!-- FAQ -->
+<section>
+  <div class="label reveal">Common Questions</div>
+  <h2 class="reveal">Answered.</h2>
+
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What results can I expect?</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <p class="faq-a-inner">Most clients see initial results within the first month. Typical output at full run rate is 20 to 30 qualified leads per month depending on offer and market. Results continue to improve as the system gathers data and we cut what is not working.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How long does setup take?</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <p class="faq-a-inner">The system is live within two weeks of onboarding. Infrastructure, copy, data and initial campaigns are all built in that window.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What do you need from me?</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <p class="faq-a-inner">A strategy session to understand your offer, any existing case studies, and occasional availability for optimisation reviews. We handle everything else.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do you work with in-house marketing teams?</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <p class="faq-a-inner">Yes. We can run the system alongside your team or train them to take it in-house over time. We also offer a consulting option for teams who want to build internal capability.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Why not hire SDRs instead?</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <p class="faq-a-inner">SDRs cost $5,000 to $8,000 per month each before tools, management and ramp time. They get sick, leave and need constant oversight. The Acquisition System costs less, launches faster and runs without the overhead.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is there a minimum commitment?</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <p class="faq-a-inner">Three months minimum. This is the window needed to run proper tests, find the winning angle and scale it. Discounts are available for upfront payment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="sep-line"></div>
+<div class="final-cta">
+  <div class="label" style="justify-content:center;margin-bottom:24px">Next Step</div>
+  <h2>Ready to run<br><em>the experiment?</em></h2>
+  <p class="final-cta-sub">Book a 30-minute call with Conor. We will audit your current GTM motion and tell you exactly what we would change.</p>
+  <a href="https://calendly.com/leadacquisition/30min" class="btn" target="_blank" style="font-size:15px;padding:16px 36px">Book a Call &rarr;</a>
+  <p class="final-cta-domain">leadacquisition.io</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="f-logo">
+    <svg width="24" height="17" viewBox="0 0 44 32" fill="none">
+      <path d="M2 9 L2 2 L9 2" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 2 L42 2 L42 9" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 23 L2 30 L9 30" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 30 L42 30 L42 23" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 8 L12 24 L20 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 24 L27 8 L32 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <span class="f-brand">Lead Acquisition</span>
+  </a>
+  <div class="f-right">leadacquisition.io</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = entry.target.style.transitionDelay || (i * 0.05) + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
