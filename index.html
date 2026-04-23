@@ -757,29 +757,51 @@
       background: white;
       border: 1px solid rgba(0,0,0,0.07);
       border-radius: 18px;
-      padding: 32px 28px 28px;
-      display: flex; flex-direction: column; gap: 16px;
+      padding: 28px 28px 26px;
+      display: flex; flex-direction: column; gap: 14px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.07);
     }
+    .cs-header {
+      display: flex; align-items: center; gap: 12px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--border);
+    }
+    .cs-logo-wrap {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: #f0f0f0; flex-shrink: 0;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .cs-logo-wrap img {
+      width: 100%; height: 100%; object-fit: contain;
+      filter: blur(4px); transform: scale(1.1);
+    }
+    .cs-header-text { flex: 1; min-width: 0; }
     .cs-company {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 17px; font-weight: 700;
+      font-size: 14px; font-weight: 700;
       letter-spacing: -0.01em; color: var(--text);
-      line-height: 1.25;
+      line-height: 1.25; margin-bottom: 4px;
+    }
+    .cs-redacted {
+      display: inline-block;
+      height: 10px; width: 120px;
+      background: #e0e0e0; border-radius: 3px;
+    }
+    .cs-protected {
+      font-size: 10px; color: #bbb; letter-spacing: 0.04em;
+      text-transform: uppercase; margin-top: 2px;
     }
     .cs-offer {
-      font-size: 13.5px; color: var(--text-muted);
-      line-height: 1.6; border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.6;
     }
-    .cs-stats { display: flex; flex-direction: column; gap: 12px; }
+    .cs-stats { display: flex; flex-direction: column; gap: 10px; }
     .cs-stat-num {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 28px; font-weight: 800;
+      font-size: 26px; font-weight: 800;
       letter-spacing: -0.03em; line-height: 1; color: var(--text);
     }
     .cs-stat-num.gold { color: var(--accent); }
-    .cs-stat-desc { font-size: 12.5px; color: var(--text-muted); margin-top: 1px; }
+    .cs-stat-desc { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
 
     /* ── SHARED ── */
     section { position: relative; z-index: 1; }
@@ -1194,143 +1216,241 @@
     <div class="proof-ticker">
 
       <div class="cs-card">
-        <div class="cs-company">A B2B Saas Company</div>
-        <p class="cs-offer">Outbound Analytics Platform For B2B Sales Teams.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">B2B SaaS Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Outbound analytics platform for B2B sales teams.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Cybersecurity Company</div>
-        <p class="cs-offer">Threat Detection Platform For Enterprise It Directors.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=crowdstrike.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Cybersecurity Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Threat detection platform for enterprise IT directors.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Developer Tools Company</div>
-        <p class="cs-offer">Code Review Automation For Engineering Teams.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Developer Tools Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Code review automation for engineering teams.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Revops Platform</div>
-        <p class="cs-offer">Revenue Operations Software For Mid-Market Sales Orgs.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">RevOps Platform</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Revenue operations software for mid-market sales orgs.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Financial Services Company</div>
-        <p class="cs-offer">Financial Reporting Software For Cfo Offices.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Financial Services Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Financial reporting software for CFO offices.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">An Ai Infrastructure Company</div>
-        <p class="cs-offer">Ml Infrastructure Tooling For Ai Engineering Teams.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">AI Infrastructure Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">ML infrastructure tooling for AI engineering teams.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Professional Services Firm</div>
-        <p class="cs-offer">Gtm Consulting For B2B Professional Services Firms.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=mckinsey.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Professional Services Firm</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">GTM consulting for B2B professional services firms.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <!-- Duplicate set for seamless loop -->
       <div class="cs-card">
-        <div class="cs-company">A B2B Saas Company</div>
-        <p class="cs-offer">Outbound Analytics Platform For B2B Sales Teams.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">B2B SaaS Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Outbound analytics platform for B2B sales teams.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Cybersecurity Company</div>
-        <p class="cs-offer">Threat Detection Platform For Enterprise It Directors.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=crowdstrike.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Cybersecurity Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Threat detection platform for enterprise IT directors.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Developer Tools Company</div>
-        <p class="cs-offer">Code Review Automation For Engineering Teams.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Developer Tools Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Code review automation for engineering teams.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Revops Platform</div>
-        <p class="cs-offer">Revenue Operations Software For Mid-Market Sales Orgs.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">RevOps Platform</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Revenue operations software for mid-market sales orgs.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Financial Services Company</div>
-        <p class="cs-offer">Financial Reporting Software For Cfo Offices.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Financial Services Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">Financial reporting software for CFO offices.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">An Ai Infrastructure Company</div>
-        <p class="cs-offer">Ml Infrastructure Tooling For Ai Engineering Teams.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">AI Infrastructure Company</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">ML infrastructure tooling for AI engineering teams.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
       <div class="cs-card">
-        <div class="cs-company">A Professional Services Firm</div>
-        <p class="cs-offer">Gtm Consulting For B2B Professional Services Firms.</p>
+        <div class="cs-header">
+          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=mckinsey.com&sz=64" alt=""></div>
+          <div class="cs-header-text">
+            <div class="cs-company">Professional Services Firm</div>
+            <div class="cs-redacted"></div>
+            <div class="cs-protected">Identity protected</div>
+          </div>
+        </div>
+        <p class="cs-offer">GTM consulting for B2B professional services firms.</p>
         <div class="cs-stats">
-          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails Sent.</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings Booked.</div></div>
-          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline Generated.</div></div>
+          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails sent</div></div>
+          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
+          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline generated</div></div>
         </div>
       </div>
 
