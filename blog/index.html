@@ -27,15 +27,15 @@
       background: rgba(247,243,236,0.92); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-inner { width: 100%; max-width: 1080px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px; }
-    .nav-inner > .nav-links { justify-self: center; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+    .nav-inner { width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; flex-shrink: 0; }
     .nav-logo-mark { width: 58px; height: 38px; }
-    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { background: var(--text); color: white; padding: 9px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .2s; display: inline-flex; align-items: center; gap: 4px; }
-    .nav-cta:hover { opacity: .82; }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-family: 'Instrument Sans', sans-serif; font-size: 15px; font-weight: 500; color: #000000; text-decoration: none; transition: opacity .2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 0.55; }
+    .nav-cta { background: var(--text); color: white; padding: 10px 20px; border-radius: 12px; font-family: 'Instrument Sans', sans-serif; font-size: 15px; font-weight: 400; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: opacity .2s, transform .2s; flex-shrink: 0; }
+    .nav-cta:hover { opacity: .82; transform: translateY(-1px); }
     .wave-hand { transform-origin: 70% 85%; animation: waveHand 2.4s ease-in-out infinite; }
     @keyframes waveHand {
       0%,100% { transform: rotate(0deg); }
@@ -95,12 +95,14 @@
         <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
     </a>
-    <ul class="nav-links">
-      <li><a href="../index.html#how-it-works">How it works</a></li>
-      <li><a href="../index.html#why-us">Why us</a></li>
-      <li><a href="index.html" class="active">Blog</a></li>
-    </ul>
-    <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call <svg class="wave-hand" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-left:3px"><path d="M18 11V6a2 2 0 1 0-4 0"/><path d="M14 10V4a2 2 0 1 0-4 0v2"/><path d="M10 10.5V6a2 2 0 1 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.83-2.83L7 15"/><path d="M21 3c.5 1 .5 2 0 3"/><path d="M23 2c.8 1.5.8 3 0 4.5"/></svg></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html#how-it-works">How it works</a></li>
+        <li><a href="../index.html#why-us">Why us</a></li>
+        <li><a href="index.html" class="active">Blog</a></li>
+      </ul>
+      <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call <svg class="wave-hand" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 1 0-4 0"/><path d="M14 10V4a2 2 0 1 0-4 0v2"/><path d="M10 10.5V6a2 2 0 1 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.83-2.83L7 15"/><path d="M21 3c.5 1 .5 2 0 3"/><path d="M23 2c.8 1.5.8 3 0 4.5"/></svg></a>
+    </div>
   </div>
 </nav>
 
