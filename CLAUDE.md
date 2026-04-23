@@ -108,9 +108,21 @@ Always take the **first item in queue**, write the post, move the keyword to `pu
 
 **Cover Image:**
 - Every post needs a 1200x630px cover image saved to `/blog/images/[slug].png`
-- Generated via Playwright screenshot of an HTML template
-- Dark brand aesthetic: `#0A0908` background, `#C8970F` amber accent, white text
-- Shows: LA logo, post tag, post title, brief descriptor
+- Generated via Playwright screenshot of an HTML template (see `generate_cover_images.py`)
+- Style is FIXED - do not change it: pure `#0A0908` black background, white Bricolage Grotesque 800 title, centered, nothing else
+- Use a short punchy version of the title (4-6 words max) - not the full SEO title
+- Template:
+```python
+html = f"""<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
+<style>
+  * {{ margin:0;padding:0;box-sizing:border-box; }}
+  body {{ width:1200px;height:630px;background:#0A0908;overflow:hidden; }}
+  .canvas {{ width:1200px;height:630px;display:flex;align-items:center;justify-content:center;padding:80px; }}
+  .title {{ font-family:'Bricolage Grotesque',sans-serif;font-size:80px;font-weight:800;color:#FFFFFF;line-height:1.05;letter-spacing:-0.035em;text-align:center; }}
+</style></head><body><div class="canvas"><div class="title">{short_title}</div></div></body></html>"""
+```
+- Screenshot with Playwright at exactly 1200x630, save to `/blog/images/[slug].png`
 - Referenced in `og:image` and `twitter:image`
 
 **Nav:** Use the updated nav structure (right-aligned, links: How it works / Why us / Blog):
