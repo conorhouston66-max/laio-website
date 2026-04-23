@@ -111,6 +111,17 @@ Always take the **first item in queue**, write the post, move the keyword to `pu
 - Generated via Playwright screenshot of an HTML template (see `generate_cover_images.py`)
 - Style is FIXED - do not change it: pure `#0A0908` black background, white Bricolage Grotesque 800 title, centered, nothing else
 - Use a short punchy version of the title (4-6 words max) - not the full SEO title
+- The cover image must appear IN the post as a rounded card above the title. Place it INSIDE `.post-wrap`, after the `post-back` link and before the `post-tag` span. CSS:
+  ```css
+  .post-cover { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
+  .post-cover img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; border-radius: 16px; }
+  ```
+  HTML (inside `.post-wrap`, before `.post-tag`):
+  ```html
+  <div class="post-cover">
+    <img src="images/[slug].png" alt="[post title]">
+  </div>
+  ```
 - Template:
 ```python
 html = f"""<!DOCTYPE html><html><head><meta charset="UTF-8">
