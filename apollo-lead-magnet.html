@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 627px; background: #0A0908; overflow: hidden; }
+
+  .canvas {
+    width: 1200px;
+    height: 627px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 72px;
+    gap: 48px;
+  }
+
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .glow-left {
+    position: absolute;
+    left: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,151,15,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .glow-right {
+    position: absolute;
+    right: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,151,15,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .accent-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #C8970F 40%, rgba(200,151,15,0.3) 100%);
+  }
+
+  /* Logo */
+  .logo {
+    position: absolute;
+    top: 24px; left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 3;
+  }
+  .logo-brand {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Left — input block */
+  .left {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+  }
+
+  .label {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 14px;
+  }
+
+  .input-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 20px;
+  }
+
+  .input-box .prompt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+  }
+
+  .input-box .text {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 1.55;
+  }
+
+  .headline {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: #C8970F;
+  }
+
+  .sub {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.5;
+  }
+
+  /* Arrow */
+  .arrow {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .arrow-line {
+    width: 48px;
+    height: 1px;
+    background: rgba(200,151,15,0.4);
+  }
+
+  .arrow svg {
+    color: #C8970F;
+  }
+
+  /* Right — output block */
+  .right {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+  }
+
+  .output-box {
+    background: rgba(200,151,15,0.06);
+    border: 1px solid rgba(200,151,15,0.2);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+  }
+
+  .output-box .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .chip {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(200,151,15,0.15);
+    border: 1px solid rgba(200,151,15,0.3);
+    color: #C8970F;
+  }
+
+  .chip.white {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.5);
+  }
+
+  .url-bar {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .url-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #C8970F;
+    flex-shrink: 0;
+  }
+
+  .url-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .url-text span {
+    color: #C8970F;
+  }
+
+  .result-label {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 10px;
+  }
+
+  .result-label strong {
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* CTA */
+  .cta {
+    position: absolute;
+    bottom: 30px;
+    right: 72px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cta-text {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .cta-pill {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0A0908;
+    background: #C8970F;
+    padding: 8px 20px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="grid"></div>
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+  <div class="accent-top"></div>
+
+  <!-- Logo -->
+  <div class="logo">
+    <svg width="28" height="20" viewBox="0 0 44 32" fill="none">
+      <path d="M2 9 L2 2 L9 2" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 2 L42 2 L42 9" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 23 L2 30 L9 30" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 30 L42 30 L42 23" stroke="#C8970F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 8 L12 24 L20 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 24 L27 8 L32 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-brand">Lead Acquisition</span>
+  </div>
+
+  <!-- Left -->
+  <div class="left">
+    <div class="headline">ICP in.<br><em>Apollo search out.</em></div>
+    <div class="sub" style="margin-bottom:24px;">Describe your target in plain English.<br>Get a direct Apollo link in seconds.</div>
+    <div class="input-box">
+      <div class="prompt">$ describe your ICP</div>
+      <div class="text">"Series A SaaS founders in the US<br>with a sales team under 10 people"</div>
+    </div>
+  </div>
+
+  <!-- Arrow -->
+  <div class="arrow">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8970F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </svg>
+  </div>
+
+  <!-- Right -->
+  <div class="right">
+    <div class="label">Output</div>
+    <div class="output-box">
+      <div class="chip-row">
+        <span class="chip">Series A</span>
+        <span class="chip">SaaS</span>
+        <span class="chip">Founder / CEO</span>
+        <span class="chip white">United States</span>
+        <span class="chip white">1–10 sales headcount</span>
+      </div>
+      <div class="url-bar">
+        <div class="url-dot"></div>
+        <div class="url-text">app.apollo.io/#/people?<span>fundingStages[]=series_a</span>&personTitles[]=founder&employeeRanges[]=1,10...</div>
+      </div>
+      <div class="result-label" style="margin-top:12px;"><strong>2,847 contacts</strong> matched</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <span class="cta-text">Comment to get the skill</span>
+    <span class="cta-pill">APOLLO</span>
+  </div>
+
+</div>
+</body>
+</html>

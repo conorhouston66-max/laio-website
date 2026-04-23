@@ -5,6 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Why Most Cold Email Campaigns Fail | Lead Acquisition</title>
   <meta name="description" content="The problem isn't your copy. It's the four layers underneath it — deliverability, ICP clarity, offer framing, and sequence logic.">
+  <link rel="canonical" href="https://leadacquisition.io/blog/why-cold-email-fails.html">
+  <meta property="og:title" content="Why Most Cold Email Campaigns Fail Before a Single Reply">
+  <meta property="og:description" content="The problem isn't your copy. It's the four layers underneath it - deliverability, ICP clarity, offer framing, and sequence logic.">
+  <meta property="og:image" content="https://leadacquisition.io/blog/images/why-cold-email-fails.png">
+  <meta property="og:url" content="https://leadacquisition.io/blog/why-cold-email-fails.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Most Cold Email Campaigns Fail Before a Single Reply">
+  <meta name="twitter:description" content="The problem isn't your copy. It's the four layers underneath it - deliverability, ICP clarity, offer framing, and sequence logic.">
+  <meta name="twitter:image" content="https://leadacquisition.io/blog/images/why-cold-email-fails.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Most Cold Email Campaigns Fail Before a Single Reply",
+  "description": "The problem isn't your copy. It's the four layers underneath it - deliverability, ICP clarity, offer framing, and sequence logic.",
+  "author": {"@type": "Person", "name": "Conor Houston", "url": "https://leadacquisition.io"},
+  "publisher": {"@type": "Organization", "name": "Lead Acquisition", "url": "https://leadacquisition.io", "logo": {"@type": "ImageObject", "url": "https://leadacquisition.io/logos/la-logo.svg"}},
+  "datePublished": "2025-04-01",
+  "dateModified": "2026-04-23",
+  "image": "https://leadacquisition.io/blog/images/why-cold-email-fails.png",
+  "url": "https://leadacquisition.io/blog/why-cold-email-fails.html",
+  "keywords": ["cold email", "cold email fails", "cold email deliverability", "B2B cold email"]
+}
+</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -24,15 +49,24 @@
       background: rgba(247,243,236,0.92); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-inner { width: 100%; max-width: 1080px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px; }
-    .nav-inner > .nav-links { justify-self: center; }
-    .nav-logo { display: flex; align-items: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+    .nav-inner { width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .nav-logo { display: flex; align-items: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; flex-shrink: 0; }
     .nav-logo-mark { width: 58px; height: 38px; }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { background: var(--text); color: white; padding: 9px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .2s; }
+    .nav-cta { background: var(--text); color: white; padding: 9px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .2s; display: inline-flex; align-items: center; gap: 8px; }
     .nav-cta:hover { opacity: .82; }
+    .wave-hand { transform-origin: 70% 85%; animation: waveHand 2.4s ease-in-out infinite; }
+    @keyframes waveHand {
+      0%,100% { transform: rotate(0deg); }
+      15% { transform: rotate(14deg); }
+      30% { transform: rotate(-8deg); }
+      45% { transform: rotate(12deg); }
+      60% { transform: rotate(-4deg); }
+      75% { transform: rotate(8deg); }
+    }
 
     /* POST LAYOUT */
     .post-wrap { max-width: 720px; margin: 0 auto; padding: 72px 32px 120px; }
@@ -161,15 +195,14 @@
         <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
     </a>
-    <ul class="nav-links">
-      <li><a href="../index.html#how-it-works">How it works</a></li>
-      <li><a href="../index.html#services">Services</a></li>
-      <li><a href="../index.html#case-studies">Case studies</a></li>
-      <li><a href="../index.html#why-us">Why us</a></li>
-      <li><a href="../index.html#faq">FAQ</a></li>
-      <li><a href="index.html" class="active">Blog</a></li>
-    </ul>
-    <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html#how-it-works">How it works</a></li>
+        <li><a href="../index.html#why-us">Why us</a></li>
+        <li><a href="index.html" class="active">Blog</a></li>
+      </ul>
+      <a href="https://cal.com/conor-leadacquisition" class="nav-cta">Book a call <svg class="wave-hand" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 1 0-4 0"/><path d="M14 10V4a2 2 0 1 0-4 0v2"/><path d="M10 10.5V6a2 2 0 1 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.83-2.83L7 15"/><path d="M21 3c.5 1 .5 2 0 3"/><path d="M23 2c.8 1.5.8 3 0 4.5"/></svg></a>
+    </div>
   </div>
 </nav>
 
@@ -222,7 +255,7 @@
       <li>What trigger event makes them a buyer right now? (New funding, new hire, recent tech adoption, expansion into a new market.)</li>
     </ul>
 
-    <p>The narrower your ICP, the more specific your email can be. Specific emails feel personal. Personal emails get replies.</p>
+    <p>The narrower your ICP, the more specific your email can be. Specific emails feel personal. Personal emails get replies. If you want to go deeper on this, read our full breakdown of the <a href="icp-targeting-framework.html" style="color:var(--accent);text-decoration:underline;font-weight:500">ICP targeting framework we use for every client</a>.</p>
 
     <h2>Layer 3: Offer Framing</h2>
 
