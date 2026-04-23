@@ -69,8 +69,8 @@
     }
 
     /* COVER IMAGE */
-    .post-cover { width: 100%; max-height: 400px; overflow: hidden; display: block; }
-    .post-cover img { width: 100%; height: 400px; object-fit: cover; object-position: center; display: block; }
+    .post-cover { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
+    .post-cover img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; border-radius: 16px; }
 
     /* POST LAYOUT */
     .post-wrap { max-width: 720px; margin: 0 auto; padding: 72px 32px 120px; }
@@ -210,15 +210,15 @@
   </div>
 </nav>
 
-<div class="post-cover">
-  <img src="images/why-cold-email-fails.png" alt="Why Most Cold Email Campaigns Fail Before a Single Reply">
-</div>
-
 <div class="post-wrap">
   <a href="index.html" class="post-back">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     All posts
   </a>
+
+  <div class="post-cover">
+    <img src="images/why-cold-email-fails.png" alt="Why Most Cold Email Campaigns Fail Before a Single Reply">
+  </div>
 
   <span class="post-tag">Cold Email</span>
   <h1 class="post-title">Why Most Cold Email Campaigns Fail <em>Before a Single Reply</em></h1>
