@@ -61,9 +61,12 @@
   }
   .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15.5px; text-decoration: none; color: var(--text); }
   .logo-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(145deg, var(--accent), var(--accent-2)); flex-shrink: 0; }
-  .topnav { display: flex; align-items: center; gap: 30px; list-style: none; }
-  .topnav a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .topbar-left { display: flex; align-items: center; gap: 40px; }
+  .topnav { display: flex; align-items: center; gap: 26px; list-style: none; }
+  .topnav a { display: inline-flex; align-items: center; gap: 5px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; }
   .topnav a:hover { color: var(--text); }
+  .topnav a:hover .nav-chevron { transform: translateX(2px); }
+  .nav-chevron { color: var(--text-dim); font-size: 15px; transition: transform .15s; }
   .icon-btn { width: 36px; height: 36px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--card-bg-2); color: var(--text); display: none; align-items: center; justify-content: center; cursor: pointer; }
 
   @media (max-width: 900px) {
@@ -83,9 +86,9 @@
     background: linear-gradient(180deg, #0A131C 0%, #070E16 100%);
   }
 
-  .side-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .side-list { list-style: none; display: flex; flex-direction: column; gap: 0px; }
   .side-list a {
-    display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: var(--r-sm);
+    display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: var(--r-sm);
     color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: background .18s, color .18s;
   }
   .side-list a:hover { color: var(--text); background: rgba(255,255,255,0.03); }
@@ -93,7 +96,7 @@
   .side-icon { width: 17px; height: 17px; border-radius: 4px; background: var(--text-dim); flex-shrink: 0; }
   .side-list a.active .side-icon { background: var(--accent); }
 
-  .sidebar-spacer { flex: 1; }
+  .sidebar-spacer { flex: 1; max-height: 40vh; }
   .sidebar-bottom { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--border); }
 
   @media (max-width: 900px) {
@@ -233,12 +236,14 @@
 
   <!-- TOP BAR: logo, first 3 section links, CTA -->
   <header class="topbar">
-    <a href="#top" class="logo"><span class="logo-mark"></span> Placeholder Co</a>
-    <ul class="topnav">
-      <li><a href="#top">Welcome</a></li>
-      <li><a href="#who">Who we are for</a></li>
-      <li><a href="#done">What we have done</a></li>
-    </ul>
+    <div class="topbar-left">
+      <a href="#top" class="logo"><span class="logo-mark"></span> Placeholder Co</a>
+      <ul class="topnav">
+        <li><a href="#top">Welcome <span class="nav-chevron">›</span></a></li>
+        <li><a href="#who">Who we are for <span class="nav-chevron">›</span></a></li>
+        <li><a href="#done">What we have done <span class="nav-chevron">›</span></a></li>
+      </ul>
+    </div>
     <div style="display:flex;align-items:center;gap:12px;">
       <a href="#" class="btn btn-primary">Schedule a call <span class="btn-arrow">→</span></a>
       <div class="icon-btn" id="menu-toggle">☰</div>
