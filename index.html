@@ -63,7 +63,7 @@
   .logo-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(145deg, var(--accent), var(--accent-2)); flex-shrink: 0; }
   .topbar-left { display: flex; align-items: center; gap: 40px; }
   .topnav { display: flex; align-items: center; gap: 26px; list-style: none; }
-  .topnav a { display: inline-flex; align-items: center; gap: 5px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 400; }
+  .topnav a { display: inline-flex; align-items: center; gap: 5px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 400; text-transform: capitalize; }
   .topnav a:hover { color: var(--text); }
   .topnav a:hover .nav-chevron { transform: translateX(2px); }
   .nav-chevron { color: var(--text-dim); font-size: 15px; transition: transform .15s; }
@@ -89,7 +89,7 @@
   .side-list { list-style: none; display: flex; flex-direction: column; gap: 0px; }
   .side-list a {
     display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: var(--r-sm);
-    color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 400; transition: background .18s, color .18s;
+    color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 400; text-transform: capitalize; transition: background .18s, color .18s;
   }
   .side-list a:hover { color: var(--text); background: rgba(59,40,23,0.05); }
   .side-list a.active { background: var(--card-bg-2); color: var(--text); font-weight: 500; box-shadow: inset 0 0 0 1px var(--border); }
@@ -124,7 +124,7 @@
   /* ── BUTTONS (flatter, less "AI SaaS") ── */
   .btn {
     display: inline-flex; align-items: center; gap: 7px; border: none; cursor: pointer; text-decoration: none;
-    font-family: var(--font); font-weight: 600; font-size: 14px; border-radius: var(--r-sm);
+    font-family: var(--font); font-weight: 500; font-size: 14px; border-radius: var(--r-sm);
     transition: filter .15s, border-color .15s, background .15s; white-space: nowrap;
   }
   .btn-primary {
