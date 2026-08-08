@@ -537,7 +537,9 @@
   const heroSection = document.getElementById('top');
   const mainScrollEl = document.getElementById('main-scroll');
   function sizeHero() {
-    heroSection.style.minHeight = mainScrollEl.clientHeight + 'px';
+    const mainInner = document.querySelector('.main-inner');
+    const innerPadTop = parseFloat(getComputedStyle(mainInner).paddingTop) || 0;
+    heroSection.style.minHeight = (mainScrollEl.clientHeight - innerPadTop) + 'px';
   }
   sizeHero();
   window.addEventListener('resize', sizeHero);
