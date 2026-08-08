@@ -55,9 +55,9 @@
   /* ── TOP BAR ── */
   .topbar {
     flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 14px 22px;
-    background: rgba(251, 245, 234, 0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(239, 227, 210, 0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border: 1px solid var(--border); border-radius: var(--r-lg);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    box-shadow: 0 12px 32px rgba(59,40,23,0.12);
   }
   .logo { display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 15.5px; text-decoration: none; color: var(--text); }
   .logo-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(145deg, var(--accent), var(--accent-2)); flex-shrink: 0; }
@@ -151,7 +151,7 @@
   p { color: var(--text-muted); font-size: 14.5px; }
 
   /* ── HERO ── */
-  .hero-pad { padding: 48px 144px; }
+  .hero-pad { padding: 48px 144px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
   @media (max-width: 1300px) { .hero-pad { padding: 40px 72px; } }
   @media (max-width: 720px) { .hero-pad { padding: 30px 22px; } }
   .hero-top { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: start; }
@@ -234,9 +234,9 @@
   .footer-brand p { max-width: 290px; margin-top: 10px; font-size: 13.5px; }
 
   /* ── ENTERPRISE GRADIENT BACKDROP ── */
-  .glow-a, .glow-b { position: absolute; pointer-events: none; z-index: 0; filter: blur(70px); opacity: 0.55; }
   .card { position: relative; }
   .card > * { position: relative; z-index: 1; }
+  .card > .glow-a, .card > .glow-b { position: absolute; pointer-events: none; z-index: 0; filter: blur(70px); opacity: 0.55; }
 </style>
 </head>
 <body>
@@ -532,6 +532,16 @@
 </div>
 
 <script>
+  // Size the hero section to exactly fill the visible scroll area, so its
+  // bottom (logo strip) lands at the fold with no scroll needed on load.
+  const heroSection = document.getElementById('top');
+  const mainScrollEl = document.getElementById('main-scroll');
+  function sizeHero() {
+    heroSection.style.minHeight = mainScrollEl.clientHeight + 'px';
+  }
+  sizeHero();
+  window.addEventListener('resize', sizeHero);
+
   const mainScroll = document.getElementById('main-scroll');
   const sideLinks = document.querySelectorAll('.side-list a');
   const sections = Array.from(sideLinks).map(a => document.getElementById(a.dataset.section));
