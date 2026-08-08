@@ -218,12 +218,27 @@
   .logo-chip { width: 100px; height: 30px; border-radius: 6px; }
 
   /* ── 3-COL GRID (Who it's for) ── */
-  .fit-checklist { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; margin-top: 22px; }
-  .fit-checklist li { display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: var(--text); }
-  .fit-check-icon {
-    width: 18px; height: 18px; border-radius: 50%; background: rgba(79,143,85,0.14); color: #4F8F55;
-    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+  .fit-compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; margin-top: 28px;
   }
+  @media (max-width: 800px) { .fit-compare { grid-template-columns: 1fr; } }
+  .fit-compare-col { background: var(--card-bg); padding: 28px; }
+  .fit-compare-head {
+    display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; margin-bottom: 18px;
+  }
+  .fit-compare-head.yes { color: #4F8F55; }
+  .fit-compare-head.no { color: #B25444; }
+  .fit-compare-icon {
+    width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .fit-compare-head.yes .fit-compare-icon { background: rgba(79,143,85,0.14); color: #4F8F55; }
+  .fit-compare-head.no .fit-compare-icon { background: rgba(178,84,68,0.14); color: #B25444; }
+  .fit-compare-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .fit-compare-list li { font-size: 14.5px; color: var(--text-muted); line-height: 1.5; padding-left: 20px; position: relative; }
+  .fit-compare-col.yes .fit-compare-list li::before { content: '+'; position: absolute; left: 0; color: #4F8F55; font-weight: 700; }
+  .fit-compare-col.no .fit-compare-list li::before { content: '\2212'; position: absolute; left: 0; color: #B25444; font-weight: 700; }
   .col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 28px; }
   @media (max-width: 900px) { .col-3 { grid-template-columns: 1fr; } }
   .offer-card .placeholder-img { height: 170px; border-radius: var(--r-md); margin-bottom: 16px; }
@@ -434,32 +449,24 @@
       <!-- WHO IT'S FOR -->
       <section class="card card-pad" id="who">
         <span class="kicker">Who we're for</span>
-        <h2>Built for teams tired of<br>unpredictable pipeline</h2>
+        <h2>Not every company<br>is a fit. Here's how to tell.</h2>
 
-        <ul class="fit-checklist">
-          <li><span class="fit-check-icon">&check;</span>Proven Offer</li>
-          <li><span class="fit-check-icon">&check;</span>Sales Team In Place</li>
-          <li><span class="fit-check-icon">&check;</span>30K+ TAM</li>
-        </ul>
-
-        <div class="col-3">
-          <div class="offer-card">
-            <div class="placeholder-img">IMG</div>
-            <h3>Founders &amp; Sales Leaders</h3>
-            <p>You're closing deals yourself and don't have time to also build outbound from scratch.</p>
-            <a href="#" class="btn btn-outline">Learn More</a>
+        <div class="fit-compare">
+          <div class="fit-compare-col yes">
+            <div class="fit-compare-head yes"><span class="fit-compare-icon">&check;</span>Best Fit</div>
+            <ul class="fit-compare-list">
+              <li>Proven offer with paying customers already</li>
+              <li>Sales team in place, ready to close</li>
+              <li>A market of 30,000+ potential leads to work with</li>
+            </ul>
           </div>
-          <div class="offer-card">
-            <div class="placeholder-img">IMG</div>
-            <h3>M&amp;A / PE Firms</h3>
-            <p>You're sourcing deals manually and need a steady flow of qualified opportunities, not another list buy that goes nowhere.</p>
-            <a href="#" class="btn btn-outline">Learn More</a>
-          </div>
-          <div class="offer-card">
-            <div class="placeholder-img">IMG</div>
-            <h3>SaaS Companies</h3>
-            <p>You've got a great product, but outbound has never actually worked for you.</p>
-            <a href="#" class="btn btn-outline">Learn More</a>
+          <div class="fit-compare-col no">
+            <div class="fit-compare-head no"><span class="fit-compare-icon">&cross;</span>Not a Fit</div>
+            <ul class="fit-compare-list">
+              <li>Pre-product-market fit, still validating the offer</li>
+              <li>No one available to take sales calls</li>
+              <li>A niche market under 30,000 potential leads</li>
+            </ul>
           </div>
         </div>
       </section>
