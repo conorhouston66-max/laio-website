@@ -166,7 +166,7 @@
   @media (max-width: 1300px) { .hero-pad { padding: 40px 72px; } }
   @media (max-width: 720px) { .hero-pad { padding: 30px 22px; } }
   .hero-top { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 36px; flex: 1 0 auto; align-items: stretch; align-content: center; }
-  .hero-cta-bar { width: 100%; margin-top: 32px; padding: 19px 24px; font-size: 17px; justify-content: center; }
+  .hero-cta-bar { width: 100%; padding: 19px 24px; font-size: 17px; justify-content: center; }
   @media (max-width: 1000px) { .hero-top { grid-template-columns: 1fr; flex: none; } }
   .hero-text .lede { font-size: 19px; color: var(--accent); max-width: 520px; margin-top: 8px; }
 
@@ -175,37 +175,37 @@
   /* ── LEAD FEED (terminal-style live feed mockup) ── */
   .lead-feed {
     position: relative; height: 100%; width: 100%; max-width: 430px;
-    background: #211D18; border-radius: var(--r-md); overflow: hidden;
-    display: flex; flex-direction: column; box-shadow: 0 24px 48px rgba(46,32,19,0.28);
+    background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden;
+    display: flex; flex-direction: column; box-shadow: 0 24px 48px rgba(46,32,19,0.14);
     font-family: var(--font);
   }
-  .lead-feed-titlebar { flex-shrink: 0; height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #29241E; }
+  .lead-feed-titlebar { flex-shrink: 0; height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: var(--card-bg-2); border-bottom: 1px solid var(--border); }
   .lead-feed-dot { width: 9px; height: 9px; border-radius: 50%; }
   .lead-feed-dot.red { background: #E8695D; }
   .lead-feed-dot.yellow { background: #E3B341; }
   .lead-feed-dot.green { background: #6FBF6F; }
-  .lead-feed-title { margin: 0 auto; font-size: 10.5px; color: #8A8175; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+  .lead-feed-title { margin: 0 auto; font-size: 10.5px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
 
   .lead-feed-body { flex: 1; min-height: 0; padding: 14px 16px; display: flex; flex-direction: column; overflow: hidden; }
-  .lead-feed-stats { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: #F0E9DC; margin-bottom: 10px; flex-shrink: 0; }
-  .lead-feed-stats .sep { color: #5C5548; font-weight: 400; }
-  .lead-feed-stats .show-rate { display: inline-flex; align-items: center; gap: 6px; color: #9BCB94; font-weight: 500; font-size: 12.5px; }
-  .show-dot { width: 6px; height: 6px; border-radius: 50%; background: #7CC576; flex-shrink: 0; }
+  .lead-feed-stats { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 10px; flex-shrink: 0; }
+  .lead-feed-stats .sep { color: var(--text-dim); font-weight: 400; }
+  .lead-feed-stats .show-rate { display: inline-flex; align-items: center; gap: 6px; color: #4F8F55; font-weight: 500; font-size: 12.5px; }
+  .show-dot { width: 6px; height: 6px; border-radius: 50%; background: #4F8F55; flex-shrink: 0; }
 
-  .lead-item { display: flex; gap: 9px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.07); }
+  .lead-item { display: flex; gap: 9px; padding: 8px 0; border-top: 1px solid var(--border-soft); }
   .lead-item:first-child { border-top: none; padding-top: 0; }
   .lead-avatar { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; overflow: hidden; }
   .lead-avatar svg { width: 100%; height: 100%; display: block; }
   .lead-body { min-width: 0; flex: 1; }
   .lead-meta-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-  .lead-who { font-size: 11.5px; font-weight: 600; color: #F0E9DC; }
-  .lead-time { font-size: 10.5px; color: #756C5F; flex-shrink: 0; }
-  .lead-text { font-size: 11.5px; color: #B7AE9F; line-height: 1.42; margin-top: 2px; }
+  .lead-who { font-size: 11.5px; font-weight: 600; color: var(--text); }
+  .lead-time { font-size: 10.5px; color: var(--text-dim); flex-shrink: 0; }
+  .lead-text { font-size: 11.5px; color: var(--text-muted); line-height: 1.42; margin-top: 2px; }
   .lead-badge {
     display: inline-flex; align-items: center; gap: 5px; font-size: 9.5px; font-weight: 700;
-    letter-spacing: 0.04em; text-transform: uppercase; color: #9BCB94; margin-top: 5px;
+    letter-spacing: 0.04em; text-transform: uppercase; color: #4F8F55; margin-top: 5px;
   }
-  .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: #7CC576; flex-shrink: 0; }
+  .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: #4F8F55; flex-shrink: 0; }
 
   .logo-strip { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
   .logo-chip { width: 100px; height: 30px; border-radius: 6px; }
@@ -345,6 +345,7 @@
           <div class="hero-text" style="display:flex;flex-direction:column;">
             <h1>100 qualified leads in 90 days. Or you <span class="accent-italic">don't pay<span class="accent-underline"><svg viewBox="0 0 200 12" preserveAspectRatio="none" fill="none"><path d="M2 8.5C40 2 90 2 100 6C110 10 160 2 198 5.5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></span>.</h1>
             <p class="lede">Book 3-6 sales calls a week in your first 30 days, from outreach your prospects actually reply to.</p>
+            <div style="flex: 1 1 auto; min-height: 28px;"></div>
             <a href="#" class="btn btn-primary hero-cta-bar">Schedule a call <span class="btn-arrow">→</span></a>
           </div>
           <div class="hero-video-wrap">
