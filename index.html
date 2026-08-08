@@ -93,8 +93,10 @@
   }
   .side-list a:hover { color: var(--text); background: rgba(255,255,255,0.03); }
   .side-list a.active { background: var(--card-bg-2); color: var(--text); font-weight: 500; box-shadow: inset 0 0 0 1px var(--border); }
-  .side-icon { width: 17px; height: 17px; border-radius: 4px; background: var(--text-dim); flex-shrink: 0; }
-  .side-list a.active .side-icon { background: var(--accent); }
+  .side-icon { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--text-dim); }
+  .side-icon svg { width: 100%; height: 100%; }
+  .side-list a:hover .side-icon { color: var(--text-muted); }
+  .side-list a.active .side-icon { color: var(--accent); }
 
   .sidebar-spacer { height: 20px; }
   .sidebar-bottom { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--border); }
@@ -258,11 +260,26 @@
     <!-- SIDEBAR: persists across the entire page -->
     <aside class="sidebar" id="sidebar">
       <ul class="side-list">
-        <li><a href="#top" class="active" data-section="top"><span class="side-icon"></span> Welcome</a></li>
-        <li><a href="#who" data-section="who"><span class="side-icon"></span> Who we are for</a></li>
-        <li><a href="#done" data-section="done"><span class="side-icon"></span> What we have done</a></li>
-        <li><a href="#offer" data-section="offer"><span class="side-icon"></span> What we offer</a></li>
-        <li><a href="#cases" data-section="cases"><span class="side-icon"></span> Case studies</a></li>
+        <li><a href="#top" class="active" data-section="top">
+          <span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1v-9"/></svg></span>
+          Welcome
+        </a></li>
+        <li><a href="#who" data-section="who">
+          <span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 5 18.5V20"/><circle cx="9.5" cy="7.5" r="3.5"/><path d="M19 20v-1.5a3.5 3.5 0 0 0-2.5-3.35"/><path d="M14.5 4.15a3.5 3.5 0 0 1 0 6.7"/></svg></span>
+          Who we are for
+        </a></li>
+        <li><a href="#done" data-section="done">
+          <span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.2 6.5L12 18l4.7 2.5L15.5 14"/></svg></span>
+          What we have done
+        </a></li>
+        <li><a href="#offer" data-section="offer">
+          <span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg></span>
+          What we offer
+        </a></li>
+        <li><a href="#cases" data-section="cases">
+          <span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10"/><path d="M11 19V5"/><path d="M18 19v-7"/><path d="M3 19h18"/></svg></span>
+          Case studies
+        </a></li>
       </ul>
 
       <div class="sidebar-spacer"></div>
