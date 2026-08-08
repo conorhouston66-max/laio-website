@@ -11,203 +11,244 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --page-bg: #010D18;
-    --card-bg: #0A1826;
-    --card-bg-2: #0F2032;
-    --border: rgba(255,255,255,0.08);
-    --text: #E8F4FA;
-    --text-muted: #8CA3B5;
-    --text-dim: #52697C;
-    --accent: #35C7EA;
-    --accent-2: #2E6FF2;
+    --page-bg: #060D14;
+    --card-bg: #0B141D;
+    --card-bg-2: #101B26;
+    --border: rgba(255,255,255,0.07);
+    --border-soft: rgba(255,255,255,0.04);
+    --text: #E8F1F7;
+    --text-muted: #8496A6;
+    --text-dim: #4C5D6C;
+    --accent: #3FCBEE;
+    --accent-2: #3E6FE0;
     --font: 'Inter', -apple-system, sans-serif;
-    --r-lg: 22px;
-    --r-md: 14px;
-    --r-sm: 8px;
-    --gutter: 28px;
+    --r-lg: 20px;
+    --r-md: 12px;
+    --r-sm: 7px;
+    --gutter: 24px;
+    --sidebar-w: 268px;
   }
 
-  html { scroll-behavior: smooth; }
+  html, body { height: 100%; }
 
   body {
     font-family: var(--font);
     background: var(--page-bg);
     color: var(--text);
     line-height: 1.6;
+    overflow: hidden;
   }
 
-  .shell { max-width: 1600px; margin: 0 auto; padding: var(--gutter); display: flex; flex-direction: column; gap: var(--gutter); }
-
   .placeholder-img {
-    background: repeating-linear-gradient(45deg, #142839, #142839 10px, #0F2032 10px, #0F2032 20px);
+    background: repeating-linear-gradient(45deg, #101C28, #101C28 10px, #0B141D 10px, #0B141D 20px);
     border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
     color: var(--text-dim); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
   }
 
-  /* ── TOP BAR ── */
-  .topbar {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 8px;
+  /* ── APP SHELL ── */
+  .app-shell { display: flex; height: 100vh; }
+
+  /* ── SIDEBAR (persists full height, entire page) ── */
+  .sidebar {
+    width: var(--sidebar-w); flex-shrink: 0; height: 100vh;
+    display: flex; flex-direction: column;
+    padding: 26px 20px;
+    border-right: 1px solid var(--border);
+    background: linear-gradient(180deg, #081019 0%, #050B12 100%);
   }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; text-decoration: none; color: var(--text); }
-  .logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--accent-2); flex-shrink: 0; }
-  .topnav { display: flex; align-items: center; gap: 32px; list-style: none; }
-  .topnav a { color: var(--text-muted); text-decoration: none; font-size: 14.5px; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; }
-  .topnav a:hover { color: var(--text); }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15.5px; text-decoration: none; color: var(--text); margin-bottom: 32px; padding: 0 6px; }
+  .logo-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(145deg, var(--accent), var(--accent-2)); flex-shrink: 0; }
+
+  .side-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .side-list a {
+    display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: var(--r-sm);
+    color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: background .18s, color .18s;
+  }
+  .side-list a:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+  .side-list a.active { background: var(--card-bg-2); color: var(--text); font-weight: 600; box-shadow: inset 0 0 0 1px var(--border); }
+  .side-icon { width: 17px; height: 17px; border-radius: 4px; background: var(--text-dim); flex-shrink: 0; }
+  .side-list a.active .side-icon { background: var(--accent); }
+
+  .sidebar-spacer { flex: 1; }
+  .sidebar-bottom { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+  @media (max-width: 900px) {
+    .sidebar { position: fixed; left: 0; top: 0; z-index: 50; transform: translateX(-100%); transition: transform .25s; box-shadow: 30px 0 60px rgba(0,0,0,0.4); }
+    .sidebar.open { transform: translateX(0); }
+    .mobile-topbar { display: flex !important; }
+  }
+
+  /* ── MAIN SCROLL PANE ── */
+  .main-scroll {
+    flex: 1; height: 100vh; overflow-y: auto; scroll-behavior: smooth;
+    background:
+      radial-gradient(900px 500px at 15% 0%, rgba(62,111,224,0.10), transparent 60%),
+      radial-gradient(700px 500px at 90% 30%, rgba(63,203,238,0.07), transparent 60%),
+      linear-gradient(180deg, #071019 0%, #050C13 45%, #04090F 100%);
+    background-attachment: local, local, local;
+  }
+  .main-inner { max-width: 1240px; margin: 0 auto; padding: var(--gutter); display: flex; flex-direction: column; gap: var(--gutter); }
+
+  .mobile-topbar {
+    display: none; align-items: center; justify-content: space-between; padding: 16px 20px;
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--page-bg); z-index: 40;
+  }
+  .icon-btn { width: 36px; height: 36px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--card-bg-2); color: var(--text); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+  /* ── BUTTONS (flatter, less "AI SaaS") ── */
   .btn {
-    display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; text-decoration: none;
-    font-family: var(--font); font-weight: 600; font-size: 14.5px; border-radius: var(--r-sm); transition: opacity .2s, transform .2s;
+    display: inline-flex; align-items: center; gap: 7px; border: none; cursor: pointer; text-decoration: none;
+    font-family: var(--font); font-weight: 600; font-size: 14px; border-radius: var(--r-sm);
+    transition: filter .15s, border-color .15s, background .15s; white-space: nowrap;
   }
-  .btn:hover { opacity: .88; transform: translateY(-1px); }
-  .btn-primary { background: var(--accent-2); color: #fff; padding: 12px 20px; }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); padding: 11px 20px; }
-  .btn-block { width: 100%; justify-content: space-between; }
-  @media (max-width: 900px) { .topnav { display: none; } }
+  .btn-primary {
+    background: var(--accent-2); color: #fff; padding: 10px 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .btn-primary:hover { filter: brightness(1.1); }
+  .btn-outline { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 9px 16px; }
+  .btn-outline:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+  .btn-block { width: 100%; justify-content: center; }
+  .btn-arrow { font-size: 13px; opacity: 0.8; }
 
   /* ── CARD BASE ── */
   .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
-  .card-pad { padding: 56px; }
-  @media (max-width: 720px) { .card-pad { padding: 32px 24px; } }
+  .card-pad { padding: 48px; }
+  @media (max-width: 720px) { .card-pad { padding: 30px 22px; } }
 
-  .kicker { font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+  .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
   h1, h2, h3 { font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
-  h1 { font-size: clamp(32px, 4vw, 46px); color: var(--text); margin-bottom: 18px; }
-  h2 { font-size: clamp(26px, 3.4vw, 36px); color: var(--text); margin-bottom: 18px; }
-  h3 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
-  p { color: var(--text-muted); font-size: 15px; }
+  h1 { font-size: clamp(30px, 3.6vw, 42px); color: var(--text); margin-bottom: 16px; }
+  h2 { font-size: clamp(24px, 3vw, 32px); color: var(--text); margin-bottom: 16px; }
+  h3 { font-size: 17px; color: var(--text); margin-bottom: 8px; }
+  p { color: var(--text-muted); font-size: 14.5px; }
 
-  /* ── HERO CARD ── */
-  .hero-grid { display: grid; grid-template-columns: 270px 1fr; gap: 48px; padding: 40px; }
-  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+  /* ── HERO ── */
+  .hero-pad { padding: 48px; }
+  .hero-top { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: start; }
+  @media (max-width: 1000px) { .hero-top { grid-template-columns: 1fr; } }
+  .hero-text .lede { font-size: 16px; color: var(--accent); max-width: 460px; margin-top: 4px; }
 
-  .side-panel { position: sticky; top: 28px; align-self: start; display: flex; flex-direction: column; height: fit-content; }
-  .side-list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
-  .side-list a {
-    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--r-sm);
-    color: var(--text-muted); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: background .2s, color .2s;
-  }
-  .side-list a:hover { background: rgba(255,255,255,0.04); color: var(--text); }
-  .side-list a.active { background: var(--card-bg-2); color: var(--text); font-weight: 600; box-shadow: inset 0 0 0 1px var(--border); }
-  .side-icon { width: 20px; height: 20px; border-radius: 5px; background: var(--text-dim); flex-shrink: 0; }
-  .side-list a.active .side-icon { background: var(--accent); }
-  .side-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
-
-  .hero-content { display: flex; flex-direction: column; }
-  .hero-top { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: start; }
-  @media (max-width: 1100px) { .hero-top { grid-template-columns: 1fr; } }
-  .hero-text .lede { font-size: 17px; color: var(--accent); max-width: 480px; margin-top: 4px; }
-
-  .hero-cards { display: flex; flex-direction: column; gap: 16px; }
-  .hero-card-item { position: relative; border-radius: var(--r-md); overflow: hidden; height: 130px; }
+  .hero-cards { display: flex; flex-direction: column; gap: 14px; }
+  .hero-card-item { position: relative; border-radius: var(--r-md); overflow: hidden; height: 116px; }
   .hero-card-item .placeholder-img { width: 100%; height: 100%; }
   .hero-card-item span.label {
-    position: absolute; left: 16px; bottom: 14px; font-size: 14px; font-weight: 600; color: #fff;
-    background: rgba(0,0,0,0.35); padding: 4px 10px; border-radius: 6px;
+    position: absolute; left: 14px; bottom: 12px; font-size: 13px; font-weight: 600; color: #fff;
+    background: rgba(0,0,0,0.4); padding: 4px 9px; border-radius: 6px;
   }
 
-  .logo-strip { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-  .logo-chip { width: 110px; height: 32px; border-radius: 6px; }
+  .logo-strip { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .logo-chip { width: 100px; height: 30px; border-radius: 6px; }
 
   /* ── 3-COL GRID (Who it's for) ── */
-  .col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 28px; }
   @media (max-width: 900px) { .col-3 { grid-template-columns: 1fr; } }
-  .offer-card .placeholder-img { height: 180px; border-radius: var(--r-md); margin-bottom: 18px; }
-  .offer-card h3 { text-align: left; }
-  .offer-card p { margin-bottom: 18px; }
+  .offer-card .placeholder-img { height: 170px; border-radius: var(--r-md); margin-bottom: 16px; }
+  .offer-card p { margin-bottom: 16px; }
 
   /* ── ACHIEVEMENT GRID ── */
-  .achv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+  .achv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
   @media (max-width: 900px) { .achv-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .achv-grid { grid-template-columns: 1fr; } }
-  .achv-card { background: var(--card-bg-2); border: 1px solid var(--border); border-radius: var(--r-md); padding: 22px; font-size: 14.5px; color: var(--text); }
+  .achv-card { background: var(--card-bg-2); border: 1px solid var(--border); border-radius: var(--r-md); padding: 20px; font-size: 14px; color: var(--text); }
   .achv-card em { font-style: normal; color: var(--accent); font-weight: 700; }
 
   /* ── TABS (What we offer) ── */
-  .tab-groups { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 32px; margin-bottom: 24px; }
-  .tab-group-label { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; display: block; }
-  .tab-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tab-groups { display: flex; gap: 36px; flex-wrap: wrap; margin-top: 28px; margin-bottom: 22px; }
+  .tab-group-label { font-size: 12.5px; font-weight: 700; color: var(--accent); margin-bottom: 9px; display: block; }
+  .tab-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .tab-pill {
-    padding: 12px 18px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--card-bg-2);
-    color: var(--text-muted); font-size: 14px; font-weight: 600; cursor: pointer; transition: background .2s, color .2s, border-color .2s;
+    padding: 10px 15px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--card-bg-2);
+    color: var(--text-muted); font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background .15s, color .15s, border-color .15s;
   }
   .tab-pill:hover { color: var(--text); }
   .tab-pill.active { background: var(--accent-2); color: #fff; border-color: var(--accent-2); }
-  .tab-panel { display: none; background: var(--card-bg-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 40px; }
-  .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .tab-panel { display: none; background: var(--card-bg-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 36px; }
+  .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
   @media (max-width: 900px) { .tab-panel.active { grid-template-columns: 1fr; } }
-  .tab-panel .placeholder-img { height: 260px; border-radius: var(--r-md); }
-  .feature-list { display: flex; flex-direction: column; gap: 18px; margin: 20px 0 26px; }
-  .feature-item h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .feature-item p { font-size: 13.5px; }
+  .tab-panel .placeholder-img { height: 240px; border-radius: var(--r-md); }
+  .feature-list { display: flex; flex-direction: column; gap: 16px; margin: 18px 0 24px; }
+  .feature-item h4 { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .feature-item p { font-size: 13px; }
 
   /* ── CASE STUDY CAROUSEL ── */
-  .cs-slide { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 32px; }
+  .cs-slide { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; margin-top: 28px; }
   @media (max-width: 900px) { .cs-slide { grid-template-columns: 1fr; } }
-  .cs-logo { width: 130px; height: 30px; border-radius: 4px; margin-bottom: 20px; }
-  .cs-stats { display: flex; gap: 28px; margin-top: 24px; flex-wrap: wrap; }
-  .cs-stat-num { font-size: 30px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
-  .cs-stat-label { font-size: 13px; color: var(--text-muted); }
-  .cs-image { height: 280px; border-radius: var(--r-md); }
-  .cs-controls { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 32px; }
+  .cs-logo { width: 120px; height: 28px; border-radius: 4px; margin-bottom: 18px; }
+  .cs-stats { display: flex; gap: 26px; margin-top: 22px; flex-wrap: wrap; }
+  .cs-stat-num { font-size: 28px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+  .cs-stat-label { font-size: 12.5px; color: var(--text-muted); }
+  .cs-image { height: 260px; border-radius: var(--r-md); }
+  .cs-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 28px; }
   .cs-arrow {
-    width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--card-bg-2);
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); background: var(--card-bg-2);
     color: var(--text); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
   }
-  .cs-dots { display: flex; gap: 8px; }
-  .cs-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim); cursor: pointer; transition: background .2s, transform .2s; }
+  .cs-dots { display: flex; gap: 7px; }
+  .cs-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim); cursor: pointer; transition: background .2s, transform .2s; }
   .cs-dot.active { background: var(--accent); transform: scale(1.3); }
 
   /* ── FINAL CTA ── */
   .cta-final {
-    text-align: center; padding: 80px 40px; position: relative; overflow: hidden;
-    background: radial-gradient(circle at 30% 20%, rgba(46,111,242,0.18), transparent 55%),
-                radial-gradient(circle at 75% 70%, rgba(53,199,234,0.14), transparent 55%);
+    text-align: center; padding: 72px 40px; position: relative; overflow: hidden;
   }
-  .cta-final .logo-mark { margin: 0 auto 20px; }
-  .cta-final h2 { max-width: 560px; margin: 0 auto 28px; }
+  .cta-final .logo-mark { margin: 0 auto 18px; }
+  .cta-final h2 { max-width: 540px; margin: 0 auto 26px; }
 
   /* ── FOOTER ── */
-  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding: 56px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; padding: 48px; }
   @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; } }
-  .footer-col h4 { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+  .footer-col h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13.5px; }
   .footer-links a:hover { color: var(--text); }
-  .footer-brand p { max-width: 300px; margin-top: 12px; font-size: 14px; }
+  .footer-brand p { max-width: 290px; margin-top: 10px; font-size: 13.5px; }
+
+  /* ── ENTERPRISE GRADIENT BACKDROP ── */
+  .glow-a, .glow-b { position: absolute; pointer-events: none; z-index: 0; filter: blur(70px); opacity: 0.55; }
+  .card { position: relative; }
+  .card > * { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
-<div class="shell">
 
-  <!-- TOP BAR -->
-  <div class="topbar">
+<div class="app-shell">
+
+  <!-- SIDEBAR: persists across the entire page -->
+  <aside class="sidebar" id="sidebar">
     <a href="#top" class="logo"><span class="logo-mark"></span> Placeholder Co</a>
-    <ul class="topnav">
-      <li><a href="#offer">What we offer ▾</a></li>
-      <li><a href="#who">Who we are for ▾</a></li>
-      <li><a href="#about">About us</a></li>
+
+    <ul class="side-list">
+      <li><a href="#top" class="active" data-section="top"><span class="side-icon"></span> Welcome</a></li>
+      <li><a href="#who" data-section="who"><span class="side-icon"></span> Who we are for</a></li>
+      <li><a href="#done" data-section="done"><span class="side-icon"></span> What we have done</a></li>
+      <li><a href="#offer" data-section="offer"><span class="side-icon"></span> What we offer</a></li>
+      <li><a href="#cases" data-section="cases"><span class="side-icon"></span> Case studies</a></li>
     </ul>
-    <a href="#" class="btn btn-primary">Schedule a call ↗</a>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-bottom">
+      <a href="#" class="btn btn-outline btn-block">Schedule a call</a>
+      <a href="#" class="btn btn-primary btn-block">Start your project <span class="btn-arrow">→</span></a>
+    </div>
+  </aside>
+
+  <!-- MOBILE TOPBAR (hidden on desktop) -->
+  <div class="mobile-topbar">
+    <div class="icon-btn" id="menu-toggle">☰</div>
+    <a href="#top" class="logo" style="margin:0;"><span class="logo-mark"></span> Placeholder Co</a>
+    <a href="#" class="btn btn-primary" style="padding:8px 12px;font-size:13px;">Call</a>
   </div>
 
-  <!-- HERO CARD -->
-  <section class="card" id="top">
-    <div class="hero-grid">
+  <!-- SCROLLABLE MAIN CONTENT: every section lives here -->
+  <main class="main-scroll" id="main-scroll">
+    <div class="main-inner">
 
-      <nav class="side-panel">
-        <ul class="side-list">
-          <li><a href="#top" class="active"><span class="side-icon"></span> Welcome</a></li>
-          <li><a href="#who"><span class="side-icon"></span> Who we are for</a></li>
-          <li><a href="#done"><span class="side-icon"></span> What we have done</a></li>
-          <li><a href="#offer"><span class="side-icon"></span> What we offer</a></li>
-          <li><a href="#cases"><span class="side-icon"></span> Case studies</a></li>
-        </ul>
-        <div class="side-divider"></div>
-        <a href="#" class="btn btn-primary btn-block">Start your project ↗</a>
-      </nav>
-
-      <div class="hero-content">
+      <!-- HERO -->
+      <section class="card hero-pad" id="top">
+        <div class="glow-a" style="width:520px;height:420px;top:-160px;right:-120px;background:radial-gradient(circle, rgba(62,111,224,0.35), transparent 65%);"></div>
         <div class="hero-top">
           <div class="hero-text">
             <h1>Placeholder headline goes here across two lines</h1>
@@ -228,224 +269,242 @@
           <div class="placeholder-img logo-chip">LOGO</div>
           <div class="placeholder-img logo-chip">LOGO</div>
         </div>
-      </div>
+      </section>
 
-    </div>
-  </section>
-
-  <!-- WHO IT'S FOR -->
-  <section class="card card-pad" id="who">
-    <span class="kicker">Placeholder kicker</span>
-    <h2>Placeholder section headline<br>spanning two lines</h2>
-    <div class="col-3">
-      <div class="offer-card">
-        <div class="placeholder-img">IMG</div>
-        <h3>Placeholder title one</h3>
-        <p>Placeholder description text sits here for card one, two lines long.</p>
-        <a href="#" class="btn btn-outline">Learn More</a>
-      </div>
-      <div class="offer-card">
-        <div class="placeholder-img">IMG</div>
-        <h3>Placeholder title two</h3>
-        <p>Placeholder description text sits here for card two, two lines long.</p>
-        <a href="#" class="btn btn-outline">Learn More</a>
-      </div>
-      <div class="offer-card">
-        <div class="placeholder-img">IMG</div>
-        <h3>Placeholder title three</h3>
-        <p>Placeholder description text sits here for card three, two lines long.</p>
-        <a href="#" class="btn btn-outline">Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT WE'VE DONE -->
-  <section class="card card-pad" id="done">
-    <span class="kicker">Placeholder kicker</span>
-    <h2>Placeholder achievements<br>headline here</h2>
-    <div class="achv-grid">
-      <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text one</div>
-      <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text two</div>
-      <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text three</div>
-      <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text four</div>
-      <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text five</div>
-      <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text six</div>
-      <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text seven</div>
-      <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text eight</div>
-    </div>
-  </section>
-
-  <!-- WHAT WE OFFER (TABS) -->
-  <section class="card card-pad" id="offer">
-    <span class="kicker">Placeholder kicker</span>
-    <h2>Placeholder offer<br>headline here</h2>
-
-    <div class="tab-groups">
-      <div>
-        <span class="tab-group-label">Category One</span>
-        <div class="tab-row">
-          <button class="tab-pill active" data-tab="t1">Sub-item A</button>
-          <button class="tab-pill" data-tab="t2">Sub-item B</button>
-          <button class="tab-pill" data-tab="t3">Sub-item C</button>
-        </div>
-      </div>
-      <div>
-        <span class="tab-group-label">Category Two</span>
-        <div class="tab-row">
-          <button class="tab-pill" data-tab="t4">Sub-item D</button>
-          <button class="tab-pill" data-tab="t5">Sub-item E</button>
-        </div>
-      </div>
-      <div>
-        <span class="tab-group-label">Category Three</span>
-        <div class="tab-row">
-          <button class="tab-pill" data-tab="t6">Sub-item F</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="tab-panel active" id="panel-t1">
-      <div>
-        <h3 style="font-size:24px;">Placeholder panel headline for sub-item A</h3>
-        <p>Placeholder supporting paragraph describing this offering in more detail.</p>
-        <div class="feature-list">
-          <div class="feature-item"><h4>Placeholder feature one</h4><p>Placeholder feature description text.</p></div>
-          <div class="feature-item"><h4>Placeholder feature two</h4><p>Placeholder feature description text.</p></div>
-          <div class="feature-item"><h4>Placeholder feature three</h4><p>Placeholder feature description text.</p></div>
-        </div>
-        <a href="#" class="btn btn-primary">Learn More</a>
-      </div>
-      <div class="placeholder-img">IMG</div>
-    </div>
-    <div class="tab-panel" id="panel-t2">
-      <div>
-        <h3 style="font-size:24px;">Placeholder panel headline for sub-item B</h3>
-        <p>Placeholder supporting paragraph describing this offering in more detail.</p>
-        <div class="feature-list">
-          <div class="feature-item"><h4>Placeholder feature one</h4><p>Placeholder feature description text.</p></div>
-          <div class="feature-item"><h4>Placeholder feature two</h4><p>Placeholder feature description text.</p></div>
-        </div>
-        <a href="#" class="btn btn-primary">Learn More</a>
-      </div>
-      <div class="placeholder-img">IMG</div>
-    </div>
-    <div class="tab-panel" id="panel-t3">
-      <div><h3 style="font-size:24px;">Placeholder panel headline for sub-item C</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:20px;">Learn More</a></div>
-      <div class="placeholder-img">IMG</div>
-    </div>
-    <div class="tab-panel" id="panel-t4">
-      <div><h3 style="font-size:24px;">Placeholder panel headline for sub-item D</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:20px;">Learn More</a></div>
-      <div class="placeholder-img">IMG</div>
-    </div>
-    <div class="tab-panel" id="panel-t5">
-      <div><h3 style="font-size:24px;">Placeholder panel headline for sub-item E</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:20px;">Learn More</a></div>
-      <div class="placeholder-img">IMG</div>
-    </div>
-    <div class="tab-panel" id="panel-t6">
-      <div><h3 style="font-size:24px;">Placeholder panel headline for sub-item F</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:20px;">Learn More</a></div>
-      <div class="placeholder-img">IMG</div>
-    </div>
-  </section>
-
-  <!-- CASE STUDIES -->
-  <section class="card card-pad" id="cases">
-    <span class="kicker">Placeholder kicker</span>
-    <h2>Placeholder case study<br>headline here</h2>
-
-    <div id="cs-track">
-      <div class="cs-slide" data-slide="0">
-        <div>
-          <div class="placeholder-img cs-logo">LOGO</div>
-          <h3 style="font-size:24px;">Placeholder result headline for case one</h3>
-          <div class="cs-stats">
-            <div><div class="cs-stat-num">00%</div><div class="cs-stat-label">Placeholder stat label</div></div>
-            <div><div class="cs-stat-num">00</div><div class="cs-stat-label">Placeholder stat label</div></div>
-            <div><div class="cs-stat-num">$0.0M</div><div class="cs-stat-label">Placeholder stat label</div></div>
+      <!-- WHO IT'S FOR -->
+      <section class="card card-pad" id="who">
+        <span class="kicker">Placeholder kicker</span>
+        <h2>Placeholder section headline<br>spanning two lines</h2>
+        <div class="col-3">
+          <div class="offer-card">
+            <div class="placeholder-img">IMG</div>
+            <h3>Placeholder title one</h3>
+            <p>Placeholder description text sits here for card one, two lines long.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+          <div class="offer-card">
+            <div class="placeholder-img">IMG</div>
+            <h3>Placeholder title two</h3>
+            <p>Placeholder description text sits here for card two, two lines long.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+          <div class="offer-card">
+            <div class="placeholder-img">IMG</div>
+            <h3>Placeholder title three</h3>
+            <p>Placeholder description text sits here for card three, two lines long.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
           </div>
         </div>
-        <div class="placeholder-img cs-image">IMG</div>
-      </div>
-      <div class="cs-slide" data-slide="1" style="display:none;">
-        <div>
-          <div class="placeholder-img cs-logo">LOGO</div>
-          <h3 style="font-size:24px;">Placeholder result headline for case two</h3>
-          <div class="cs-stats">
-            <div><div class="cs-stat-num">00%</div><div class="cs-stat-label">Placeholder stat label</div></div>
-            <div><div class="cs-stat-num">00</div><div class="cs-stat-label">Placeholder stat label</div></div>
-            <div><div class="cs-stat-num">$0.0M</div><div class="cs-stat-label">Placeholder stat label</div></div>
+      </section>
+
+      <!-- WHAT WE'VE DONE -->
+      <section class="card card-pad" id="done">
+        <span class="kicker">Placeholder kicker</span>
+        <h2>Placeholder achievements<br>headline here</h2>
+        <div class="achv-grid">
+          <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text one</div>
+          <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text two</div>
+          <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text three</div>
+          <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text four</div>
+          <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text five</div>
+          <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text six</div>
+          <div class="achv-card">Placeholder <em>keyword phrase</em> achievement text seven</div>
+          <div class="achv-card">Placeholder achievement <em>highlighted stat</em> text eight</div>
+        </div>
+      </section>
+
+      <!-- WHAT WE OFFER (TABS) -->
+      <section class="card card-pad" id="offer">
+        <span class="kicker">Placeholder kicker</span>
+        <h2>Placeholder offer<br>headline here</h2>
+
+        <div class="tab-groups">
+          <div>
+            <span class="tab-group-label">Category One</span>
+            <div class="tab-row">
+              <button class="tab-pill active" data-tab="t1">Sub-item A</button>
+              <button class="tab-pill" data-tab="t2">Sub-item B</button>
+              <button class="tab-pill" data-tab="t3">Sub-item C</button>
+            </div>
+          </div>
+          <div>
+            <span class="tab-group-label">Category Two</span>
+            <div class="tab-row">
+              <button class="tab-pill" data-tab="t4">Sub-item D</button>
+              <button class="tab-pill" data-tab="t5">Sub-item E</button>
+            </div>
+          </div>
+          <div>
+            <span class="tab-group-label">Category Three</span>
+            <div class="tab-row">
+              <button class="tab-pill" data-tab="t6">Sub-item F</button>
+            </div>
           </div>
         </div>
-        <div class="placeholder-img cs-image">IMG</div>
-      </div>
-      <div class="cs-slide" data-slide="2" style="display:none;">
-        <div>
-          <div class="placeholder-img cs-logo">LOGO</div>
-          <h3 style="font-size:24px;">Placeholder result headline for case three</h3>
-          <div class="cs-stats">
-            <div><div class="cs-stat-num">00%</div><div class="cs-stat-label">Placeholder stat label</div></div>
-            <div><div class="cs-stat-num">00</div><div class="cs-stat-label">Placeholder stat label</div></div>
-            <div><div class="cs-stat-num">$0.0M</div><div class="cs-stat-label">Placeholder stat label</div></div>
+
+        <div class="tab-panel active" id="panel-t1">
+          <div>
+            <h3 style="font-size:22px;">Placeholder panel headline for sub-item A</h3>
+            <p>Placeholder supporting paragraph describing this offering in more detail.</p>
+            <div class="feature-list">
+              <div class="feature-item"><h4>Placeholder feature one</h4><p>Placeholder feature description text.</p></div>
+              <div class="feature-item"><h4>Placeholder feature two</h4><p>Placeholder feature description text.</p></div>
+              <div class="feature-item"><h4>Placeholder feature three</h4><p>Placeholder feature description text.</p></div>
+            </div>
+            <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+          <div class="placeholder-img">IMG</div>
+        </div>
+        <div class="tab-panel" id="panel-t2">
+          <div>
+            <h3 style="font-size:22px;">Placeholder panel headline for sub-item B</h3>
+            <p>Placeholder supporting paragraph describing this offering in more detail.</p>
+            <div class="feature-list">
+              <div class="feature-item"><h4>Placeholder feature one</h4><p>Placeholder feature description text.</p></div>
+              <div class="feature-item"><h4>Placeholder feature two</h4><p>Placeholder feature description text.</p></div>
+            </div>
+            <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+          <div class="placeholder-img">IMG</div>
+        </div>
+        <div class="tab-panel" id="panel-t3">
+          <div><h3 style="font-size:22px;">Placeholder panel headline for sub-item C</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:18px;">Learn More</a></div>
+          <div class="placeholder-img">IMG</div>
+        </div>
+        <div class="tab-panel" id="panel-t4">
+          <div><h3 style="font-size:22px;">Placeholder panel headline for sub-item D</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:18px;">Learn More</a></div>
+          <div class="placeholder-img">IMG</div>
+        </div>
+        <div class="tab-panel" id="panel-t5">
+          <div><h3 style="font-size:22px;">Placeholder panel headline for sub-item E</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:18px;">Learn More</a></div>
+          <div class="placeholder-img">IMG</div>
+        </div>
+        <div class="tab-panel" id="panel-t6">
+          <div><h3 style="font-size:22px;">Placeholder panel headline for sub-item F</h3><p>Placeholder supporting paragraph.</p><a href="#" class="btn btn-primary" style="margin-top:18px;">Learn More</a></div>
+          <div class="placeholder-img">IMG</div>
+        </div>
+      </section>
+
+      <!-- CASE STUDIES -->
+      <section class="card card-pad" id="cases">
+        <span class="kicker">Placeholder kicker</span>
+        <h2>Placeholder case study<br>headline here</h2>
+
+        <div id="cs-track">
+          <div class="cs-slide" data-slide="0">
+            <div>
+              <div class="placeholder-img cs-logo">LOGO</div>
+              <h3 style="font-size:22px;">Placeholder result headline for case one</h3>
+              <div class="cs-stats">
+                <div><div class="cs-stat-num">00%</div><div class="cs-stat-label">Placeholder stat label</div></div>
+                <div><div class="cs-stat-num">00</div><div class="cs-stat-label">Placeholder stat label</div></div>
+                <div><div class="cs-stat-num">$0.0M</div><div class="cs-stat-label">Placeholder stat label</div></div>
+              </div>
+            </div>
+            <div class="placeholder-img cs-image">IMG</div>
+          </div>
+          <div class="cs-slide" data-slide="1" style="display:none;">
+            <div>
+              <div class="placeholder-img cs-logo">LOGO</div>
+              <h3 style="font-size:22px;">Placeholder result headline for case two</h3>
+              <div class="cs-stats">
+                <div><div class="cs-stat-num">00%</div><div class="cs-stat-label">Placeholder stat label</div></div>
+                <div><div class="cs-stat-num">00</div><div class="cs-stat-label">Placeholder stat label</div></div>
+                <div><div class="cs-stat-num">$0.0M</div><div class="cs-stat-label">Placeholder stat label</div></div>
+              </div>
+            </div>
+            <div class="placeholder-img cs-image">IMG</div>
+          </div>
+          <div class="cs-slide" data-slide="2" style="display:none;">
+            <div>
+              <div class="placeholder-img cs-logo">LOGO</div>
+              <h3 style="font-size:22px;">Placeholder result headline for case three</h3>
+              <div class="cs-stats">
+                <div><div class="cs-stat-num">00%</div><div class="cs-stat-label">Placeholder stat label</div></div>
+                <div><div class="cs-stat-num">00</div><div class="cs-stat-label">Placeholder stat label</div></div>
+                <div><div class="cs-stat-num">$0.0M</div><div class="cs-stat-label">Placeholder stat label</div></div>
+              </div>
+            </div>
+            <div class="placeholder-img cs-image">IMG</div>
           </div>
         </div>
-        <div class="placeholder-img cs-image">IMG</div>
-      </div>
+
+        <div class="cs-controls">
+          <div class="cs-arrow" id="cs-prev">‹</div>
+          <div class="cs-dots" id="cs-dots">
+            <div class="cs-dot active" data-dot="0"></div>
+            <div class="cs-dot" data-dot="1"></div>
+            <div class="cs-dot" data-dot="2"></div>
+          </div>
+          <div class="cs-arrow" id="cs-next">›</div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="card cta-final">
+        <div class="glow-a" style="width:600px;height:400px;top:-140px;left:50%;transform:translateX(-50%);background:radial-gradient(circle, rgba(63,203,238,0.3), transparent 65%);"></div>
+        <span class="logo-mark" style="display:inline-block;"></span>
+        <h2>Placeholder closing headline<br>inviting the call to action</h2>
+        <a href="#" class="btn btn-primary" style="padding:13px 22px;">Schedule a call <span class="btn-arrow">→</span></a>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="card">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="logo" style="margin-bottom:0;"><span class="logo-mark"></span> Placeholder Co</a>
+            <p>Placeholder one-line tagline describing what the company does sits here.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Placeholder Column</h4>
+            <ul class="footer-links">
+              <li><a href="#">Placeholder link one</a></li>
+              <li><a href="#">Placeholder link two</a></li>
+              <li><a href="#">Placeholder link three</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Placeholder Column</h4>
+            <ul class="footer-links">
+              <li><a href="#">Placeholder link one</a></li>
+              <li><a href="#">Placeholder link two</a></li>
+              <li><a href="#">Placeholder link three</a></li>
+              <li><a href="#">Placeholder link four</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+
     </div>
-
-    <div class="cs-controls">
-      <div class="cs-arrow" id="cs-prev">‹</div>
-      <div class="cs-dots" id="cs-dots">
-        <div class="cs-dot active" data-dot="0"></div>
-        <div class="cs-dot" data-dot="1"></div>
-        <div class="cs-dot" data-dot="2"></div>
-      </div>
-      <div class="cs-arrow" id="cs-next">›</div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="card cta-final">
-    <span class="logo-mark" style="display:inline-block;"></span>
-    <h2>Placeholder closing headline<br>inviting the call to action</h2>
-    <a href="#" class="btn btn-primary" style="padding:15px 26px;">Schedule a call ↗</a>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="card">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="logo"><span class="logo-mark"></span> Placeholder Co</a>
-        <p>Placeholder one-line tagline describing what the company does sits here.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Placeholder Column</h4>
-        <ul class="footer-links">
-          <li><a href="#">Placeholder link one</a></li>
-          <li><a href="#">Placeholder link two</a></li>
-          <li><a href="#">Placeholder link three</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Placeholder Column</h4>
-        <ul class="footer-links">
-          <li><a href="#">Placeholder link one</a></li>
-          <li><a href="#">Placeholder link two</a></li>
-          <li><a href="#">Placeholder link three</a></li>
-          <li><a href="#">Placeholder link four</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
+  </main>
 </div>
 
 <script>
-  // Sidebar active-state on click (simple, no scrollspy since sidebar unmounts after hero)
-  document.querySelectorAll('.side-list a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.querySelectorAll('.side-list a').forEach(x => x.classList.remove('active'));
-      a.classList.add('active');
+  const mainScroll = document.getElementById('main-scroll');
+  const sideLinks = document.querySelectorAll('.side-list a');
+  const sections = Array.from(sideLinks).map(a => document.getElementById(a.dataset.section));
+
+  // Scrollspy: highlight sidebar link matching the section currently in view
+  mainScroll.addEventListener('scroll', () => {
+    let current = sections[0];
+    const scrollPos = mainScroll.scrollTop + 140;
+    sections.forEach(sec => { if (sec && sec.offsetTop <= scrollPos) current = sec; });
+    sideLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current.id));
+  }, { passive: true });
+
+  // Smooth-scroll the main pane (not the window) when clicking sidebar links
+  sideLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(a.dataset.section);
+      mainScroll.scrollTo({ top: target.offsetTop - 24, behavior: 'smooth' });
     });
   });
+
+  // Mobile sidebar toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const sidebar = document.getElementById('sidebar');
+  if (menuToggle) menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
 
   // Tabs
   document.querySelectorAll('.tab-pill').forEach(btn => {
