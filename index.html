@@ -227,7 +227,7 @@
       display: flex; align-items: center; gap: 10px;
       font-family: 'Bricolage Grotesque', sans-serif;
       font-weight: 700; font-size: 17px;
-      color: #FFFFFF; text-decoration: none;
+      color: var(--text); text-decoration: none;
       flex-shrink: 0;
     }
 
@@ -238,7 +238,7 @@
     .nav-links a {
       font-family: 'Instrument Sans', sans-serif;
       font-size: 15px; font-weight: 500;
-      color: #FFFFFF; text-decoration: none;
+      color: var(--text); text-decoration: none;
       transition: opacity .2s;
     }
     .nav-links a:hover { opacity: 0.65; }
@@ -264,13 +264,6 @@
       min-height: 100vh;
       box-sizing: border-box;
     }
-    .hero-video {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
     /* Decorative doodle icons scattered at hero edges */
     .edge-doodle {
       position: absolute; z-index: 2;
@@ -327,13 +320,6 @@
         linear-gradient(rgba(0,0,0,0.055) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,0,0,0.055) 1px, transparent 1px);
       background-size: 32px 32px; pointer-events: none;
-    }
-
-    .hero::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 260px;
-      background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.55) 60%, #ffffff 100%);
-      pointer-events: none; z-index: 1;
     }
 
     .hero-content {
@@ -403,14 +389,12 @@
       font-size: clamp(42px, 5.2vw, 74px);
       font-weight: 800; line-height: 1.06;
       letter-spacing: -0.03em; margin-bottom: 18px;
-      color: #FFFFFF;
-      -webkit-text-stroke: 1.5px #0F0F0F;
-      paint-order: stroke fill;
+      color: var(--text);
     }
     h1 em { font-style: italic; }
 
     .hero-sub {
-      font-size: 17px; color: rgba(255,255,255,0.82);
+      font-size: 17px; color: var(--text-muted);
       max-width: 680px; margin: 0 auto 32px; line-height: 1.65;
     }
 
@@ -429,13 +413,13 @@
 
     .btn-outline {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,0.15); color: #FFFFFF;
+      background: transparent; color: var(--text);
       padding: 14px 24px; border-radius: 20px;
       font-size: 15px; font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.25); text-decoration: none;
+      border: 1.5px solid var(--text); text-decoration: none;
       transition: background .2s, transform .2s;
     }
-    .btn-outline:hover { background: #f0ece5; transform: translateY(-1px); }
+    .btn-outline:hover { background: rgba(0,0,0,0.05); transform: translateY(-1px); }
 
     /* ── HERO VSL ── */
     .hero-vsl-wrap {
@@ -739,90 +723,6 @@
     .tool-name:hover { color: var(--text); }
     .tool-name span { color: var(--accent); }
 
-    /* ── CASE STUDIES ── */
-    .proof-wrap {
-      background: white;
-      padding: 72px 0;
-      position: relative; z-index: 1;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .proof-heading {
-      max-width: 1140px; margin: 0 auto 44px; padding: 0 52px;
-      text-align: center;
-    }
-    .proof-heading h2 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(39px, 4.5vw, 60px);
-      font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
-    }
-    .proof-heading h2 em { font-style: italic; }
-
-    /* Fade edges */
-    .proof-ticker-wrap {
-      position: relative;
-    }
-    .proof-ticker-wrap::before,
-    .proof-ticker-wrap::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 120px;
-      z-index: 2; pointer-events: none;
-    }
-    .proof-ticker-wrap::before { left: 0; background: linear-gradient(to right, white, transparent); }
-    .proof-ticker-wrap::after  { right: 0; background: linear-gradient(to left, white, transparent); }
-
-    .proof-ticker {
-      display: flex; gap: 20px;
-      width: max-content;
-      animation: tickerScroll 67s linear infinite;
-    }
-    .proof-ticker:hover { animation-play-state: paused; }
-    @keyframes tickerScroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .cs-card {
-      width: 360px; flex-shrink: 0;
-      background: white;
-      border: 1px solid rgba(0,0,0,0.07);
-      border-radius: 18px;
-      padding: 28px 28px 26px;
-      display: flex; flex-direction: column; gap: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.07);
-    }
-    .cs-header {
-      display: flex; align-items: center; gap: 12px;
-      padding-bottom: 14px; border-bottom: 1px solid var(--border);
-    }
-    .cs-logo-wrap {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: #f5f5f5; flex-shrink: 0;
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-    }
-    .cs-logo-wrap img {
-      width: 120%; height: 120%; object-fit: contain;
-      filter: blur(7px); transform: scale(1.2);
-    }
-    .cs-header-text { flex: 1; min-width: 0; }
-    .cs-company {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 14px; font-weight: 700;
-      letter-spacing: -0.01em; color: var(--text);
-      line-height: 1.25;
-    }
-    .cs-offer {
-      font-size: 13px; color: var(--text-muted);
-      line-height: 1.6;
-    }
-    .cs-stats { display: flex; flex-direction: column; gap: 10px; }
-    .cs-stat-num {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 26px; font-weight: 800;
-      letter-spacing: -0.03em; line-height: 1; color: var(--text);
-    }
-    .cs-stat-num.gold { color: var(--accent); }
-    .cs-stat-desc { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
-
     /* ── SHARED ── */
     section { position: relative; z-index: 1; }
     .sec { padding: 72px 0; }
@@ -1010,13 +910,13 @@
   <div class="nav-inner">
   <a href="#" class="nav-logo" aria-label="Lead Acquisition">
     <svg class="nav-logo-mark" viewBox="0 0 44 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 9 L2 2 L9 2" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M35 2 L42 2 L42 9" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M2 23 L2 30 L9 30" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M35 30 L42 30 L42 23" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M12 8 L12 24 L20 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M22 24 L27 8 L32 24" stroke="#FFFFFF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
-      <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M2 9 L2 2 L9 2" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 2 L42 2 L42 9" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 23 L2 30 L9 30" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35 30 L42 30 L42 23" stroke="#0F0F0F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 8 L12 24 L20 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 24 L27 8 L32 24" stroke="#0F0F0F" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="23.4" y1="19" x2="30.6" y2="19" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="round"/>
     </svg>
   </a>
   <div class="nav-right">
@@ -1032,8 +932,6 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
-
-  <video class="hero-video" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4" autoplay loop muted playsinline></video>
 
   <!-- Reusable NFT mascot - precision android with crosshair eye -->
   <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -1141,13 +1039,13 @@
   <svg class="edge-doodle d1" width="76" height="56" viewBox="0 0 76 56" fill="none" style="--drot:-8deg">
     <!-- cloud -->
     <path d="M6 40 C6 30 14 22 24 24 C26 12 46 10 50 22 C62 20 70 28 68 38 C68 46 58 48 50 46 L20 46 C10 46 6 44 6 40 Z"
-          stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+          stroke="#0F0F0F" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
   </svg>
   <svg class="edge-doodle d4" width="74" height="74" viewBox="0 0 74 74" fill="none" style="--drot:-6deg">
     <!-- 4-pointed star -->
     <path d="M37 6 L42 32 L68 37 L42 42 L37 68 L32 42 L6 37 L32 32 Z"
-          stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
-    <circle cx="37" cy="37" r="4" fill="#FFFFFF"/>
+          stroke="#0F0F0F" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+    <circle cx="37" cy="37" r="4" fill="#0F0F0F"/>
   </svg>
 
   <div class="hero-content reveal">
@@ -1201,200 +1099,6 @@
   </div>
 </section>
 
-<!-- ═══════════ CASE STUDIES ═══════════ -->
-<section class="proof-wrap" id="case-studies">
-  <div class="proof-heading reveal">
-    <h2>Recent <em>case studies.</em></h2>
-  </div>
-  <div class="proof-ticker-wrap">
-    <div class="proof-ticker">
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=outreach.io&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">GTM analytics platform helping Series B SaaS teams cut CAC by attributing pipeline to outbound activity.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=lacework.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Cloud misconfiguration detection sold to CISOs at companies running multi-cloud infrastructure above 500 employees.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=retool.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Internal developer portal sold to VPs of Engineering at companies with 50+ engineers who had outgrown Confluence.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=gong.io&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Deal desk automation for RevOps teams at SaaS companies processing 100+ quotes per month with manual approval bottlenecks.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=brex.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Spend management platform targeting CFOs at VC-backed companies between Series A and Series C burning over $500k per month.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=cohere.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Model evaluation and observability tooling sold to AI teams at enterprises running LLMs in production with no visibility into drift or failure rates.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=bain.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Fractional CFO service sold to founder-led professional services firms generating $2M-$10M ARR with no finance function in place.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <!-- Duplicate set for seamless loop -->
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=outreach.io&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">GTM analytics platform helping Series B SaaS teams cut CAC by attributing pipeline to outbound activity.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">8,412</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">6</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$180k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=lacework.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Cloud misconfiguration detection sold to CISOs at companies running multi-cloud infrastructure above 500 employees.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">14,208</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">8</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$310k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=retool.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Internal developer portal sold to VPs of Engineering at companies with 50+ engineers who had outgrown Confluence.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">6,940</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$142k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=gong.io&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Deal desk automation for RevOps teams at SaaS companies processing 100+ quotes per month with manual approval bottlenecks.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">24,830</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">16</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$164k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=brex.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Spend management platform targeting CFOs at VC-backed companies between Series A and Series C burning over $500k per month.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">12,650</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">11</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$88k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=cohere.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Model evaluation and observability tooling sold to AI teams at enterprises running LLMs in production with no visibility into drift or failure rates.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">31,200</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">17</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$232k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-      <div class="cs-card">
-        <div class="cs-header">
-          <div class="cs-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=bain.com&sz=128" alt=""></div>
-          <div class="cs-header-text"></div>
-        </div>
-        <p class="cs-offer">Fractional CFO service sold to founder-led professional services firms generating $2M-$10M ARR with no finance function in place.</p>
-        <div class="cs-stats">
-          <div><div class="cs-stat-num">16,780</div><div class="cs-stat-desc">Emails sent</div></div>
-          <div><div class="cs-stat-num">5</div><div class="cs-stat-desc">Meetings booked</div></div>
-          <div><div class="cs-stat-num gold">$116k</div><div class="cs-stat-desc">Pipeline generated</div></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════ SERVICES ═══════════ -->
 <section class="services sec" id="services">
@@ -2017,36 +1721,6 @@
       clearTimeout(window.__flowTO);
       window.__flowTO = setTimeout(draw, 120);
     });
-  })();
-
-  // Case-study carousel - auto-adapts to however many .proof-card children exist
-  (function(){
-    const track = document.getElementById('proofTrack');
-    if (!track) return;
-    const cards = () => track.querySelectorAll('.proof-card');
-    const dotsWrap = document.getElementById('proofDots');
-    const prev = document.getElementById('proofPrev');
-    const next = document.getElementById('proofNext');
-    let idx = 0;
-
-    function renderDots() {
-      dotsWrap.innerHTML = '';
-      cards().forEach((_, i) => {
-        const d = document.createElement('span');
-        d.className = 'proof-dot' + (i === idx ? ' is-active' : '');
-        d.addEventListener('click', () => go(i));
-        dotsWrap.appendChild(d);
-      });
-    }
-    function go(i) {
-      const total = cards().length;
-      idx = (i + total) % total;
-      track.style.transform = `translateX(-${idx * 100}%)`;
-      dotsWrap.querySelectorAll('.proof-dot').forEach((d, j) => d.classList.toggle('is-active', j === idx));
-    }
-    prev.addEventListener('click', () => go(idx - 1));
-    next.addEventListener('click', () => go(idx + 1));
-    renderDots();
   })();
 
   function toggleFaq(el) {
