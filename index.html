@@ -6,7 +6,7 @@
 <title>Layout Draft — Placeholder Content</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -149,6 +149,17 @@
   h2 { font-size: clamp(24px, 3vw, 32px); color: var(--text); margin-bottom: 16px; }
   h3 { font-size: 17px; color: var(--text); margin-bottom: 8px; }
   p { color: var(--text-muted); font-size: 14.5px; }
+
+  .accent-italic {
+    position: relative; display: inline-block;
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    color: var(--accent); white-space: nowrap;
+  }
+  .accent-underline {
+    position: absolute; left: -2%; bottom: -0.16em; width: 104%; height: 0.22em;
+    color: var(--accent); opacity: 0.75;
+  }
+  .accent-underline svg { width: 100%; height: 100%; display: block; }
 
   /* ── HERO ── */
   .hero-pad { padding: 48px 144px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
@@ -305,9 +316,9 @@
         <div class="glow-a" style="width:520px;height:420px;top:-160px;right:-120px;background:radial-gradient(circle, rgba(160,96,47,0.22), transparent 65%);"></div>
         <div class="hero-top">
           <div class="hero-text" style="display:flex;flex-direction:column;">
-            <h1>100 qualified leads in 90 days. Or you don't pay.</h1>
+            <h1>100 qualified leads in 90 days.<br>Or you <span class="accent-italic">don't pay<span class="accent-underline"><svg viewBox="0 0 200 12" preserveAspectRatio="none" fill="none"><path d="M2 8.5C40 2 90 2 100 6C110 10 160 2 198 5.5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></span>.</h1>
             <p class="lede">We build and run the complete outbound system: infrastructure, copy, and 15+ parallel campaigns testing what actually converts.</p>
-            <a href="#" class="btn btn-primary hero-cta-bar" style="margin-top:auto;">Schedule a call <span class="btn-arrow">→</span></a>
+            <a href="#" class="btn btn-primary hero-cta-bar">Schedule a call <span class="btn-arrow">→</span></a>
           </div>
           <div class="hero-video-wrap">
             <div class="hero-video">
