@@ -218,6 +218,12 @@
   .logo-chip { width: 100px; height: 30px; border-radius: 6px; }
 
   /* ── 3-COL GRID (Who it's for) ── */
+  .fit-checklist { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; margin-top: 22px; }
+  .fit-checklist li { display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .fit-check-icon {
+    width: 18px; height: 18px; border-radius: 50%; background: rgba(79,143,85,0.14); color: #4F8F55;
+    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
   .col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 28px; }
   @media (max-width: 900px) { .col-3 { grid-template-columns: 1fr; } }
   .offer-card .placeholder-img { height: 170px; border-radius: var(--r-md); margin-bottom: 16px; }
@@ -427,25 +433,32 @@
 
       <!-- WHO IT'S FOR -->
       <section class="card card-pad" id="who">
-        <span class="kicker">Placeholder kicker</span>
-        <h2>Placeholder section headline<br>spanning two lines</h2>
+        <span class="kicker">Who we're for</span>
+        <h2>Built for teams tired of<br>unpredictable pipeline</h2>
+
+        <ul class="fit-checklist">
+          <li><span class="fit-check-icon">&check;</span>Proven Offer</li>
+          <li><span class="fit-check-icon">&check;</span>Sales Team In Place</li>
+          <li><span class="fit-check-icon">&check;</span>30K+ TAM</li>
+        </ul>
+
         <div class="col-3">
           <div class="offer-card">
             <div class="placeholder-img">IMG</div>
-            <h3>Placeholder title one</h3>
-            <p>Placeholder description text sits here for card one, two lines long.</p>
+            <h3>Founders &amp; Sales Leaders</h3>
+            <p>You're closing deals yourself and don't have time to also build outbound from scratch.</p>
             <a href="#" class="btn btn-outline">Learn More</a>
           </div>
           <div class="offer-card">
             <div class="placeholder-img">IMG</div>
-            <h3>Placeholder title two</h3>
-            <p>Placeholder description text sits here for card two, two lines long.</p>
+            <h3>B2B Agencies</h3>
+            <p>You need a predictable pipeline channel, not another one-off campaign.</p>
             <a href="#" class="btn btn-outline">Learn More</a>
           </div>
           <div class="offer-card">
             <div class="placeholder-img">IMG</div>
-            <h3>Placeholder title three</h3>
-            <p>Placeholder description text sits here for card three, two lines long.</p>
+            <h3>SaaS Companies</h3>
+            <p>You've got a great product, but outbound has never actually worked for you.</p>
             <a href="#" class="btn btn-outline">Learn More</a>
           </div>
         </div>
