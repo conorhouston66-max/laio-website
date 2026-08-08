@@ -249,7 +249,7 @@
   @media (max-width: 900px) { .achv-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .achv-grid { grid-template-columns: 1fr; } }
   .achv-card { background: var(--card-bg-2); border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; }
-  .achv-card-img { height: 210px; width: 100%; display: block; object-fit: cover; object-position: 4% center; border-bottom: 1px solid var(--border); background: #fff; }
+  .achv-card-img { height: 150px; width: 100%; display: block; object-fit: contain; object-position: center; border-bottom: 1px solid var(--border); background: #fff; padding: 8px; box-sizing: border-box; }
   .achv-card-body { padding: 18px 20px; }
   .achv-card-stat { font-size: 14.5px; color: var(--text); margin-bottom: 6px; }
   .achv-card-stat em { font-style: normal; color: var(--accent); font-weight: 700; }
@@ -459,7 +459,7 @@
       <!-- WHO IT'S FOR -->
       <section class="card card-pad" id="who">
         <span class="kicker">Who we're for</span>
-        <h2>Let's see if we're<br>the right fit for each other</h2>
+        <h2>Let's see if we're the right fit for each other.</h2>
 
         <div class="fit-compare">
           <div class="fit-compare-col yes">
