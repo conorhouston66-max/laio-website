@@ -533,8 +533,8 @@
 
       <!-- WHAT WE'VE DONE -->
       <section class="card card-pad" id="done">
-        <span class="kicker">What we've done</span>
-        <h2>Real results, run<br>for real companies</h2>
+        <span class="kicker">Case studies</span>
+        <h2>Real results, run for real companies</h2>
         <div class="achv-grid">
           <div class="achv-card">
             <img class="achv-card-img" src="images/campaign-1.png" alt="Campaign stats screenshot">
@@ -584,7 +584,7 @@
       <!-- WHAT WE OFFER (TABS) -->
       <section class="card card-pad" id="offer">
         <span class="kicker">What we offer</span>
-        <h2>Everything it takes<br>to fill your calendar</h2>
+        <h2>Everything it takes to fill your calendar</h2>
 
         <div class="tab-groups">
           <div>
@@ -829,12 +829,17 @@
     sideLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current.id));
   }, { passive: true });
 
-  // Smooth-scroll the main pane (not the window) when clicking sidebar links
-  sideLinks.forEach(a => {
+  // Smooth-scroll the main pane (not the window) when clicking sidebar or topbar links
+  function scrollToId(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top - mainScroll.getBoundingClientRect().top + mainScroll.scrollTop - 24;
+    mainScroll.scrollTo({ top, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.side-list a, .topnav a').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
-      const target = document.getElementById(a.dataset.section);
-      mainScroll.scrollTo({ top: target.offsetTop - 24, behavior: 'smooth' });
+      scrollToId(a.getAttribute('href').slice(1));
     });
   });
 
