@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Layout Draft — Placeholder Content</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
@@ -60,7 +64,7 @@
     box-shadow: 0 12px 32px rgba(59,40,23,0.12);
   }
   .logo { display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 15.5px; text-decoration: none; color: var(--text); }
-  .logo-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(145deg, var(--accent), var(--accent-2)); flex-shrink: 0; }
+  .logo-mark { width: 26px; height: 26px; flex-shrink: 0; object-fit: contain; }
   .topbar-left { display: flex; align-items: center; gap: 40px; }
   .topnav { display: flex; align-items: center; gap: 26px; list-style: none; }
   .topnav a { display: inline-flex; align-items: center; gap: 5px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 400; text-transform: capitalize; }
@@ -275,11 +279,57 @@
   .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
   @media (max-width: 900px) { .tab-panel.active { grid-template-columns: 1fr; } }
   .tab-panel .placeholder-img { height: 240px; border-radius: var(--r-md); }
-  .offer-illustration {
-    height: 240px; border-radius: var(--r-md); background: var(--card-bg-2); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center; color: var(--accent-2);
+  .offer-mock {
+    height: 240px; border-radius: var(--r-md); background: #fff; border: 1px solid var(--border);
+    padding: 18px; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 16px 32px rgba(46,32,19,0.08);
   }
-  .offer-illustration svg { width: 96px; height: 96px; }
+  .offer-mock-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+
+  /* List Building: lead rows */
+  .mock-lead-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border-soft); }
+  .mock-lead-row:first-of-type { border-top: none; }
+  .mock-avatar { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; }
+  .mock-lead-name { font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .mock-lead-sub { font-size: 11px; color: var(--text-dim); }
+  .mock-tag { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; flex-shrink: 0; }
+  .mock-tag.hiring { background: rgba(160,96,47,0.12); color: var(--accent); }
+  .mock-tag.funded { background: rgba(79,143,85,0.14); color: #4F8F55; }
+  .mock-tag.tech { background: rgba(178,84,68,0.12); color: #B25444; }
+
+  /* Copywriting: variant composer */
+  .mock-variant-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .mock-variant-tab { font-size: 10.5px; font-weight: 600; padding: 5px 10px; border-radius: 6px; background: var(--card-bg-2); color: var(--text-muted); }
+  .mock-variant-tab.active { background: var(--accent-2); color: #fff; }
+  .mock-subject { font-size: 12.5px; font-weight: 600; color: var(--text); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border-soft); }
+  .mock-line { height: 8px; border-radius: 4px; background: var(--card-bg-2); margin-bottom: 7px; }
+
+  /* Deliverability: domain health */
+  .mock-stat-line { font-size: 12.5px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+  .mock-stat-line span { color: #4F8F55; }
+  .mock-domain-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--border-soft); font-size: 12px; color: var(--text-muted); }
+  .mock-domain-row:first-of-type { border-top: none; }
+  .mock-check-dot { width: 15px; height: 15px; border-radius: 50%; background: rgba(79,143,85,0.14); color: #4F8F55; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+
+  /* Parallel Testing: campaign rows (reuses c-track style) */
+  .mock-camp-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; }
+  .mock-camp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .mock-camp-name { font-size: 11.5px; color: var(--text-muted); width: 100px; flex-shrink: 0; }
+  .mock-camp-track { flex: 1; height: 5px; border-radius: 4px; background: var(--card-bg-2); overflow: hidden; }
+  .mock-camp-fill { height: 100%; border-radius: 4px; background: var(--accent); }
+  .mock-camp-rate { font-size: 11px; font-weight: 600; color: var(--text); width: 32px; text-align: right; flex-shrink: 0; }
+
+  /* Reply Handling: inbox */
+  .mock-reply-row { padding: 8px 0; border-top: 1px solid var(--border-soft); }
+  .mock-reply-row:first-of-type { border-top: none; }
+  .mock-reply-top { display: flex; justify-content: space-between; margin-bottom: 3px; }
+  .mock-reply-name { font-size: 12px; font-weight: 600; color: var(--text); }
+  .mock-reply-snip { font-size: 11px; color: var(--text-dim); }
+
+  /* Pay Per Lead: billing card */
+  .mock-bill-row { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--border-soft); font-size: 12px; color: var(--text-muted); }
+  .mock-bill-row:first-of-type { border-top: none; }
+  .mock-bill-total { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1.5px solid var(--border); font-size: 13.5px; font-weight: 700; color: var(--text); }
   .feature-list { display: flex; flex-direction: column; gap: 16px; margin: 18px 0 24px; }
   .feature-item h4 { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .feature-item p { font-size: 13px; }
@@ -330,7 +380,7 @@
   <!-- TOP BAR: logo, first 3 section links, CTA -->
   <header class="topbar">
     <div class="topbar-left">
-      <a href="#top" class="logo"><span class="logo-mark"></span> Placeholder Co</a>
+      <a href="#top" class="logo"><img src="logos/la-mark.png" alt="Lead Acquisition" class="logo-mark"> Lead Acquisition</a>
       <ul class="topnav">
         <li><a href="#top">Welcome <span class="nav-chevron">›</span></a></li>
         <li><a href="#who">Who we are for <span class="nav-chevron">›</span></a></li>
@@ -575,16 +625,23 @@
               <div class="feature-item"><h4>Continuous refresh</h4><p>Lists are refreshed as campaigns run, so you're never emailing stale contacts.</p></div>
             </div>
           </div>
-          <div class="offer-illustration">
-            <svg viewBox="0 0 120 120" fill="none">
-              <circle cx="60" cy="60" r="38" stroke="currentColor" stroke-width="2"/>
-              <circle cx="60" cy="60" r="22" stroke="currentColor" stroke-width="2"/>
-              <circle cx="60" cy="60" r="5" fill="currentColor"/>
-              <circle cx="90" cy="30" r="4" fill="currentColor" opacity="0.5"/>
-              <circle cx="24" cy="42" r="3" fill="currentColor" opacity="0.5"/>
-              <circle cx="94" cy="82" r="3" fill="currentColor" opacity="0.5"/>
-              <path d="M84 36 L68 48" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
-            </svg>
+          <div class="offer-mock">
+            <div class="offer-mock-label">Signal-Matched Leads</div>
+            <div class="mock-lead-row">
+              <span class="mock-avatar" style="background:#3B4C63;"></span>
+              <div><div class="mock-lead-name">Jordan Blake</div><div class="mock-lead-sub">VP Sales &middot; Northgate</div></div>
+              <span class="mock-tag hiring">Hiring</span>
+            </div>
+            <div class="mock-lead-row">
+              <span class="mock-avatar" style="background:#5B4B6E;"></span>
+              <div><div class="mock-lead-name">Sam Ortiz</div><div class="mock-lead-sub">COO &middot; Arbor Robotics</div></div>
+              <span class="mock-tag funded">Funded</span>
+            </div>
+            <div class="mock-lead-row">
+              <span class="mock-avatar" style="background:#8A4E2E;"></span>
+              <div><div class="mock-lead-name">Riley Chen</div><div class="mock-lead-sub">CMO &middot; Kestrel</div></div>
+              <span class="mock-tag tech">New Tech</span>
+            </div>
           </div>
         </div>
         <div class="tab-panel" id="panel-t2">
@@ -596,54 +653,63 @@
               <div class="feature-item"><h4>Spintax and A/B variants</h4><p>Every step has tested variants, not a single static message.</p></div>
             </div>
           </div>
-          <div class="offer-illustration">
-            <svg viewBox="0 0 120 120" fill="none">
-              <rect x="28" y="20" width="50" height="66" rx="4" stroke="currentColor" stroke-width="2"/>
-              <path d="M38 36h30M38 46h30M38 56h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M70 66 L94 66 M94 66 L88 60 M94 66 L88 72" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-              <path d="M70 76 L94 76 M94 76 L88 70 M94 76 L88 82" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
-            </svg>
+          <div class="offer-mock">
+            <div class="mock-variant-tabs">
+              <span class="mock-variant-tab active">Variant A</span>
+              <span class="mock-variant-tab">Variant B</span>
+              <span class="mock-variant-tab">Variant C</span>
+            </div>
+            <div class="mock-subject">Subject: quick question about {{company}}</div>
+            <div class="mock-line" style="width:100%;"></div>
+            <div class="mock-line" style="width:92%;"></div>
+            <div class="mock-line" style="width:78%;"></div>
+            <div class="mock-line" style="width:60%;"></div>
           </div>
         </div>
         <div class="tab-panel" id="panel-t3">
           <div><h3 style="font-size:22px;">Inbox infrastructure built to actually land</h3><p>Domains, warmup, and sending infrastructure managed so your emails land in the inbox, not spam.</p></div>
-          <div class="offer-illustration">
-            <svg viewBox="0 0 120 120" fill="none">
-              <path d="M60 22 L92 36 V64 C92 84 78 96 60 100 C42 96 28 84 28 64 V36 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M46 60 L56 70 L76 48" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <div class="offer-mock">
+            <div class="mock-stat-line">Inbox placement: <span>96%</span></div>
+            <div class="mock-domain-row"><span class="mock-check-dot">&check;</span> yourbrand-outreach.com &middot; SPF, DKIM, DMARC</div>
+            <div class="mock-domain-row"><span class="mock-check-dot">&check;</span> yourbrand-mail.com &middot; Warmed 21 days</div>
+            <div class="mock-domain-row"><span class="mock-check-dot">&check;</span> yourbrand-connect.com &middot; Warmed 14 days</div>
           </div>
         </div>
         <div class="tab-panel" id="panel-t4">
           <div><h3 style="font-size:22px;">Multiple campaigns running in parallel</h3><p>We test several angles, audiences, and CTAs at once, scaled to your list size, so you know what's working in weeks, not months.</p></div>
-          <div class="offer-illustration">
-            <svg viewBox="0 0 120 120" fill="none">
-              <path d="M24 34 H96" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M24 60 H96" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
-              <path d="M24 86 H96" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-              <circle cx="70" cy="34" r="4" fill="currentColor"/>
-              <circle cx="48" cy="60" r="4" fill="currentColor" opacity="0.7"/>
-              <circle cx="82" cy="86" r="4" fill="currentColor" opacity="0.4"/>
-            </svg>
+          <div class="offer-mock">
+            <div class="offer-mock-label">Active Campaigns</div>
+            <div class="mock-camp-row"><span class="mock-camp-dot" style="background:#E7C687;"></span><span class="mock-camp-name">Angle A</span><div class="mock-camp-track"><div class="mock-camp-fill" style="width:78%;"></div></div><span class="mock-camp-rate">4.2%</span></div>
+            <div class="mock-camp-row"><span class="mock-camp-dot" style="background:#6FA88A;"></span><span class="mock-camp-name">Angle B</span><div class="mock-camp-track"><div class="mock-camp-fill" style="width:62%;"></div></div><span class="mock-camp-rate">3.1%</span></div>
+            <div class="mock-camp-row"><span class="mock-camp-dot" style="background:#7FA0D6;"></span><span class="mock-camp-name">Angle C</span><div class="mock-camp-track"><div class="mock-camp-fill" style="width:46%;"></div></div><span class="mock-camp-rate">2.8%</span></div>
+            <div class="mock-camp-row"><span class="mock-camp-dot" style="background:#B48ED1;"></span><span class="mock-camp-name">CTA variant</span><div class="mock-camp-track"><div class="mock-camp-fill" style="width:90%;"></div></div><span class="mock-camp-rate">5.1%</span></div>
           </div>
         </div>
         <div class="tab-panel" id="panel-t5">
           <div><h3 style="font-size:22px;">Every reply read, qualified, and routed</h3><p>We handle every reply personally, qualify interest, and only send you the ones ready for a call.</p></div>
-          <div class="offer-illustration">
-            <svg viewBox="0 0 120 120" fill="none">
-              <path d="M26 32 H80 a6 6 0 0 1 6 6 V64 a6 6 0 0 1 -6 6 H50 L34 82 V70 H26 a6 6 0 0 1 -6 -6 V38 a6 6 0 0 1 6 -6 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M40 50 L48 58 L64 42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M90 46 L100 46 M100 46 L95 41 M100 46 L95 51" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
-            </svg>
+          <div class="offer-mock">
+            <div class="offer-mock-label">Inbox</div>
+            <div class="mock-reply-row">
+              <div class="mock-reply-top"><span class="mock-reply-name">Jamie Rivera</span><span class="mock-tag funded">Interested</span></div>
+              <div class="mock-reply-snip">"Sounds good, send a time that works."</div>
+            </div>
+            <div class="mock-reply-row">
+              <div class="mock-reply-top"><span class="mock-reply-name">Alex Park</span><span class="mock-tag tech">Not Now</span></div>
+              <div class="mock-reply-snip">"Revisit next quarter, budget's set."</div>
+            </div>
+            <div class="mock-reply-row">
+              <div class="mock-reply-top"><span class="mock-reply-name">Morgan Lee</span><span class="mock-tag funded">Interested</span></div>
+              <div class="mock-reply-snip">"Who else have you worked with?"</div>
+            </div>
           </div>
         </div>
         <div class="tab-panel" id="panel-t6">
           <div><h3 style="font-size:22px;">You only pay for qualified leads</h3><p>No retainers for effort you can't see. You pay per qualified lead delivered, not for our time.</p></div>
-          <div class="offer-illustration">
-            <svg viewBox="0 0 120 120" fill="none">
-              <circle cx="60" cy="60" r="34" stroke="currentColor" stroke-width="2"/>
-              <path d="M60 42 V78 M50 50 h14 a7 7 0 0 1 0 14 h-14 M50 70 h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <div class="offer-mock">
+            <div class="offer-mock-label">This Month</div>
+            <div class="mock-bill-row"><span>Qualified lead &times; 32</span><span>$X,XXX</span></div>
+            <div class="mock-bill-row"><span>No-show credits</span><span>&minus;$XXX</span></div>
+            <div class="mock-bill-total"><span>Total due</span><span>$X,XXX</span></div>
           </div>
         </div>
       </section>
@@ -706,7 +772,7 @@
       <!-- FINAL CTA -->
       <section class="card cta-final">
         <div class="glow-a" style="width:600px;height:400px;top:-140px;left:50%;transform:translateX(-50%);background:radial-gradient(circle, rgba(92,58,34,0.18), transparent 65%);"></div>
-        <span class="logo-mark" style="display:inline-block;"></span>
+        <img src="logos/la-mark.png" alt="Lead Acquisition" class="logo-mark" style="display:inline-block; width:40px; height:40px;">
         <h2>Placeholder closing headline<br>inviting the call to action</h2>
         <a href="#" class="btn btn-primary" style="padding:13px 22px;">Schedule a call <span class="btn-arrow">→</span></a>
       </section>
@@ -715,7 +781,7 @@
       <footer class="card">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a href="#" class="logo" style="margin-bottom:0;"><span class="logo-mark"></span> Placeholder Co</a>
+            <a href="#" class="logo" style="margin-bottom:0;"><img src="logos/la-mark.png" alt="Lead Acquisition" class="logo-mark"> Lead Acquisition</a>
             <p>Placeholder one-line tagline describing what the company does sits here.</p>
           </div>
           <div class="footer-col">
