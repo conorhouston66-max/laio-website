@@ -168,11 +168,11 @@
   .stack-card { max-width: 640px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--lift-big); overflow: hidden; }
   .stack-head { background: var(--forest); color: #fff; text-align: center; padding: 22px 24px; font-weight: 800; font-size: 15px; letter-spacing: 0.02em; }
   .stack-list { padding: 8px 30px; }
-  .stack-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
+  .stack-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
   .stack-item:last-of-type { border-bottom: none; }
-  .stack-item-name { font-size: 15px; font-weight: 700; color: var(--ink); }
-  .stack-item-desc { font-size: 12.5px; color: var(--ink-dim); margin-top: 2px; }
-  .stack-item-price { font-size: 15px; font-weight: 800; color: var(--ink-dim); text-decoration: line-through; white-space: nowrap; }
+  .stack-item-name { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .stack-item-desc { font-size: 12.5px; color: var(--ink-dim); margin-top: 3px; }
+  .stack-item-price { font-size: 15px; font-weight: 800; color: var(--ink-dim); text-decoration: line-through; white-space: nowrap; line-height: 1.3; flex-shrink: 0; }
   .stack-total { display: flex; align-items: center; justify-content: space-between; padding: 22px 30px; background: var(--paper-2); border-top: 2px dashed var(--line); }
   .stack-total-label { font-size: 14px; font-weight: 700; color: var(--ink-soft); }
   .stack-total-value { font-size: 20px; font-weight: 800; color: var(--ink-dim); text-decoration: line-through; }
@@ -189,7 +189,7 @@
   .center .kicker::before { display: none; }
   .center { text-align: center; }
   .center .kicker { justify-content: center; }
-  .center .step, .center .who-card, .center .proof-card-body, .center .faq-item, .center .founder-info { text-align: left; }
+  .center .step, .center .who-card, .center .proof-card-body, .center .faq-item { text-align: left; }
   .sec-title { font-size: 40px; max-width: 700px; margin: 0 0 16px; }
   .center .sec-title { margin: 0 auto 16px; }
   .sec-sub { font-size: 16px; color: var(--ink-soft); max-width: 560px; margin: 0 0 56px; line-height: 1.65; }
@@ -205,7 +205,7 @@
   .proof-chrome { display: flex; align-items: center; gap: 6px; padding: 11px 14px; border-bottom: 1px solid var(--line-soft); background: #FAFAF8; }
   .proof-chrome span { width: 8px; height: 8px; border-radius: 50%; }
   .proof-chrome span:nth-child(1) { background: #EE6A5F; } .proof-chrome span:nth-child(2) { background: #F5BD4F; } .proof-chrome span:nth-child(3) { background: #61C455; }
-  .proof-card img { width: 100%; height: 172px; object-fit: cover; }
+  .proof-card img { width: 100%; height: 200px; object-fit: contain; background: var(--paper-2); padding: 14px; box-sizing: border-box; }
   .proof-card-body { padding: 20px 22px 22px; }
   .proof-tag { display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-dark); background: var(--green-tint); padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
   .proof-stat { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 19px; margin-bottom: 4px; }
@@ -251,23 +251,6 @@
   .who-card li .ic { position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
   .who-card.yes li .ic { background: var(--green-tint); color: var(--green-dark); }
   .who-card.no li .ic { background: #F6E7E3; color: #B05442; }
-
-  /* ── FOUNDER ── */
-  .founder-card {
-    display: flex; align-items: center; gap: 34px; border: 1px solid var(--line);
-    border-radius: 16px; padding: 38px; max-width: 760px; margin: 0 auto; background: #fff; box-shadow: var(--lift);
-  }
-  @media (max-width: 620px) { .founder-card { flex-direction: column; text-align: center; gap: 22px; } }
-  .founder-avatar {
-    width: 104px; height: 104px; border-radius: 50%; flex-shrink: 0;
-    background: linear-gradient(150deg, var(--green), var(--forest));
-    display: flex; align-items: center; justify-content: center; color: #fff;
-    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 30px;
-    border: 4px solid var(--green-tint);
-  }
-  .founder-info h3 { font-size: 23px; margin-bottom: 4px; }
-  .founder-info .role { font-size: 12.5px; color: var(--green-dark); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 13px; }
-  .founder-info p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; }
 
   /* ── FAQ ── */
   .faq { max-width: 740px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
@@ -557,23 +540,6 @@
             <li><span class="ic">✕</span>There's no sales process behind the calendar</li>
             <li><span class="ic">✕</span>You can't take calls in the next few weeks</li>
           </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOUNDER -->
-  <section id="founder" style="background: var(--paper-2); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);">
-    <div class="wrap center">
-      <span class="kicker">Who runs your campaign</span>
-      <h2 class="sec-title">No account managers. No handoffs.</h2>
-      <p class="sec-sub">You work directly with the person building and running your campaign.</p>
-      <div class="founder-card">
-        <div class="founder-avatar">CH</div>
-        <div class="founder-info" style="text-align:left;">
-          <h3>Conor Houston</h3>
-          <div class="role">Founder</div>
-          <p>Runs outbound as a live experiment: multiple campaigns in parallel, data deciding what scales. Has built cold email systems for B2B agencies and SaaS companies from $1M to $20M ARR.</p>
         </div>
       </div>
     </div>
