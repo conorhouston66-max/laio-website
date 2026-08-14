@@ -120,6 +120,36 @@
   .hero-proofline p { font-size: 13px; color: var(--ink-dim); }
   .hero-proofline b { color: var(--ink-soft); font-weight: 700; }
 
+  /* ── HERO COMPARISON CARD ── */
+  .compare { max-width: 720px; margin: 56px auto 0; position: relative; }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 18px; overflow: hidden; box-shadow: var(--lift-big); border: 1px solid var(--line); }
+  @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-side { background: #fff; padding: 34px 30px; text-align: left; }
+  .compare-side.old { background: #F3EFEA; }
+  .compare-side.new { background: var(--forest); color: #fff; }
+  .compare-label { font-size: 11.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+  .compare-side.old .compare-label { color: #9A8F80; }
+  .compare-side.new .compare-label { color: #7ED9A9; }
+  .compare-price { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; margin-bottom: 4px; }
+  .compare-side.old .compare-price { color: #8A8378; text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: #C9705E; }
+  .compare-side.new .compare-price { color: #fff; }
+  .compare-pricesub { font-size: 12.5px; color: var(--ink-dim); margin-bottom: 22px; }
+  .compare-side.new .compare-pricesub { color: rgba(255,255,255,0.6); }
+  .compare-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .compare-list li { font-size: 13.5px; padding-left: 24px; position: relative; line-height: 1.5; }
+  .compare-side.old .compare-list li { color: #746B5E; }
+  .compare-side.new .compare-list li { color: rgba(255,255,255,0.88); }
+  .compare-list li::before { position: absolute; left: 0; top: 0; font-weight: 800; font-size: 12px; }
+  .compare-side.old .compare-list li::before { content: '✕'; color: #C9705E; }
+  .compare-side.new .compare-list li::before { content: '✓'; color: #7ED9A9; }
+  .compare-vs {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5;
+    width: 44px; height: 44px; border-radius: 50%; background: var(--green); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;
+    box-shadow: 0 0 0 5px var(--paper);
+  }
+  @media (max-width: 640px) { .compare-vs { top: 0; } }
+
   /* ── LOGO/TOOL STRIP (animated marquee) ── */
   .strip { border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); background: var(--paper-2); padding: 26px 0; overflow: hidden; }
   .strip-label-row { text-align: center; font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 18px; }
@@ -308,6 +338,32 @@
           <span style="background:#8A5A34;">MK</span>
         </div>
         <p><b>15M+ emails sent</b> for B2B agencies and SaaS teams</p>
+      </div>
+
+      <div class="compare">
+        <div class="compare-vs">VS</div>
+        <div class="compare-grid">
+          <div class="compare-side old">
+            <div class="compare-label">Typical agency</div>
+            <div class="compare-price">$5,000</div>
+            <div class="compare-pricesub">retainer, before you know it works</div>
+            <ul class="compare-list">
+              <li>Pay upfront, wait 90 days</li>
+              <li>You carry the risk</li>
+              <li>Locked into a contract</li>
+            </ul>
+          </div>
+          <div class="compare-side new">
+            <div class="compare-label">Free Outbound</div>
+            <div class="compare-price">$0</div>
+            <div class="compare-pricesub">for your first full campaign</div>
+            <ul class="compare-list">
+              <li>Meetings land, then you decide</li>
+              <li>We carry the risk</li>
+              <li>No contract, no card</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
