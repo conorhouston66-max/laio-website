@@ -218,8 +218,11 @@
   }
   .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: #4F8F55; flex-shrink: 0; }
 
-  .logo-strip { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-  .logo-chip { width: 100px; height: 30px; border-radius: 6px; }
+  .logo-strip-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .logo-strip { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .brand-logo { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #0F0F0F; white-space: nowrap; opacity: 0.88; }
+  .brand-logo.serif { font-family: Georgia, 'Times New Roman', serif; }
+  .brand-logo.wide { letter-spacing: 0.03em; }
 
   /* ── 3-COL GRID (Who it's for) ── */
   .fit-compare {
@@ -496,13 +499,14 @@
           </div>
         </div>
 
+        <div class="logo-strip-label">Booked Meetings With</div>
         <div class="logo-strip">
-          <div class="placeholder-img logo-chip">LOGO</div>
-          <div class="placeholder-img logo-chip">LOGO</div>
-          <div class="placeholder-img logo-chip">LOGO</div>
-          <div class="placeholder-img logo-chip">LOGO</div>
-          <div class="placeholder-img logo-chip">LOGO</div>
-          <div class="placeholder-img logo-chip">LOGO</div>
+          <div class="brand-logo wide">BOEING</div>
+          <div class="brand-logo wide">SAMSUNG</div>
+          <div class="brand-logo">Apple</div>
+          <div class="brand-logo serif">Blackstone</div>
+          <div class="brand-logo">UnitedHealth</div>
+          <div class="brand-logo serif">The New York Times</div>
         </div>
       </section>
 
